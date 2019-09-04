@@ -34,6 +34,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'title',
             'summary',
             'desc:html',
+            'customcss',
             [
                 'attribute' => 'active',
                 'value' => function($model)

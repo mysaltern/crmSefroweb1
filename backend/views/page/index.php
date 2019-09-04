@@ -29,6 +29,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'title',
             'summary',
             'desc:html',
+            'customcss',
             [
                 'attribute' => 'link',
                 'value' => function($model)

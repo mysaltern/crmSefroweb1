@@ -32,6 +32,11 @@ return [
     ],
     [
         'class'=>'\kartik\grid\DataColumn',
+        'attribute'=>'customcss',
+
+    ],
+    [
+        'class'=>'\kartik\grid\DataColumn',
         'attribute'=>'photo',
     ],
     // [
