@@ -84,6 +84,7 @@ use dosamigos\fileupload\FileUploadUI;
                     $dataPost, ['id' => 'name']
             )->label('دسته بندی');
     ?>
+    <?= $form->field($model, 'customcss')->textarea() ?>
     <?php
     $item = array('0' => 'غیر فعال', '1' => 'فعال');
     ?>

@@ -7,6 +7,7 @@ use yii\widgets\LinkPager;
 <div class="margin">
 
     <?php
+
     foreach ($models as $model)
     {
 

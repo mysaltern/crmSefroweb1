@@ -36,6 +36,7 @@ class Page extends \yii\db\ActiveRecord
     {
         return [
             [['desc'], 'string'],
+            [['customcss'], 'string'],
             [['active', 'time', 'category_writing'], 'integer'],
             [['title', 'photo'], 'string', 'max' => 255],
             [['summary'], 'string', 'max' => 512],
@@ -57,6 +58,7 @@ class Page extends \yii\db\ActiveRecord
             'photo' => 'عکس',
             'time' => 'زمان',
             'category_writing' => 'دسته بندی صفحات',
+            'customcss' => 'ویرایش پوسنه با CSS',
         ];
     }
 
