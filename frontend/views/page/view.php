@@ -19,9 +19,9 @@ $customcss= (new \yii\db\Query())
 ?>
 
 <style>
-    body{
+
     <?=  $customcss['customcss'] ?>
-    }
+
 </style>
 
 <div class="margin">

@@ -58,7 +58,7 @@ class Page extends \yii\db\ActiveRecord
             'photo' => 'عکس',
             'time' => 'زمان',
             'category_writing' => 'دسته بندی صفحات',
-            'customcss' => 'ویرایش پوسنه با CSS',
+            'customcss' => 'ویرایش پوسته با CSS',
         ];
     }
 
