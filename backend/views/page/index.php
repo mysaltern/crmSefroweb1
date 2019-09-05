@@ -31,6 +31,7 @@ $this->params['breadcrumbs'][] = $this->title;
 //            'desc:html',
             'customcss',
             [
+                "header" => 'آدرس دسترسی',
                 'attribute' => 'link',
                 'value' => function($model)
                 {
@@ -39,25 +40,25 @@ $this->params['breadcrumbs'][] = $this->title;
                 },
             ],
             [
-                'attribute' => 'active',
-                'value' => function($model)
-                {
-                    if ($model->active == 1)
-                    {
-                        return 'active';
-                    }
-                    else
-                    {
-                        return 'deactive';
-                    }
-                },
-            ],
-            [
                 'attribute' => 'photo',
                 'format' => 'raw',
                 'value' => function ($model)
                 {
                     return Html::a(Html::encode("$model->photo"), "../../../../frontend/upload/img/$model->photo ", ['target' => '_blank', 'data-pjax' => "0"]);
+                },
+            ],
+            [
+                'attribute' => 'active',
+                'value' => function($model)
+                {
+                    if ($model->active == 1)
+                    {
+                        return 'فعال';
+                    }
+                    else
+                    {
+                        return 'غیر فعال';
+                    }
                 },
             ],
             //'time:datetime',
