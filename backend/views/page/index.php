@@ -28,7 +28,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'id',
             'title',
             'summary',
-            'desc:html',
+//            'desc:html',
             'customcss',
             [
                 'attribute' => 'link',

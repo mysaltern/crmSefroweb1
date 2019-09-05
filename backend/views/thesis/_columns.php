@@ -64,7 +64,9 @@ return [
         'label' => 'نام استاد ',
         'value' => function ($model)
         {
-            $names = \common\models\UniThesisProfessor::find()->asArray()->where(['thesis_id' => $model->id])->all();
+            $names = \common\models\UniThesisProfessor::find()->with('professorRole')->asArray()->where(['thesis_id' => $model->id])->all();
+
+
             $txt = '';
             $x = 0;
             foreach ($names as $name)
@@ -76,11 +78,11 @@ return [
                 $prName = \common\models\UniProfessor::find()->asArray()->where(['id' => $ide])->one();
                 if ($x == 1)
                 {
-                    $txt .= $prName['name'];
+                    $txt .= $prName['name'] . '(' . $name['professorRole']['name'] . ')';
                 }
                 else
                 {
-                    $txt .= "," . $prName['name'];
+                    $txt .= "," . $prName['name'] . '(' . $name['professorRole']['name'] . ')';
                 }
             }
             return $txt;

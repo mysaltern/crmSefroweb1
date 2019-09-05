@@ -20,7 +20,7 @@ $this->title = Yii::t('user', 'Sign up');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="row">
-    <div class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3">
+    <div class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3 center-block">
         <div class="panel panel-default">
             // display error message
             <?php if (Yii::$app->session->hasFlash('faild')): ?>

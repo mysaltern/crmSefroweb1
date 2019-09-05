@@ -54,7 +54,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'value' => function($model)
                 {
 
-                    return Yii::$app->params['websiteFront'] . 'index.php/' . 'page/' . $model->id;
+                    return Yii::$app->params['websiteFront'] . 'page/' . $model->id;
                 },
             ],
             [

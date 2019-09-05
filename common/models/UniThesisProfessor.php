@@ -10,10 +10,13 @@ use Yii;
  * @property int $id
  * @property int $thesis_id
  * @property int $professor_id
+ * @property int $professor_roleID
+ *
  * @property int $rate_order
  *
  * @property UniThesis $thesis
  * @property UniProfessor $professor
+ * @property UniProfessorRole $professorRole
  */
 class UniThesisProfessor extends \yii\db\ActiveRecord
 {
@@ -32,7 +35,7 @@ class UniThesisProfessor extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['thesis_id', 'professor_id', 'rate_order'], 'integer'],
+            [['thesis_id', 'professor_roleID', 'professor_id', 'rate_order'], 'integer'],
             [['thesis_id'], 'exist', 'skipOnError' => true, 'targetClass' => UniThesis::className(), 'targetAttribute' => ['thesis_id' => 'id']],
             [['professor_id'], 'exist', 'skipOnError' => true, 'targetClass' => UniProfessor::className(), 'targetAttribute' => ['professor_id' => 'id']],
         ];
@@ -48,6 +51,7 @@ class UniThesisProfessor extends \yii\db\ActiveRecord
             'thesis_id' => 'Thesis ID',
             'professor_id' => 'نام استاد',
             'rate_order' => 'Rate Order',
+            'professor_roleID' => 'نقش استاد',
         ];
     }
 
@@ -57,6 +61,11 @@ class UniThesisProfessor extends \yii\db\ActiveRecord
     public function getThesis()
     {
         return $this->hasOne(UniThesis::className(), ['id' => 'thesis_id']);
+    }
+
+    public function getProfessorRole()
+    {
+        return $this->hasOne(UniProfessorRole::className(), ['id' => 'professor_roleID']);
     }
 
     /**
