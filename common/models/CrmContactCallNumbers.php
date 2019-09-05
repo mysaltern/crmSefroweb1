@@ -26,12 +26,13 @@ use Yii;
  */
 class CrmContactCallNumbers extends \yii\db\ActiveRecord
 {
+
     /**
      * @inheritdoc
      */
     public static function tableName()
     {
-        return 'crm_ContactCallNumbers';
+        return 'crm_contactcallnumbers';
     }
 
     /**
@@ -102,4 +103,5 @@ class CrmContactCallNumbers extends \yii\db\ActiveRecord
     {
         return new CrmContactCallNumbersQuery(get_called_class());
     }
+
 }

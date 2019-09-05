@@ -35,7 +35,7 @@ class SleOrderDetail extends \yii\db\ActiveRecord
      */
     public static function tableName()
     {
-        return 'sle_OrderDetail';
+        return 'sle_orderdetail';
     }
 
     /**

@@ -1,11 +1,8 @@
 <?php
 
-
 namespace common\models;
 
-
 use Yii;
-
 
 /**
  * This is the model class for table "crm_ContactAddresses".
@@ -32,42 +29,37 @@ use Yii;
  * @property SleOrders[] $sleOrders
  */
 class CrmContactAddresses extends \yii\db\ActiveRecord
-    {
-
+{
 
     /**
      * @inheritdoc
      */
     public static function tableName()
-        {
-        return 'crm_ContactAddresses';
-
-        }
-
+    {
+        return 'crm_contactaddresses';
+    }
 
     /**
      * @inheritdoc
      */
     public function rules()
-        {
+    {
         return [
-                [['addressTypeID', 'contactID', 'customerID', 'cityID', 'active', 'deleted', 'createdBy', 'modifiedBy'], 'integer'],
-                [['addressDesc', 'postalCode', 'address'], 'string'],
-                [['createdTime', 'modifiedTime'], 'safe'],
-                [['addressTypeID'], 'exist', 'skipOnError' => true, 'targetClass' => CrmAddressTypes::className(), 'targetAttribute' => ['addressTypeID' => 'id']],
-                [['contactID'], 'exist', 'skipOnError' => true, 'targetClass' => CrmContacts::className(), 'targetAttribute' => ['contactID' => 'id']],
-                [['customerID'], 'exist', 'skipOnError' => true, 'targetClass' => SleCustomer::className(), 'targetAttribute' => ['customerID' => 'id']],
-                [['cityID'], 'exist', 'skipOnError' => true, 'targetClass' => GlbCity::className(), 'targetAttribute' => ['cityID' => 'id']],
+            [['addressTypeID', 'contactID', 'customerID', 'cityID', 'active', 'deleted', 'createdBy', 'modifiedBy'], 'integer'],
+            [['addressDesc', 'postalCode', 'address'], 'string'],
+            [['createdTime', 'modifiedTime'], 'safe'],
+            [['addressTypeID'], 'exist', 'skipOnError' => true, 'targetClass' => CrmAddressTypes::className(), 'targetAttribute' => ['addressTypeID' => 'id']],
+            [['contactID'], 'exist', 'skipOnError' => true, 'targetClass' => CrmContacts::className(), 'targetAttribute' => ['contactID' => 'id']],
+            [['customerID'], 'exist', 'skipOnError' => true, 'targetClass' => SleCustomer::className(), 'targetAttribute' => ['customerID' => 'id']],
+            [['cityID'], 'exist', 'skipOnError' => true, 'targetClass' => GlbCity::className(), 'targetAttribute' => ['cityID' => 'id']],
         ];
-
-        }
-
+    }
 
     /**
      * @inheritdoc
      */
     public function attributeLabels()
-        {
+    {
         return [
             'id' => 'ID',
             'addressTypeID' => 'Address Type ID',
@@ -84,70 +76,55 @@ class CrmContactAddresses extends \yii\db\ActiveRecord
             'createdBy' => 'Created By',
             'modifiedBy' => 'Modified By',
         ];
-
-        }
-
+    }
 
     /**
      * @return \yii\db\ActiveQuery
      */
     public function getAddressType()
-        {
+    {
         return $this->hasOne(CrmAddressTypes::className(), ['id' => 'addressTypeID']);
-
-        }
-
+    }
 
     /**
      * @return \yii\db\ActiveQuery
      */
     public function getContact()
-        {
+    {
         return $this->hasOne(CrmContacts::className(), ['id' => 'contactID']);
-
-        }
-
+    }
 
     /**
      * @return \yii\db\ActiveQuery
      */
     public function getCustomer()
-        {
+    {
         return $this->hasOne(SleCustomer::className(), ['id' => 'customerID']);
-
-        }
-
+    }
 
     /**
      * @return \yii\db\ActiveQuery
      */
     public function getCity()
-        {
+    {
         return $this->hasOne(GlbCity::className(), ['id' => 'cityID']);
-
-        }
-
+    }
 
     /**
      * @return \yii\db\ActiveQuery
      */
     public function getSleOrders()
-        {
+    {
         return $this->hasMany(SleOrders::className(), ['contactAddressID' => 'id']);
-
-        }
-
+    }
 
     /**
      * @inheritdoc
      * @return CrmContactAddressesQuery the active query used by this AR class.
      */
     public static function find()
-        {
+    {
         return new CrmContactAddressesQuery(get_called_class());
-
-        }
-
-
     }
 
+}
