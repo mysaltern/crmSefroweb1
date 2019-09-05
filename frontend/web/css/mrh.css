@@ -1,0 +1,257 @@
+/*
+    Author     : Hossein Roshan
+*/
+
+@font-face {
+    font-family: 'Yekan';
+    src: url('../fonts/Wyekan.eot?-wwn5ej');
+    src: url('../fonts/Wyekan.eot?#iefix-wwn5ej') format('embedded-opentype'),
+        url('../fonts/Wyekan.woff?-wwn5ej') format('woff'),
+        url('../fonts/Wyekan.ttf?-wwn5ej') format('truetype'),
+        url('../fonts/Wyekan.svg?-wwn5ej#icomoon') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.dark-blue {
+    color: #13315c;
+}
+
+body {
+    font-family: 'Yekan';
+}
+
+.en {
+    font-family: 'open-sans'
+}
+
+.ltr {
+    direction: ltr;
+}
+
+.rtl {
+    direction: rtl;
+}
+
+.min-height {
+    min-height: 100vh;
+}
+
+.top4p {
+    margin-top: 4%;
+}
+
+@media (max-width: 992px) {
+    .top4p {
+        margin-top: 12%;
+    }
+}
+
+#mainNav .navbar-nav>li.nav-item {
+    text-align: right;
+}
+
+#mainNav {
+    padding: 0.1rem 1rem;
+}
+
+.IF {
+    min-height: 200px;
+    margin: 0px auto;
+}
+
+.IF img {
+    max-height: 200px;
+    max-width: 100%;
+}
+
+.card-body-frame {
+    margin: 1rem 2rem;
+    padding: 1rem 3rem;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+}
+
+/*
+.card-body-item {
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+}*/
+
+.card-body-item:hover {
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+}
+
+.articles {
+    padding: 5px;
+    margin-bottom: 5px;
+}
+
+.articles i {
+    color: #003b87;
+}
+
+.thesis {
+    padding: 5px;
+    margin-bottom: 5px;
+}
+
+.thesis i {
+    color: #13315c;
+}
+
+.thesis em {
+    margin-right: 5px;
+}
+
+.RIF {
+    min-height: 200px;
+    margin: 0px auto;
+}
+
+.RIF img {
+    max-height: 200px;
+    max-width: 100%;
+}
+
+#contact {
+    padding: 5rem 0;
+    background-color: #003b87;
+    color: #fff;
+}
+
+#contact a {
+    color: #fff;
+}
+
+.btn-xl {
+    color: #fff;
+    background-color: #003b87;
+}
+
+.main-card-frame {
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+    padding: 30px;
+    margin: 5px 10px;
+}
+
+.main-card-frame p {
+    font-size: 18px;
+    font-weight: 600;
+    color: #fff;
+}
+
+.icon-bar {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.icon-bar i {
+    padding: 10px;
+}
+
+.main-card-back1 {
+    background-image: url('../img/blue.jpg');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.main-card-back2 {
+    background-image: url('../img/yellow.jpg');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.main-card-back3 {
+    background-image: url('../img/red.jpg');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.main-card-back4 {
+    background-image: url('../img/purple.jpg');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+marquee {
+    margin-top: 12%;
+}
+
+.marquee {
+    font-size: 34px !important;
+    background-position: center;
+    background-size: cover;
+    padding: 0px;
+    width: 100%;
+    overflow: hidden;
+    margin-top: 1rem;
+}
+
+.father {
+    width: 200%;
+    background: linear-gradient(to right, rgb(219, 0, 0), rgb(132, 0, 0));
+    border-radius: 8px;
+}
+
+.sone {
+    background-image: url('../img/lframe.png');
+    background-position: center;
+    background-size: contain;
+    height: 100px;
+    width: 100%;
+    background-repeat: no-repeat;
+}
+
+.stwo {
+    display: inline-block;
+    text-align: center;
+}
+
+.sthree {
+    background-image: url('../img/rframe.png');
+    background-position: center;
+    background-size: contain;
+    height: 100px;
+    width: 100%;
+    background-repeat: no-repeat;
+}
+
+.download-btn {
+    padding: 10px;
+    border: 1px solid #f6aa3a;
+    border-radius: 5px;
+}
+
+.resorce-card {
+    padding: 30px;
+    border: 1px solid #003b8752;
+    border-radius: 10px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+  transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+}
+
+.resorce-card:hover {
+    border: 1px solid #003b87;
+    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+}
+
+#mainNav {
+    background-color: #003b87;
+}
+
+@media (max-width: 992px) {
+    #mainNav {
+        background-color: #fff;
+    }
+}
+
+.articles-table div:nth-child(even) {
+    background: #003b8733;
+    border-radius: 5px;
+}

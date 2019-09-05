@@ -1,0 +1,66 @@
+{
+    "name": "yiisoft/yii2-app-advanced",
+    "description": "Yii 2 Advanced Project Template",
+    "keywords": ["yii2", "framework", "advanced", "project template"],
+    "homepage": "http://www.yiiframework.com/",
+    "type": "project",
+    "license": "BSD-3-Clause",
+    "support": {
+        "issues": "https://github.com/yiisoft/yii2/issues?state=open",
+        "forum": "http://www.yiiframework.com/forum/",
+        "wiki": "http://www.yiiframework.com/wiki/",
+        "irc": "irc://irc.freenode.net/yii",
+        "source": "https://github.com/yiisoft/yii2"
+    },
+    "minimum-stability": "dev",
+    "require": {
+        "php": ">=5.4.0",
+        "yiisoft/yii2": "~2.0.14",
+        "yiisoft/yii2-bootstrap": "~2.0.0",
+        "yiisoft/yii2-swiftmailer": "~2.0.0 || ~2.1.0", 
+        "dektrium/yii2-user": "^0.9.14",  
+        "yiisoft/yii2-imagine": "^2.1",
+        "faravaghi/yii2-jalali-datepicker": "*",
+        "mrlco/yii2-jalali-datepicker": "~0.1.0", 
+        "2amigos/yii2-tinymce-widget": "~1.1",
+        "mdmsoft/yii2-upload-file": "~2.0",
+        "hooman.mirghasemi/yii2-jdf": "^1.0",
+        "sgh370/yii2-jdf": "dev-master",
+        "slavkovrn/yii2-logvisitor": "^1.0",
+        "zxbodya/yii2-gallery-manager": "*@dev",
+        "yii2mod/yii2-comments": "*",
+        "pceuropa/yii2-menu": "dev-master",
+        "pendalf89/yii2-filemanager": "*",
+        "yii2mod/yii2-rbac": "*",
+        "dektrium/yii2-rbac": "1.0.0-alpha@dev",
+        "johnitvn/yii2-ajaxcrud": "*",
+        "pigochu/yii2-jquery-locationpicker": ">=0.2.0",
+        "kartik-v/yii2-builder": "dev-master",
+        "dmstr/yii2-adminlte-asset": "^2.1",
+        "2amigos/yii2-chartjs-widget": "~2.0",
+        "wbraganca/yii2-dynamicform": "*",
+        "2amigos/yii2-taggable-behavior": "~1.0",
+        "mludvik/yii2-tags-input": "~1.0"
+    },
+    "require-dev": {
+        "yiisoft/yii2-debug": "~2.1.0",
+        "yiisoft/yii2-gii": "~2.1.0",
+        "yiisoft/yii2-faker": "~2.0.0",
+        "codeception/base": "^2.4.0",
+        "phpunit/phpunit": "~6.5.5",
+        "codeception/verify": "~1.0.0",
+        "symfony/browser-kit": ">=2.7 <=4.2.4"
+    },
+    "config": {
+        "process-timeout": 1800,
+        "fxp-asset": {
+            "enabled": false
+        }
+    },
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://asset-packagist.org"
+        }
+    ]
+}
