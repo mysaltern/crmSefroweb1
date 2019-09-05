@@ -47,6 +47,7 @@ use mludvik\tagsinput\TagsInputWidget;
     <?= $form->field($model, 'major_id')->dropDownList($major, ['prompt' => '---- Select Major ----'])->label('Major') ?>
     <?= $form->field($model, 'tags')->widget(TagsInputWidget::className()) ?>
     <?php $professor = ArrayHelper::map(common\models\UniProfessor::find()->orderBy('name')->all(), 'id', 'name') ?>
+    <?php $professor_role = ArrayHelper::map(common\models\UniProfessorRole::find()->orderBy('name')->all(), 'id', 'name') ?>
 
 
 
@@ -90,7 +91,8 @@ use mludvik\tagsinput\TagsInputWidget;
                 </div>
                 <div class="">
 
-                    <?= $form->field($model, 'professor[]')->dropDownList($professor, ['prompt' => '---- Select professor ----'])->label('Professor') ?>
+                    <?= $form->field($model, "professor[]")->dropDownList($professor, ['prompt' => '---- Select professor ----'])->label('نام استاد') ?>
+                    <?= $form->field($model, "professorRole[]")->dropDownList($professor_role, ['prompt' => '---- Select professor Role ----'])->label('نقش استاد') ?>
                     <div class="row">
 
 
@@ -112,15 +114,16 @@ use mludvik\tagsinput\TagsInputWidget;
 
 
 
-    <?php if (!Yii::$app->request->isAjax)
+    <?php
+    if (!Yii::$app->request->isAjax)
     {
         ?>
         <div class="form-group">
-        <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+            <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
         </div>
     <?php } ?>
 
-<?php ActiveForm::end(); ?>
+    <?php ActiveForm::end(); ?>
 
 </div>
 

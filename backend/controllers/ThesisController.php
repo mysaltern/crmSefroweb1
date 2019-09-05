@@ -137,17 +137,28 @@ class ThesisController extends Controller
                 }
 
                 $model->save(false);
+
+
                 if ($model->id)
                 {
                     $profesoors = $model->professor;
+                    $profesoorsRole = $model->professorRole;
+
+
+                    $x = 0;
                     foreach ($profesoors as $profesoor)
                     {
+
+
                         $thesisprofessor = new UniThesisProfessor();
                         $thesisprofessor->professor_id = $profesoor;
+                        $thesisprofessor->professor_roleID = $profesoorsRole[$x];
                         $thesisprofessor->thesis_id = $model->id;
                         $thesisprofessor->save();
+                        $x++;
                     }
                 }
+
 
 
 

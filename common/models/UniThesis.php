@@ -25,6 +25,7 @@ class UniThesis extends \yii\db\ActiveRecord
 {
 
     public $professor;
+    public $professorRole;
     public $tags;
 
     /**
@@ -42,7 +43,7 @@ class UniThesis extends \yii\db\ActiveRecord
     {
         return [
             [['user_id', 'date_defense', 'grade_id', 'uni_id', 'major_id'], 'integer'],
-            ['professor', 'each', 'rule' => ['integer']],
+            [['professor', 'professorRole'], 'each', 'rule' => ['integer']],
             [['url'], 'file', 'skipOnEmpty' => true, 'extensions' => 'pdf , rar , zip'],
             [['issue', 'tags', 'feild1'], 'string', 'max' => 255],
             [['grade_id'], 'exist', 'skipOnError' => true, 'targetClass' => UniGrade::className(), 'targetAttribute' => ['grade_id' => 'id']],
@@ -95,6 +96,11 @@ class UniThesis extends \yii\db\ActiveRecord
     public function getUniThesisProfessors()
     {
         return $this->hasMany(UniThesisProfessor::className(), ['thesis_id' => 'id']);
+    }
+
+    public function getUniThesisProfessorsRole()
+    {
+        return $this->hasMany(UniProfessorRole::className(), ['thesis_id' => 'id']);
     }
 
     /**

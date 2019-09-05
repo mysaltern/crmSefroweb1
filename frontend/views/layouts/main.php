@@ -17,8 +17,8 @@ $img = Url::base(true) . '/img';
 $vendor = Url::base(true) . '/vendor';
 ?>
 <?php $this->beginPage() ?>
-    <!DOCTYPE html>
-    <html lang="<?= Yii::$app->language ?>">
+<!DOCTYPE html>
+<html lang="<?= Yii::$app->language ?>">
 
 
     <head>
@@ -54,101 +54,108 @@ $vendor = Url::base(true) . '/vendor';
 
 
     <?php
-    $login = Url::to(['user/login']);
-    $logout = Url::to(['user/logout']);
+    $login = Url::to(['/user/login']);
+    $logout = Url::to(['/user/logout']);
     ?>
 
     <body id="page-top">
 
-    <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
-        <div class="container">
-            <?php if (!\Yii::$app->user->isGuest) { ?>
-                <a class="navbar-brand js-scroll-trigger" href="<?= $logout ?>">خروج</a>
-            <?php } else { ?>
-                <a class="navbar-brand js-scroll-trigger" href="<?= $login; ?>">ورود</a>
-            <?php } ?>
-            <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
-                    data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
-                    aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="col-12 col-lg-12">
-                <div class="menu_area">
-                    <nav class="navbar navbar-expand-lg navbar-light">
-                       
-                        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#ca-navbar"
-                                aria-controls="ca-navbar" aria-expanded="false" aria-label="Toggle navigation"><span
+        <!-- Navigation -->
+        <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+            <div class="container">
+                <?php
+                if (!\Yii::$app->user->isGuest)
+                {
+                    ?>
+                    <a class="navbar-brand js-scroll-trigger" href="<?= $logout ?>">خروج</a>
+                    <?php
+                }
+                else
+                {
+                    ?>
+                    <a class="navbar-brand js-scroll-trigger" href="<?= $login; ?>">ورود</a>
+                <?php } ?>
+                <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
+                        data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
+                        aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="col-12 col-lg-12">
+                    <div class="menu_area">
+                        <nav class="navbar navbar-expand-lg navbar-light">
+
+                            <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#ca-navbar"
+                                    aria-controls="ca-navbar" aria-expanded="false" aria-label="Toggle navigation"><span
                                     class="navbar-toggler-icon"></span></button>
-                        <!-- Menu Area -->
+                            <!-- Menu Area -->
 
 
-                        <div class="collapse navbar-collapse rtl" id="ca-navbar">
+                            <div class="collapse navbar-collapse rtl" id="ca-navbar">
 
 
-                            <?php
-                            echo Nav::widget(['options' => ['class' => 'navbar-nav navbar-right', 'id' => 'nav'],
-                                'items' => Menu::NavbarRight(5)  // argument is id of menu
-                            ]);
-                            ?>
+                                <?php
+                                echo Nav::widget(['options' => ['class' => 'navbar-nav navbar-right', 'id' => 'nav'],
+                                    'items' => Menu::NavbarRight(5)  // argument is id of menu
+                                ]);
+                                ?>
 
 
-                        </div>
+                            </div>
 
-                    </nav>
+                        </nav>
+                    </div>
                 </div>
             </div>
-        </div>
-    </nav>
+        </nav>
 
 
-    <?= $content ?>
+        <?= $content ?>
 
 
-    <section id="contact">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-8 mx-auto text-center">
-                    <h2 class="section-heading">کاربر گرامی؛</h2>
-                    <hr class="my-4">
-                    <p class="mb-5">لطفاً در صورت وجود هرگونه مشکل فنی در کاربری این سایت، با ایمیل زیر مکاتبه و یا با
-                        شماره اعلام شده تماس حاصل نمایید.</p>
+        <section id="contact">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 mx-auto text-center">
+                        <h2 class="section-heading">کاربر گرامی؛</h2>
+                        <hr class="my-4">
+                        <p class="mb-5">لطفاً در صورت وجود هرگونه مشکل فنی در کاربری این سایت، با ایمیل زیر مکاتبه و یا با
+                            شماره اعلام شده تماس حاصل نمایید.</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-4 ml-auto text-center">
+                        <i class="fas fa-phone fa-3x mb-3 sr-contact-1"></i>
+                        <p>(خورش) 09126359688</p>
+                    </div>
+                    <div class="col-lg-4 mr-auto text-center">
+                        <i class="fas fa-envelope fa-3x mb-3 sr-contact-2"></i>
+                        <p>
+                            <a href="mailto:your-email@your-domain.com">support@apebrahimi.com</a>
+                        </p>
+                    </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-lg-4 ml-auto text-center">
-                    <i class="fas fa-phone fa-3x mb-3 sr-contact-1"></i>
-                    <p>(خورش) 09126359688</p>
-                </div>
-                <div class="col-lg-4 mr-auto text-center">
-                    <i class="fas fa-envelope fa-3x mb-3 sr-contact-2"></i>
-                    <p>
-                        <a href="mailto:your-email@your-domain.com">support@apebrahimi.com</a>
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Bootstrap core JavaScript -->
-    <script src="<?= $vendor; ?>/jquery/jquery.min.js"></script>
-    <script src="<?= $vendor; ?>/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <!-- Bootstrap core JavaScript -->
+        <script src="<?= $vendor; ?>/jquery/jquery.min.js"></script>
+        <script src="<?= $vendor; ?>/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-    <!-- Plugin JavaScript -->
-    <script src="<?= $vendor; ?>/jquery-easing/jquery.easing.min.js"></script>
-    <script src="<?= $vendor; ?>/scrollreveal/scrollreveal.min.js"></script>
-    <script src="<?= $vendor; ?>/magnific-popup/jquery.magnific-popup.min.js"></script>
+        <!-- Plugin JavaScript -->
+        <script src="<?= $vendor; ?>/jquery-easing/jquery.easing.min.js"></script>
+        <script src="<?= $vendor; ?>/scrollreveal/scrollreveal.min.js"></script>
+        <script src="<?= $vendor; ?>/magnific-popup/jquery.magnific-popup.min.js"></script>
 
-    <!-- Custom scripts for this template -->
-    <script src="<?= $js; ?>/creative.min.js"></script>
-    <script src="<?= $js; ?>/wow.min.js" type="text/javascript"></script>
-    <script src="<?= $js; ?>/wow.min.js"></script>
-    <script>
-        new WOW().init();
-    </script>
+        <!-- Custom scripts for this template -->
+        <script src="<?= $js; ?>/creative.min.js"></script>
+        <script src="<?= $js; ?>/wow.min.js" type="text/javascript"></script>
+        <script src="<?= $js; ?>/wow.min.js"></script>
+        <script>
+            new WOW().init();
+        </script>
     </body>
 
-    </html>
+</html>
 
 
 <?php $this->endPage() ?>

@@ -188,7 +188,8 @@ class SecurityController extends Controller
 //    }
     public function actionLogin()
     {
-        if (!\Yii::$app->user->isGuest) {
+        if (!\Yii::$app->user->isGuest)
+        {
             $this->goHome();
         }
 
@@ -200,17 +201,17 @@ class SecurityController extends Controller
 
         $this->trigger(self::EVENT_BEFORE_LOGIN, $event);
 
-        if ($model->load(\Yii::$app->getRequest()->post()) && $model->login()) {
+        if ($model->load(\Yii::$app->getRequest()->post()) && $model->login())
+        {
             $this->trigger(self::EVENT_AFTER_LOGIN, $event);
             return $this->goBack();
         }
 
-        return $this->render('login', [
-            'model'  => $model,
-            'module' => $this->module,
+        return $this->render('@frontend/views/users/security/login', [
+                    'model' => $model,
+                    'module' => $this->module,
         ]);
     }
-
 
     /**
      * Logs the user out and then redirects to the homepage.
