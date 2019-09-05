@@ -132,7 +132,7 @@ class ReferenceController extends Controller
                 {
                     $urlname = $model->url->baseName . time() . "." . $model->url->extension ;
                     $model->url = UploadedFile::getInstance($model, 'url');
-                    $model->url->saveAs('../../common/upload/reference/' . $model->url->baseName . time() . "." . $model->url->extension);
+                    $model->url->saveAs('../../frontend/upload/reference/' . $model->url->baseName . time() . "." . $model->url->extension);
                     $model->url =  $urlname ;
                     $model->save(false);
                 }
@@ -213,7 +213,7 @@ class ReferenceController extends Controller
                 {
 
                     $model->url = UploadedFile::getInstance($model, 'url');
-                    $model->url->saveAs('../../common/upload/reference/' . $model->url->baseName  . "." . $model->url->extension);
+                    $model->url->saveAs('../../frontend/upload/reference/' . $model->url->baseName  . "." . $model->url->extension);
                     $model->save(false);
                 }
                 else{
@@ -345,16 +345,16 @@ class ReferenceController extends Controller
     }
 
 
-    public function actionDownload($id)
-    {
-
-        $download = Page::findone($id);
-
-        $path = Yii::getAlias('@common') . '/upload/css/' . $download->url;
-        if (file_exists($path)) {
-            return Yii::$app->response->sendFile($path);
-
-        }
-    }
+//    public function actionDownload($id)
+//    {
+//
+//        $download = Page::findone($id);
+//
+//        $path = Yii::getAlias('@common') . '/upload/css/' . $download->url;
+//        if (file_exists($path)) {
+//            return Yii::$app->response->sendFile($path);
+//
+//        }
+//    }
 
 }

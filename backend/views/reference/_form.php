@@ -34,7 +34,7 @@ use yii\helpers\ArrayHelper;
             ?>
 
             <?php
-            echo Html::a(Html::encode("$model->url"), "../../../../common/upload/reference/$model->url ", ['target' => '_blank', 'data-pjax' => "0"]);
+            echo Html::a(Html::encode("$model->url"), "../../../../frontend/upload/reference/$model->url ", ['target' => '_blank', 'data-pjax' => "0"]);
             ?>
             <?php
         }

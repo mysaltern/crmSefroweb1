@@ -38,6 +38,7 @@ return [
     [
         'class'=>'\kartik\grid\DataColumn',
         'attribute'=>'photo',
+
     ],
     // [
         // 'class'=>'\kartik\grid\DataColumn',

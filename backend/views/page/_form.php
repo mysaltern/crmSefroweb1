@@ -40,51 +40,31 @@ use dosamigos\fileupload\FileUploadUI;
         ]
     ]);
     ?>
-    <?=
-    FileUploadUI::widget([
-        'model' => $model,
-        'attribute' => 'photo',
-        'url' => ['media/upload', 'id' => $model->id],
-        'gallery' => false,
-        'fieldOptions' => [
-            'accept' => 'video/*'
-        ],
-        'clientOptions' => [
-            'maxFileSize' => 2000000
-        ],
-        // ...
-        'clientEvents' => [
-            'fileuploaddone' => 'function(e, data) {
-                                console.log(e);
-                                console.log(data);
-                            }',
-            'fileuploadfail' => 'function(e, data) {
-                                console.log(e);
-                                console.log(data);
-                            }',
-        ],
-    ]);
+
+
+    <?php
+    $dataPost = ArrayHelper::map(\common\models\CategoryWriting::find()->where(['type' => 2])->asArray()->all(), 'id', 'name');
+    echo $form->field($model, 'category_writing')
+        ->dropDownList(
+            $dataPost, ['id' => 'name']
+        )->label('دسته بندی');
     ?>
     <?php
     $action = Yii::$app->controller->action->id;
 
 
-    if ($action == 'update' and ! is_null($model->photo))
-    {
+    if ($action == 'update' and !is_null($model->photo)) {
         ?>
 
-        <?= Html::img(['/file', 'id' => $model->photo]) ?>
+        <?=
+
+        Html::a(Html::encode("$model->photo"), "../../../../../frontend/upload/img/$model->photo ", ['target' => '_blank', 'data-pjax' => "0"]);
+        ?>
         <?php
     }
-    ?> 
-    <?php
-    $dataPost = ArrayHelper::map(\common\models\CategoryWriting::find()->where(['type' => 2])->asArray()->all(), 'id', 'name');
-    echo $form->field($model, 'category_writing')
-            ->dropDownList(
-                    $dataPost, ['id' => 'name']
-            )->label('دسته بندی');
     ?>
-    <?= $form->field($model, 'customcss')->textarea( array('style'=>'direction : ltr')) ?>
+    <?= $form->field($model, 'photo')->fileInput(['multiple' => true]) ?>
+    <?= $form->field($model, 'customcss')->textarea(array('style' => 'direction : ltr')) ?>
     <?php
     $item = array('0' => 'غیر فعال', '1' => 'فعال');
     ?>

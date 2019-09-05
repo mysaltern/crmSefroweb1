@@ -52,7 +52,14 @@ $this->params['breadcrumbs'][] = $this->title;
                     }
                 },
             ],
-            //'photo',
+            [
+                'attribute' => 'photo',
+                'format' => 'raw',
+                'value' => function ($model)
+                {
+                    return Html::a(Html::encode("$model->photo"), "../../../../frontend/upload/img/$model->photo ", ['target' => '_blank', 'data-pjax' => "0"]);
+                },
+            ],
             //'time:datetime',
             ['class' => 'yii\grid\ActionColumn'],
         ],

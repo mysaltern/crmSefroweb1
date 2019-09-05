@@ -67,7 +67,7 @@ class ReferenceController extends \yii\web\Controller
 
         $download = UniReference::findone($id);
 
-        $path = Yii::getAlias('@common') . '/upload/reference/' . $download->url;
+        $path = Yii::getAlias('@frontend') . '/upload/reference/' . $download->url;
         if (file_exists($path)) {
             return Yii::$app->response->sendFile($path);
 

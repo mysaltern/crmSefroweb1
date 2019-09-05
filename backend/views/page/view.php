@@ -64,9 +64,8 @@ $this->params['breadcrumbs'][] = $this->title;
                 {
                     if (!empty($data->photo))
                     {
-                        $url = Yii::$app->urlManager->createAbsoluteUrl(['/file']);
 
-                        return Html::img($url . '?id=' . $data['photo'], ['width' => '70px']);
+                        return Html::img("../../../../frontend/upload/img/$data->photo " . '?id=' . $data['photo'], ['width' => '70px']);
                     }
                 },
             ],

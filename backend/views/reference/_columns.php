@@ -33,7 +33,7 @@ return [
         'format' => 'raw',
         'value' => function ($model)
         {
-            return Html::a(Html::encode("$model->url"), "../../../../common/upload/reference/$model->url ", ['target' => '_blank', 'data-pjax' => "0"]);
+            return Html::a(Html::encode("$model->url"), "../../../../frontend/upload/reference/$model->url ", ['target' => '_blank', 'data-pjax' => "0"]);
         },
     ],
     [
