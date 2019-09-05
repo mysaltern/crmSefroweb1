@@ -40,17 +40,17 @@ CrudAsset::register($this);
             'panel' => [
                 'type' => 'primary', 
                 'heading' => '<i class="glyphicon glyphicon-list"></i> Uni Grades listing',
-                'before'=>'<em>* Resize table columns just like a spreadsheet by dragging the column edges.</em>',
+                'before'=>'<em>* برای تغییر اندازه با موس روی حاشیه فیلد ها کلیک کنید.</em>',
                 'after'=>BulkButtonWidget::widget([
-                            'buttons'=>Html::a('<i class="glyphicon glyphicon-trash"></i>&nbsp; Delete All',
+                            'buttons'=>Html::a('<i class="glyphicon glyphicon-trash"></i>&nbsp;حذف تمام موارد',
                                 ["bulkdelete"] ,
                                 [
                                     "class"=>"btn btn-danger btn-xs",
                                     'role'=>'modal-remote-bulk',
                                     'data-confirm'=>false, 'data-method'=>false,// for overide yii data api
                                     'data-request-method'=>'post',
-                                    'data-confirm-title'=>'Are you sure?',
-                                    'data-confirm-message'=>'Are you sure want to delete this item'
+                                    'data-confirm-title'=>'آیا مطمئن هستید ؟',
+                                    'data-confirm-message'=>'آیا از حذف این مورد مطمئن هستید ؟'
                                 ]),
                         ]).                        
                         '<div class="clearfix"></div>',

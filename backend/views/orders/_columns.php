@@ -13,6 +13,7 @@ return [
         'width' => '30px',
     ],
     [
+        'header' => 'نام کاربری',
         'class' => '\kartik\grid\DataColumn',
         'attribute' => 'user.username',
     ],
@@ -55,6 +56,7 @@ return [
         'attribute' => 'createdTime',
     ],
     [
+        'header' => 'وضعیت',
         'class' => '\kartik\grid\DataColumn',
         'attribute' => 'parentID',
         'value' => function($model)
@@ -127,7 +129,7 @@ return [
             'data-confirm' => false, 'data-method' => false, // for overide yii data api
             'data-request-method' => 'post',
             'data-toggle' => 'tooltip',
-            'data-confirm-title' => 'Are you sure?',
-            'data-confirm-message' => 'Are you sure want to delete this item'],
+            'data-confirm-title' => 'آیا مطمئن هستید ؟',
+            'data-confirm-message' => 'آیا از حذف این مورد مطمئن هستید ؟'],
     ],
 ];

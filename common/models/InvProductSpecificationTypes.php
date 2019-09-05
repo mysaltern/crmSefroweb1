@@ -5,7 +5,7 @@ namespace common\models;
 use Yii;
 
 /**
- * This is the model class for table "inv_ProductSpecificationTypes".
+ * This is the model class for table "inv_productspecificationtypes".
  *
  * @property integer $id
  * @property string $productSpecificationName
@@ -32,7 +32,7 @@ class InvProductSpecificationTypes extends \yii\db\ActiveRecord
      */
     public static function tableName()
     {
-        return 'inv_ProductSpecificationTypes';
+        return 'inv_productspecificationtypes';
     }
 
     /**

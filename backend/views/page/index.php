@@ -30,6 +30,14 @@ $this->params['breadcrumbs'][] = $this->title;
             'summary',
             'desc:html',
             [
+                'attribute' => 'link',
+                'value' => function($model)
+                {
+
+                    return Yii::$app->params['websiteFront'] . 'page/' . $model->id;
+                },
+            ],
+            [
                 'attribute' => 'active',
                 'value' => function($model)
                 {

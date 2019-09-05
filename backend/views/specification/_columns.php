@@ -20,8 +20,9 @@ return [
         'attribute' => 'productSpecificationName',
     ],
     [
+        'header' => 'ویژگی ',
         'class' => '\kartik\grid\DataColumn',
-        'attribute' => 'productUnitID',
+        'attribute' => 'productUnit.name',
     ],
 //        [
 //        'class' => '\kartik\grid\DataColumn',
@@ -32,6 +33,7 @@ return [
 //        'attribute' => 'isDecimal',
 //    ],
     [
+        'header' => 'وضعیت ',
         'attribute' => 'isSelection',
         'value' => function ($data)
         {
@@ -88,7 +90,7 @@ return [
             'data-confirm' => false, 'data-method' => false, // for overide yii data api
             'data-request-method' => 'post',
             'data-toggle' => 'tooltip',
-            'data-confirm-title' => 'Are you sure?',
-            'data-confirm-message' => 'Are you sure want to delete this item'],
+            'data-confirm-title' => 'آیا مطمئن هستید ؟',
+            'data-confirm-message' => 'آیا از حذف این مورد مطمئن هستید ؟'],
     ],
 ];

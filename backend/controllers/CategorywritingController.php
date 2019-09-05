@@ -16,6 +16,7 @@ use yii\helpers\Html;
  */
 class CategorywritingController extends Controller
 {
+
     /**
      * @inheritdoc
      */
@@ -37,16 +38,15 @@ class CategorywritingController extends Controller
      * @return mixed
      */
     public function actionIndex()
-    {    
+    {
         $searchModel = new CategoryWritingSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
+                    'searchModel' => $searchModel,
+                    'dataProvider' => $dataProvider,
         ]);
     }
-
 
     /**
      * Displays a single CategoryWriting model.
@@ -54,21 +54,24 @@ class CategorywritingController extends Controller
      * @return mixed
      */
     public function actionView($id)
-    {   
+    {
         $request = Yii::$app->request;
-        if($request->isAjax){
+        if ($request->isAjax)
+        {
             Yii::$app->response->format = Response::FORMAT_JSON;
             return [
-                    'title'=> "CategoryWriting #".$id,
-                    'content'=>$this->renderAjax('view', [
-                        'model' => $this->findModel($id),
-                    ]),
-                    'footer'=> Html::button('Close',['class'=>'btn btn-default pull-left','data-dismiss'=>"modal"]).
-                            Html::a('Edit',['update','id'=>$id],['class'=>'btn btn-primary','role'=>'modal-remote'])
-                ];    
-        }else{
+                'title' => "دسته بندی اخبار #" . $id,
+                'content' => $this->renderAjax('view', [
+                    'model' => $this->findModel($id),
+                ]),
+                'footer' => Html::button('بستن', ['class' => 'btn btn-default pull-left', 'data-dismiss' => "modal"]) .
+                Html::a('ویرایش', ['update', 'id' => $id], ['class' => 'btn btn-primary', 'role' => 'modal-remote'])
+            ];
+        }
+        else
+        {
             return $this->render('view', [
-                'model' => $this->findModel($id),
+                        'model' => $this->findModel($id),
             ]);
         }
     }
@@ -82,56 +85,63 @@ class CategorywritingController extends Controller
     public function actionCreate()
     {
         $request = Yii::$app->request;
-        $model = new CategoryWriting();  
+        $model = new CategoryWriting();
 
-        if($request->isAjax){
+        if ($request->isAjax)
+        {
             /*
-            *   Process for ajax request
-            */
+             *   Process for ajax request
+             */
             Yii::$app->response->format = Response::FORMAT_JSON;
-            if($request->isGet){
+            if ($request->isGet)
+            {
                 return [
-                    'title'=> "Create new CategoryWriting",
-                    'content'=>$this->renderAjax('create', [
+                    'title' => "افزودن دسته بندی جدید",
+                    'content' => $this->renderAjax('create', [
                         'model' => $model,
                     ]),
-                    'footer'=> Html::button('Close',['class'=>'btn btn-default pull-left','data-dismiss'=>"modal"]).
-                                Html::button('Save',['class'=>'btn btn-primary','type'=>"submit"])
-        
-                ];         
-            }else if($model->load($request->post()) && $model->save()){
-                return [
-                    'forceReload'=>'#crud-datatable-pjax',
-                    'title'=> "Create new CategoryWriting",
-                    'content'=>'<span class="text-success">Create CategoryWriting success</span>',
-                    'footer'=> Html::button('Close',['class'=>'btn btn-default pull-left','data-dismiss'=>"modal"]).
-                            Html::a('Create More',['create'],['class'=>'btn btn-primary','role'=>'modal-remote'])
-        
-                ];         
-            }else{           
-                return [
-                    'title'=> "Create new CategoryWriting",
-                    'content'=>$this->renderAjax('create', [
-                        'model' => $model,
-                    ]),
-                    'footer'=> Html::button('Close',['class'=>'btn btn-default pull-left','data-dismiss'=>"modal"]).
-                                Html::button('Save',['class'=>'btn btn-primary','type'=>"submit"])
-        
-                ];         
+                    'footer' => Html::button('بستن', ['class' => 'btn btn-default pull-left', 'data-dismiss' => "modal"]) .
+                    Html::button('ذخیره', ['class' => 'btn btn-primary', 'type' => "submit"])
+                ];
             }
-        }else{
+            else if ($model->load($request->post()) && $model->save())
+            {
+                return [
+                    'forceReload' => '#crud-datatable-pjax',
+                    'title' => "افزودن دسته بندی جدید",
+                    'content' => '<span class="text-success">با موفقیت ثبت شد</span>',
+                    'footer' => Html::button('بستن', ['class' => 'btn btn-default pull-left', 'data-dismiss' => "modal"]) .
+                    Html::a('افزودن یک مورد دیگر', ['create'], ['class' => 'btn btn-primary', 'role' => 'modal-remote'])
+                ];
+            }
+            else
+            {
+                return [
+                    'title' => "افزودن دسته بندی جدید",
+                    'content' => $this->renderAjax('create', [
+                        'model' => $model,
+                    ]),
+                    'footer' => Html::button('بستن', ['class' => 'btn btn-default pull-left', 'data-dismiss' => "modal"]) .
+                    Html::button('ذخیره', ['class' => 'btn btn-primary', 'type' => "submit"])
+                ];
+            }
+        }
+        else
+        {
             /*
-            *   Process for non-ajax request
-            */
-            if ($model->load($request->post()) && $model->save()) {
+             *   Process for non-ajax request
+             */
+            if ($model->load($request->post()) && $model->save())
+            {
                 return $this->redirect(['view', 'id' => $model->id]);
-            } else {
+            }
+            else
+            {
                 return $this->render('create', [
-                    'model' => $model,
+                            'model' => $model,
                 ]);
             }
         }
-       
     }
 
     /**
@@ -144,51 +154,62 @@ class CategorywritingController extends Controller
     public function actionUpdate($id)
     {
         $request = Yii::$app->request;
-        $model = $this->findModel($id);       
+        $model = $this->findModel($id);
 
-        if($request->isAjax){
+        if ($request->isAjax)
+        {
             /*
-            *   Process for ajax request
-            */
+             *   Process for ajax request
+             */
             Yii::$app->response->format = Response::FORMAT_JSON;
-            if($request->isGet){
+            if ($request->isGet)
+            {
                 return [
-                    'title'=> "Update CategoryWriting #".$id,
-                    'content'=>$this->renderAjax('update', [
+                    'title' => "ویرایش دسته بندی #" . $id,
+                    'content' => $this->renderAjax('update', [
                         'model' => $model,
                     ]),
-                    'footer'=> Html::button('Close',['class'=>'btn btn-default pull-left','data-dismiss'=>"modal"]).
-                                Html::button('Save',['class'=>'btn btn-primary','type'=>"submit"])
-                ];         
-            }else if($model->load($request->post()) && $model->save()){
-                return [
-                    'forceReload'=>'#crud-datatable-pjax',
-                    'title'=> "CategoryWriting #".$id,
-                    'content'=>$this->renderAjax('view', [
-                        'model' => $model,
-                    ]),
-                    'footer'=> Html::button('Close',['class'=>'btn btn-default pull-left','data-dismiss'=>"modal"]).
-                            Html::a('Edit',['update','id'=>$id],['class'=>'btn btn-primary','role'=>'modal-remote'])
-                ];    
-            }else{
-                 return [
-                    'title'=> "Update CategoryWriting #".$id,
-                    'content'=>$this->renderAjax('update', [
-                        'model' => $model,
-                    ]),
-                    'footer'=> Html::button('Close',['class'=>'btn btn-default pull-left','data-dismiss'=>"modal"]).
-                                Html::button('Save',['class'=>'btn btn-primary','type'=>"submit"])
-                ];        
+                    'footer' => Html::button('بستن', ['class' => 'btn btn-default pull-left', 'data-dismiss' => "modal"]) .
+                    Html::button('ذخیره', ['class' => 'btn btn-primary', 'type' => "submit"])
+                ];
             }
-        }else{
+            else if ($model->load($request->post()) && $model->save())
+            {
+                return [
+                    'forceReload' => '#crud-datatable-pjax',
+                    'title' => "دسته بندی نوشته #" . $id,
+                    'content' => $this->renderAjax('view', [
+                        'model' => $model,
+                    ]),
+                    'footer' => Html::button('بستن', ['class' => 'btn btn-default pull-left', 'data-dismiss' => "modal"]) .
+                    Html::a('ویرایش', ['update', 'id' => $id], ['class' => 'btn btn-primary', 'role' => 'modal-remote'])
+                ];
+            }
+            else
+            {
+                return [
+                    'title' => "ویرایش دسته بندی نوشته ها #" . $id,
+                    'content' => $this->renderAjax('update', [
+                        'model' => $model,
+                    ]),
+                    'footer' => Html::button('بستن', ['class' => 'btn btn-default pull-left', 'data-dismiss' => "modal"]) .
+                    Html::button('ذخیره', ['class' => 'btn btn-primary', 'type' => "submit"])
+                ];
+            }
+        }
+        else
+        {
             /*
-            *   Process for non-ajax request
-            */
-            if ($model->load($request->post()) && $model->save()) {
+             *   Process for non-ajax request
+             */
+            if ($model->load($request->post()) && $model->save())
+            {
                 return $this->redirect(['view', 'id' => $model->id]);
-            } else {
+            }
+            else
+            {
                 return $this->render('update', [
-                    'model' => $model,
+                            'model' => $model,
                 ]);
             }
         }
@@ -206,23 +227,24 @@ class CategorywritingController extends Controller
         $request = Yii::$app->request;
         $this->findModel($id)->delete();
 
-        if($request->isAjax){
+        if ($request->isAjax)
+        {
             /*
-            *   Process for ajax request
-            */
+             *   Process for ajax request
+             */
             Yii::$app->response->format = Response::FORMAT_JSON;
-            return ['forceClose'=>true,'forceReload'=>'#crud-datatable-pjax'];
-        }else{
+            return ['forceClose' => true, 'forceReload' => '#crud-datatable-pjax'];
+        }
+        else
+        {
             /*
-            *   Process for non-ajax request
-            */
+             *   Process for non-ajax request
+             */
             return $this->redirect(['index']);
         }
-
-
     }
 
-     /**
+    /**
      * Delete multiple existing CategoryWriting model.
      * For ajax request will return json object
      * and for non-ajax request if deletion is successful, the browser will be redirected to the 'index' page.
@@ -230,27 +252,30 @@ class CategorywritingController extends Controller
      * @return mixed
      */
     public function actionBulkdelete()
-    {        
+    {
         $request = Yii::$app->request;
-        $pks = explode(',', $request->post( 'pks' )); // Array or selected records primary keys
-        foreach ( $pks as $pk ) {
+        $pks = explode(',', $request->post('pks')); // Array or selected records primary keys
+        foreach ($pks as $pk)
+        {
             $model = $this->findModel($pk);
             $model->delete();
         }
 
-        if($request->isAjax){
+        if ($request->isAjax)
+        {
             /*
-            *   Process for ajax request
-            */
+             *   Process for ajax request
+             */
             Yii::$app->response->format = Response::FORMAT_JSON;
-            return ['forceClose'=>true,'forceReload'=>'#crud-datatable-pjax'];
-        }else{
+            return ['forceClose' => true, 'forceReload' => '#crud-datatable-pjax'];
+        }
+        else
+        {
             /*
-            *   Process for non-ajax request
-            */
+             *   Process for non-ajax request
+             */
             return $this->redirect(['index']);
         }
-       
     }
 
     /**
@@ -262,10 +287,14 @@ class CategorywritingController extends Controller
      */
     protected function findModel($id)
     {
-        if (($model = CategoryWriting::findOne($id)) !== null) {
+        if (($model = CategoryWriting::findOne($id)) !== null)
+        {
             return $model;
-        } else {
+        }
+        else
+        {
             throw new NotFoundHttpException('The requested page does not exist.');
         }
     }
+
 }

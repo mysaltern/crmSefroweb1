@@ -49,6 +49,14 @@ $this->params['breadcrumbs'][] = $this->title;
                 },
             ],
             [
+                'attribute' => 'link',
+                'value' => function($model)
+                {
+
+                    return Yii::$app->params['websiteFront'] . 'index.php/' . 'page/' . $model->id;
+                },
+            ],
+            [
                 'attribute' => 'photo',
                 'format' => 'html',
                 'value' => function ($data)
