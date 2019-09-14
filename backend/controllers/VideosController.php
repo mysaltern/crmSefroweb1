@@ -124,7 +124,16 @@ class VideosController extends Controller
                                 Html::button('Save',['class'=>'btn btn-primary','type'=>"submit"])
 
                 ];
-            }else if($model->load($request->post()) && $model->save()){
+            }else if($model->load($request->post())){
+
+                    if ($model->videofile = UploadedFile::getInstance($model, 'videofile')) {
+                        $model->videofile = UploadedFile::getInstance($model, 'videofile');
+                        $model->videofile->saveAs('../../frontend/upload/videos/' . $model->videofile->baseName . time() . "." . $model->videofile->extension);
+                        $model->videofile = $model->videofile->baseName . time() . "." . $model->videofile->extension;
+                        $model->save(false);
+                    }
+
+                    $model->save(false);
 
                 return [
                     'forceReload'=>'#crud-datatable-pjax',
@@ -152,7 +161,7 @@ class VideosController extends Controller
             if ($model->load($request->post())) {
                 if ($model->videofile = UploadedFile::getInstance($model, 'videofile')) {
                     $model->videofile = UploadedFile::getInstance($model, 'videofile');
-                    $model->videofile->saveAs('../../common/upload/videos/' . $model->videofile->baseName . time() . ".".$model->videofile->extension);
+                    $model->videofile->saveAs('../../frontend/upload/videos/' . $model->videofile->baseName . time() . ".".$model->videofile->extension);
                     $model->videofile =  $model->videofile->baseName . time() . ".".$model->videofile->extension ;
                     $model->save(false);
                 }
@@ -307,7 +316,7 @@ class VideosController extends Controller
 
         $download = Videos::findone($id);
 
-        $path = Yii::getAlias('@common') . '/upload/videos/' . $download->videofile;
+        $path = Yii::getAlias('@frontend') . '/upload/videos/' . $download->videofile;
         if (file_exists($path)) {
             return Yii::$app->response->sendFile($path);
 
