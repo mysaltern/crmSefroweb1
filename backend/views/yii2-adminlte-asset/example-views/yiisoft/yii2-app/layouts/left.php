@@ -1,3 +1,8 @@
+<?php
+
+use common\models\EnteringyearSearch;
+
+?>
 <aside class="main-sidebar">
 
     <section class="sidebar">
@@ -72,6 +77,7 @@
 
         $uni = \yii\helpers\Url::to(['/uni/index']);
         $major = \yii\helpers\Url::to(['/major/index']);
+        $enteringyear = \yii\helpers\Url::to(['/enteringyear/index']);
         $lesson = \yii\helpers\Url::to(['/lesson/index']);
         $grade = \yii\helpers\Url::to(['/grade/index']);
         $professor = \yii\helpers\Url::to(['/professor/index']);
@@ -158,6 +164,7 @@
                                 ['label' => ' منابع درسی', 'icon' => 'fas fa-cart-arrow-down', 'url' => $reference],
                                 ['label' => 'مقطع تحصیلی', 'icon' => 'fas fa-cart-arrow-down', 'url' => $grade],
                                 ['label' => 'رشته تحصیلی', 'icon' => 'fas fa-cart-arrow-down', 'url' => $major],
+                                ['label' => 'سال ورود', 'icon' => 'fas fa-cart-arrow-down', 'url' => $enteringyear],
                                 ['label' => 'استاد', 'icon' => 'fas fa-cart-arrow-down', 'url' => $professor],
                                 ['label' => 'پایان نامه', 'icon' => 'fas fa-cart-arrow-down', 'url' => $thesis],
                             ],
