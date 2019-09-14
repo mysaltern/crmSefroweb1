@@ -47,6 +47,7 @@ $vendor = Url::base(true) . '/vendor';
         <link href="<?= $css; ?>/creative.css" rel="stylesheet">
         <link href="<?= $css; ?>/wow.css" rel="stylesheet" type="text/css"/>
         <link href="<?= $css; ?>/mrh.css" rel="stylesheet" type="text/css"/>
+        <script src="<?= $vendor; ?>/jquery/jquery.min.js"></script>
         <?php $this->registerCsrfMetaTags() ?>
         <title><?= Html::encode($this->title) ?></title>
         <?php $this->head() ?>
@@ -138,7 +139,7 @@ $vendor = Url::base(true) . '/vendor';
         </section>
 
         <!-- Bootstrap core JavaScript -->
-        <script src="<?= $vendor; ?>/jquery/jquery.min.js"></script>
+
         <script src="<?= $vendor; ?>/bootstrap/js/bootstrap.bundle.min.js"></script>
 
         <!-- Plugin JavaScript -->
