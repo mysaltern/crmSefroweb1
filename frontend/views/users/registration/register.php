@@ -54,11 +54,11 @@ $this->params['breadcrumbs'][] = $this->title;
 
                 <?= $form->field($model, 'fname') ?>
                 <?= $form->field($model, 'lname') ?>
-                <?= $form->field($model, 'username') ?>
-                <?= $form->field($model, 'nationalcode') ?>
+                <?= $form->field($model, 'username')->label('کد ملی') ?>
+
 
                 <?php $gender = ['1' => 'مرد', '0' => 'زن']; ?>
-                <?= $form->field($model, 'gender')->dropDownList($gender) ?>
+                <?= $form->field($model, 'gender')->dropDownList($gender ,  ['prompt' => '---- جنسیت ----']) ?>
 
                 <?php $form->field($model, 'datebrith') ?>
 
@@ -98,11 +98,14 @@ $this->params['breadcrumbs'][] = $this->title;
                 <?php $unigrade = ArrayHelper::map(\common\models\UniGrade::find()->orderBy('name')->all(), 'id', 'name') ?>
                 <?= $form->field($model, 'grade_id')->dropDownList($unigrade, ['prompt' => '---- انتخاب مقطع ----']); ?>
 
+                <?php $enteringyear = ArrayHelper::map(\common\models\Enteringyear::find()->all(), 'id', 'name') ?>
+                <?= $form->field($model, 'enteringyear_id')->dropDownList($enteringyear, ['prompt' => '---- انتخاب سال ورود ----']); ?>
+
                 <?= $form->field($model, 'numcollegian') ?>
 
                 <div class="select1">
                 <?php $jobstatus = [ '1' => 'شاغل', '0' => 'بدون شغل']; ?>
-                <?= $form->field($model, 'jobstatus')->dropDownList($jobstatus ,  ['prompt' => '---- انتخاب شغل ----']) ?>
+                <?= $form->field($model, 'jobstatus')->dropDownList($jobstatus ,  ['prompt' => '---- وضعیت شغلی ----']) ?>
                 </div>
                 <div class="select2">
                     <?= $form->field($model, 'jobdetail')->textInput() ?>

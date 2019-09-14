@@ -133,10 +133,11 @@ class RegistrationController extends Controller
         /** @var RegistrationForm $model */
         $model = \Yii::createObject(RegistrationForm::className());
         $event = $this->getFormEvent($model);
-        if ($model->load(\Yii::$app->request->post())) {
-
-            $check = Yii::$app->mycomponent->_custom_check_national_code($model->nationalcode);
-            if ($check == false) {
+        if ($model->load(\Yii::$app->request->post()))
+        {
+            $check = Yii::$app->mycomponent->_custom_check_national_code($model->username);
+            if ($check == false)
+            {
                 \Yii::$app->session->setFlash(
                     'success', "کد ملی صحیح نیست"
                 );
@@ -166,7 +167,7 @@ class RegistrationController extends Controller
             $profiles->fname = $model->fname;
             $profiles->lname = $model->lname;
             $profiles->gender = $model->gender;
-          //  $profiles->datebrith = $model->datebrith;
+        //  $profiles->datebrith = $model->datebrith;
             $profiles->province_id = $model->province_id;
             $profiles->city = $model->city;
             $profiles->mobile = $model->mobile;
@@ -178,7 +179,8 @@ class RegistrationController extends Controller
             $profiles->jobstatus = $model->jobstatus;
             $profiles->jobdetail = $model->jobdetail;
             $profiles->jobdescription = $model->jobdescription;
-            $profiles->nationalcode = $model->nationalcode;
+            $profiles->enteringyear_id = $model->enteringyear_id;
+
 
             $profiles->save(false);
 

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Sep 14, 2019 at 02:42 AM
+-- Generation Time: Sep 14, 2019 at 08:02 PM
 -- Server version: 10.3.16-MariaDB
 -- PHP Version: 7.3.7
 
@@ -34,7 +34,6 @@ CREATE TABLE `profiles` (
   `fname` varchar(255) NOT NULL,
   `lname` varchar(255) NOT NULL,
   `gender` int(11) NOT NULL,
-  `datebrith` date NOT NULL,
   `province_id` int(11) NOT NULL,
   `city` varchar(255) NOT NULL,
   `mobile` varchar(12) NOT NULL,
@@ -46,7 +45,7 @@ CREATE TABLE `profiles` (
   `jobstatus` int(11) NOT NULL,
   `jobdetail` varchar(255) DEFAULT NULL,
   `jobdescription` text DEFAULT NULL,
-  `nationalcode` varchar(12) NOT NULL
+  `enteringyear_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -62,7 +61,8 @@ ALTER TABLE `profiles`
   ADD KEY `grade_id` (`grade_id`),
   ADD KEY `uniname_id` (`uni_id`),
   ADD KEY `province_id` (`province_id`),
-  ADD KEY `major_id` (`major_id`);
+  ADD KEY `major_id` (`major_id`),
+  ADD KEY `enteringyear_id` (`enteringyear_id`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -86,7 +86,8 @@ ALTER TABLE `profiles`
   ADD CONSTRAINT `profiles_ibfk_2` FOREIGN KEY (`grade_id`) REFERENCES `uni_grade` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `profiles_ibfk_3` FOREIGN KEY (`uni_id`) REFERENCES `uni_uni_name` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `profiles_ibfk_4` FOREIGN KEY (`province_id`) REFERENCES `glb_province` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `profiles_ibfk_6` FOREIGN KEY (`major_id`) REFERENCES `uni_major` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `profiles_ibfk_6` FOREIGN KEY (`major_id`) REFERENCES `uni_major` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `profiles_ibfk_7` FOREIGN KEY (`enteringyear_id`) REFERENCES `enteringyear` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

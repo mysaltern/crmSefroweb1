@@ -12,7 +12,6 @@ use Yii;
  * @property string $fname
  * @property string $lname
  * @property int $gender
- * @property string $datebrith
  * @property int $province_id
  * @property string $city
  * @property string $mobile
@@ -24,13 +23,14 @@ use Yii;
  * @property int $jobstatus
  * @property string $jobdetail
  * @property string $jobdescription
- * @property string $nationalcode
+ * @property int $enteringyear_id
  *
  * @property User $user
  * @property UniGrade $grade
  * @property UniUniName $uni
  * @property GlbProvince $province
  * @property UniMajor $major
+ * @property Enteringyear $enteringyear
  */
 class Profiles extends \yii\db\ActiveRecord
 {
@@ -48,17 +48,17 @@ class Profiles extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['user_id', 'fname', 'lname', 'gender', 'datebrith', 'province_id', 'city', 'mobile', 'phone', 'major_id', 'grade_id', 'uni_id', 'numcollegian', 'jobstatus', 'nationalcode'], 'required'],
-            [['user_id', 'gender', 'province_id', 'phone', 'major_id', 'grade_id', 'uni_id', 'numcollegian', 'jobstatus'], 'integer'],
-            [['datebrith'], 'safe'],
+            [['user_id', 'fname', 'lname', 'gender', 'province_id', 'city', 'mobile', 'phone', 'major_id', 'grade_id', 'uni_id', 'numcollegian', 'jobstatus', 'enteringyear_id'], 'required'],
+            [['user_id', 'gender', 'province_id', 'phone', 'major_id', 'grade_id', 'uni_id', 'numcollegian', 'jobstatus', 'enteringyear_id'], 'integer'],
             [['jobdescription'], 'string'],
             [['fname', 'lname', 'city', 'jobdetail'], 'string', 'max' => 255],
-            [['mobile', 'nationalcode'], 'string', 'max' => 12],
+            [['mobile'], 'string', 'max' => 12],
             [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['user_id' => 'id']],
             [['grade_id'], 'exist', 'skipOnError' => true, 'targetClass' => UniGrade::className(), 'targetAttribute' => ['grade_id' => 'id']],
             [['uni_id'], 'exist', 'skipOnError' => true, 'targetClass' => UniUniName::className(), 'targetAttribute' => ['uni_id' => 'id']],
             [['province_id'], 'exist', 'skipOnError' => true, 'targetClass' => GlbProvince::className(), 'targetAttribute' => ['province_id' => 'id']],
             [['major_id'], 'exist', 'skipOnError' => true, 'targetClass' => UniMajor::className(), 'targetAttribute' => ['major_id' => 'id']],
+            [['enteringyear_id'], 'exist', 'skipOnError' => true, 'targetClass' => Enteringyear::className(), 'targetAttribute' => ['enteringyear_id' => 'id']],
         ];
     }
 
@@ -73,7 +73,6 @@ class Profiles extends \yii\db\ActiveRecord
             'fname' => Yii::t('app', 'Fname'),
             'lname' => Yii::t('app', 'Lname'),
             'gender' => Yii::t('app', 'Gender'),
-            'datebrith' => Yii::t('app', 'Datebrith'),
             'province_id' => Yii::t('app', 'Province ID'),
             'city' => Yii::t('app', 'City'),
             'mobile' => Yii::t('app', 'Mobile'),
@@ -85,7 +84,7 @@ class Profiles extends \yii\db\ActiveRecord
             'jobstatus' => Yii::t('app', 'Jobstatus'),
             'jobdetail' => Yii::t('app', 'Jobdetail'),
             'jobdescription' => Yii::t('app', 'Jobdescription'),
-            'nationalcode' => Yii::t('app', 'Nationalcode'),
+            'enteringyear_id' => Yii::t('app', 'Enteringyear ID'),
         ];
     }
 
@@ -127,6 +126,14 @@ class Profiles extends \yii\db\ActiveRecord
     public function getMajor()
     {
         return $this->hasOne(UniMajor::className(), ['id' => 'major_id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getEnteringyear()
+    {
+        return $this->hasOne(Enteringyear::className(), ['id' => 'enteringyear_id']);
     }
 
     /**
