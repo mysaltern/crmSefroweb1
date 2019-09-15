@@ -17,7 +17,7 @@ use yii\widgets\ActiveForm;
     <?php
     $item = array('1' => 'اخبار', '2' => 'مقالات');
     ?>
-    <?= $form->field($model, 'type')->dropDownList($item) ?>
+    <?= $form->field($model, 'type')->dropDownList($item, ['prompt' => '---- انتخاب نوع ----']) ?>
 
 
 

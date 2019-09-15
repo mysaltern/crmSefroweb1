@@ -29,14 +29,14 @@ if (!isset($path))
     $dataPost = ArrayHelper::map(\common\models\InvProductManufacturers::find()->asArray()->all(), 'id', 'name');
     echo $form->field($model, 'invProductManufacturerID')
             ->dropDownList(
-                    $dataPost, ['id' => 'proManufactor']
+                    $dataPost, ['prompt' => '---- انتخاب تولیدکننده ----']
     );
     ?>
     <?php
     $dataPost = ArrayHelper::map(\common\models\InvProductSuppliers::find()->asArray()->all(), 'id', 'name');
     echo $form->field($model, 'invProductSupplierID')
             ->dropDownList(
-                    $dataPost, ['id' => 'proSupplier']
+                    $dataPost, ['prompt' => '---- انتخاب تامین کننده ----']
     );
     ?>
 
@@ -53,14 +53,14 @@ if (!isset($path))
     $dataPost = ArrayHelper::map(\common\models\InvProductTypes::find()->asArray()->all(), 'id', 'name');
     echo $form->field($model, 'invProductTypeID')
             ->dropDownList(
-                    $dataPost, ['id' => 'proType']
+                    $dataPost, ['prompt' => '---- انتخاب نوع محصول ----']
     );
     ?>
     <?php
     $dataPost = ArrayHelper::map(\common\models\InvProductShapes::find()->asArray()->all(), 'id', 'name');
     echo $form->field($model, 'invProductShapeID')
             ->dropDownList(
-                    $dataPost, ['id' => 'proShape']
+                    $dataPost, ['prompt' => '---- انتخاب شکل محصول ----']
     );
     ?>
     <?php
@@ -83,7 +83,7 @@ if (!isset($path))
 
     echo $form->field($model, 'invProductCategoryID')
             ->dropDownList(
-                    $a, ['id' => 'proCat']
+                    $a, ['prompt' => '---- انتخاب دسته ی محصول ----']
     );
     ?>
 
