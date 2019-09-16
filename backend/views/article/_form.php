@@ -102,7 +102,7 @@ use yii\helpers\ArrayHelper;
     $dataPost = ArrayHelper::map(\common\models\CategoryWriting::find()->where(['type' => 2])->asArray()->all(), 'id', 'name');
     echo $form->field($model, 'category_id')
             ->dropDownList(
-                    $dataPost, ['id' => 'name']
+                    $dataPost, ['prompt' => '---- انتخاب دسته بندی ----']
             )->label('دسته بندی');
     ?>
     <?= $form->field($model, 'active')->dropDownList($item) ?>

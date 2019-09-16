@@ -20,7 +20,7 @@ use yii\widgets\ActiveForm;
     $dataPost = yii\helpers\ArrayHelper::map(\common\models\InvProducts::find()->asArray()->all(), 'id', 'name');
     echo $form->field($model, 'productUnitID')
             ->dropDownList(
-                    $dataPost, ['id' => 'productUnitID']
+                    $dataPost, ['prompt' => '---- انتخاب دسته بندی ----']
     );
     ?>
 

@@ -13,7 +13,7 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]) ?>
 
-    <?= $form->field($model, 'title')->textarea(['rows' => 6]) ?>
+    <?= $form->field($model, 'title')->textInput() ?>
 
     <?= $form->field($model, 'description')->textarea(['rows' => 6]) ?>
 
@@ -30,7 +30,7 @@ use yii\widgets\ActiveForm;
 
 
     <?php $catname = ArrayHelper::map(common\models\CategoryWriting::find()->where(['type'=>1])->orderBy('name')->all(), 'id', 'name') ?>
-    <?= $form->field($model, 'cat_id')->dropDownList($catname, ['prompt' => '---- Select Category ----'])->label('Category') ?>
+    <?= $form->field($model, 'cat_id')->dropDownList($catname, ['prompt' => '---- انتخاب دسته بندی ----'])->label('Category') ?>
 
   
 	<?php if (!Yii::$app->request->isAjax){ ?>

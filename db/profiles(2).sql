@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Sep 14, 2019 at 08:02 PM
+-- Generation Time: Sep 15, 2019 at 01:32 AM
 -- Server version: 10.3.16-MariaDB
 -- PHP Version: 7.3.7
 
@@ -38,14 +38,14 @@ CREATE TABLE `profiles` (
   `city` varchar(255) NOT NULL,
   `mobile` varchar(12) NOT NULL,
   `phone` int(11) NOT NULL,
-  `major_id` int(11) NOT NULL,
-  `grade_id` int(11) NOT NULL,
-  `uni_id` int(11) NOT NULL,
-  `numcollegian` int(11) NOT NULL,
+  `major_id` int(11) DEFAULT NULL,
+  `grade_id` int(11) DEFAULT NULL,
+  `uni_id` int(11) DEFAULT NULL,
+  `numcollegian` int(11) DEFAULT NULL,
   `jobstatus` int(11) NOT NULL,
   `jobdetail` varchar(255) DEFAULT NULL,
   `jobdescription` text DEFAULT NULL,
-  `enteringyear_id` int(11) NOT NULL
+  `enteringyear_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --

@@ -46,7 +46,7 @@ use dosamigos\fileupload\FileUploadUI;
     $dataPost = ArrayHelper::map(\common\models\CategoryWriting::find()->where(['type' => 2])->asArray()->all(), 'id', 'name');
     echo $form->field($model, 'category_writing')
         ->dropDownList(
-            $dataPost, ['id' => 'name']
+            $dataPost, ['prompt' => '---- انتخاب دسته بندی ----']
         )->label('دسته بندی');
     ?>
     <?php

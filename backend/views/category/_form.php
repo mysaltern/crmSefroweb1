@@ -32,7 +32,7 @@ use yii\helpers\Url;
     $catList[0] = 'سرشاخه';
 
 
-    echo $form->field($model, 'parentID')->dropDownList($catList, ['id' => 'cat-id']);
+    echo $form->field($model, 'parentID')->dropDownList($catList, ['prompt' => '---- انتخاب سرشاخه ----']);
 //
 //// Child # 1
 //    echo $form->field($model, 'level2')->widget(kartik\depdrop\DepDrop::classname(), [

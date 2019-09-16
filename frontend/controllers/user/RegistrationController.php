@@ -13,7 +13,7 @@ namespace frontend\controllers\user;
 
 use common\models\Profiles;
 use dektrium\user\Finder;
-use dektrium\user\models\RegistrationForm;
+use frontend\models\RegistrationForm;
 use dektrium\user\models\ResendForm;
 use dektrium\user\models\User;
 use dektrium\user\traits\AjaxValidationTrait;

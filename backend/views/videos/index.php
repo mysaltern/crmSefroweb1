@@ -40,7 +40,7 @@ CrudAsset::register($this);
             'panel' => [
                 'type' => 'primary', 
                 'heading' => '<i class="glyphicon glyphicon-list"></i> Videos listing',
-                'before'=>'<em>* برای تغییر اندازه با موس روی حاشیه فیلد ها کلیک کنید.</em>',
+            //    'before'=>'<em>* برای تغییر اندازه با موس روی حاشیه فیلد ها کلیک کنید.</em>',
                 'after'=>BulkButtonWidget::widget([
                             'buttons'=>Html::a('<i class="glyphicon glyphicon-trash"></i>&nbsp;حذف تمام موارد',
                                 ["bulk-delete"] ,

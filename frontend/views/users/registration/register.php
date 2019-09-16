@@ -102,7 +102,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 <?php $unigrade = ArrayHelper::map(\common\models\UniGrade::find()->orderBy('name')->all(), 'id', 'name') ?>
                 <?= $form->field($model, 'grade_id')->dropDownList($unigrade, ['prompt' => '---- انتخاب مقطع ----']); ?>
 
-                <?php $enteringyear = ArrayHelper::map(\common\models\Enteringyear::find()->all(), 'id', 'name') ?>
+                <?php $enteringyear = ArrayHelper::map(\common\models\Enteringyear::find()->orderBy('id DESC')->all(), 'id', 'name') ?>
                 <?= $form->field($model, 'enteringyear_id')->dropDownList($enteringyear, ['prompt' => '---- انتخاب سال ورود ----']); ?>
 
                 <?= $form->field($model, 'numcollegian') ?>

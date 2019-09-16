@@ -18,7 +18,7 @@ use yii\helpers\ArrayHelper;
     $dataPost = ArrayHelper::map(\common\models\InvProductSpecificationTypes::find()->asArray()->all(), 'id', 'productSpecificationName');
     echo $form->field($model, 'productSpecificationTypeID')
             ->dropDownList(
-                    $dataPost, ['id' => 'specification']
+                    $dataPost, ['prompt' => '---- انتخاب دسته بندی ----']
     );
     ?>
 
