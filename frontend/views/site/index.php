@@ -338,12 +338,15 @@ $this->title = 'My Yii Application';
             <?php
             $login = Url::to(['user/login']);
             $reference = Url::to(['reference/index']);
+            $homework = Url::to(['homework/index']);
             ?>
             <div class="col-lg-6 col-xs-12 mb-3">
                 <h2 class="mb-4">پنل ویژه دانشجویان</h2>
                 <?php if (!\Yii::$app->user->isGuest) { ?>
                     <a class="btn btn-light btn-xl sr-button"
                        href="<?= $reference; ?>">منابع درسی</a>
+                    <a class="btn btn-light btn-xl sr-button"
+                       href="<?=  $homework; ?>">آپلود تکالیف</a>
                 <?php } else { ?>
                     <a class="btn btn-light btn-xl sr-button"
                        href="<?= $login; ?>">وارد شوید</a>

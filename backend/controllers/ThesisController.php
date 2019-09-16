@@ -126,9 +126,6 @@ class ThesisController extends Controller
             else if ($model->load($request->post()) && $model->validate())
             {
 
-
-
-
                 if ($model->url = UploadedFile::getInstance($model, 'url'))
                 {
                     $model->url = UploadedFile::getInstance($model, 'url');
@@ -148,8 +145,6 @@ class ThesisController extends Controller
                     $x = 0;
                     foreach ($profesoors as $profesoor)
                     {
-
-
                         $thesisprofessor = new UniThesisProfessor();
                         $thesisprofessor->professor_id = $profesoor;
                         $thesisprofessor->professor_roleID = $profesoorsRole[$x];
