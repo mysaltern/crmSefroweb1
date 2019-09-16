@@ -33,11 +33,11 @@ $this->params['breadcrumbs'][] = $this->title;
         <div class="panel panel-default">
             <!-- display error message -->
             <?php if (Yii::$app->session->hasFlash('faild')): ?>
-                <div class="alert alert-danger alert-dismissable">
-                    <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
-                    <h4><i class="icon fa fa-check"></i>Saved!</h4>
-                    <?= Yii::$app->session->getFlash('faild') ?>
-                </div>
+            <div class="alert alert-danger alert-dismissable">
+                <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
+                <h4><i class="icon fa fa-check"></i>Saved!</h4>
+                <?= Yii::$app->session->getFlash('faild') ?>
+            </div>
             <?php endif; ?>
             <div class="panel-heading">
                 <h3 class="panel-title"><?= Html::encode($this->title) ?></h3>
@@ -51,10 +51,14 @@ $this->params['breadcrumbs'][] = $this->title;
                 ]);
                 ?>
 
+                <div class="form-check mb-3 mt-4">
+                    <input type="checkbox" class="form-check-input" id="notstudent">
+                    <label class="form-check-label pr-4" for="notstudent">دانشجو نیستم</label>
+                </div>
 
                 <?= $form->field($model, 'fname') ?>
                 <?= $form->field($model, 'lname') ?>
-                <?= $form->field($model, 'username')->label('کد ملی') ?>
+                <?= $form->field($model, 'username')->label('کد ملی') ->textinput(['onchange' => 'count();']) ?>
 
 
                 <?php $gender = ['1' => 'مرد', '0' => 'زن']; ?>
@@ -103,11 +107,11 @@ $this->params['breadcrumbs'][] = $this->title;
 
                 <?= $form->field($model, 'numcollegian') ?>
 
-                <div class="select1">
-                <?php $jobstatus = [ '1' => 'شاغل', '0' => 'بدون شغل']; ?>
-                <?= $form->field($model, 'jobstatus')->dropDownList($jobstatus ,  ['prompt' => '---- وضعیت شغلی ----']) ?>
+                <div>
+                    <?php $jobstatus = [ '1' => 'شاغل', '0' => 'بدون شغل']; ?>
+                    <?= $form->field($model, 'jobstatus')->dropDownList($jobstatus ,  ['prompt' => '---- وضعیت شغلی ----']) ?>
                 </div>
-                <div class="select2">
+                <div>
                     <?= $form->field($model, 'jobdetail')->textInput() ?>
                 </div>
 
@@ -116,7 +120,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
 
                 <?php if ($module->enableGeneratingPassword == false): ?>
-                    <?= $form->field($model, 'password')->passwordInput() ?>
+                <?= $form->field($model, 'password')->passwordInput() ?>
                 <?php endif ?>
 
 
@@ -132,19 +136,36 @@ $this->params['breadcrumbs'][] = $this->title;
 </div>
 
 
-<!--<script>-->
-<!--    $(document).ready(function () {-->
-<!--        $(".select1").change(function () {-->
-<!--            console.log($(this).val());-->
-<!--            if ($(this).val() == "شاغل") {-->
-<!---->
-<!--                $(".select2").show();-->
-<!---->
-<!--            } else if ($(this).val() === "0") {-->
-<!--                $(".select2").hide();-->
-<!---->
-<!--            }-->
-<!---->
-<!--        });-->
-<!--    });-->
-<!--</script>-->
+<script>
+    $(document).ready(function () {
+        $(".field-register-form-jobdetail").hide();
+        $("#register-form-jobstatus").change(function () {
+            if ($(this).val() === "1") {
+                $(".field-register-form-jobdetail").show();
+
+            } else if ($(this).val() === "0") {
+                $(".field-register-form-jobdetail").hide();
+
+            }
+
+        });
+
+
+        $("#notstudent").click(function () {
+            if ($(this).is(":checked")) {
+                $(".field-register-form-uni_id").hide();
+                $(".field-register-form-major_id").hide();
+                $(".field-register-form-grade_id").hide();
+                $(".field-register-form-enteringyear_id").hide();
+                $(".field-register-form-numcollegian").hide();
+            } else {
+                $(".field-register-form-uni_id").show();
+                $(".field-register-form-major_id").show();
+                $(".field-register-form-grade_id").show();
+                $(".field-register-form-enteringyear_id").show();
+                $(".field-register-form-numcollegian").show();
+            }
+        });
+
+    });
+</script>

@@ -232,13 +232,13 @@ marquee {
     padding: 30px;
     border: 1px solid #003b8752;
     border-radius: 10px;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
-  transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+    transition: all 0.3s cubic-bezier(.25, .8, .25, 1);
 }
 
 .resorce-card:hover {
     border: 1px solid #003b87;
-    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
 }
 
 #mainNav {
@@ -255,10 +255,15 @@ marquee {
     background: #003b8733;
     border-radius: 5px;
 }
-   .center-block {
-       margin-top: 80px;
-        text-align: right;
-        display: block;
-        margin-left: auto;
-        margin-right: auto;
-    }
+
+.center-block {
+    margin-top: 80px;
+    text-align: right;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#registration-form {
+    direction: rtl;
+}
