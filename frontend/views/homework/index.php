@@ -29,6 +29,7 @@ use yii\web\View;
             $date_sent = $m['date_sent'];
             $lesson = $m["lesson"]["name"];
             $enteringyear = $m["enteringyear"]["name"];
+            $description = $m["description"];
             ?>
             <div class="col-lg-6 text-center mb-2">
                 <div class="resorce-card">
@@ -56,6 +57,9 @@ use yii\web\View;
 
                     <p>
                         سال ورود: <?= $enteringyear ?>
+                    </p>
+                    <p>
+                        توضیحات: <?= $description ?>
                     </p>
                     <p>
                         تاریخ آپلود: <?= $date_sent ?>
