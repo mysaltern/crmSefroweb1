@@ -72,20 +72,7 @@ class HomeworkController extends Controller
     {
 
 
-//      $admin = Yii::$app->user->identity->status == 20;
-//      if($admin){
-//          $model = \common\models\UniHomework::find()->with('user')->with('enteringyear')->with('lesson')->asArray()->all();
 //
-//
-//          $profiles = Profiles::find()->with('major')->with('grade')->with('uni')->asArray()->all();
-//      }
-//      else{
-//          $user_id = Yii::$app->user->id ;
-//
-//          $model = \common\models\UniHomework::find()->where(['user_id' => $user_id])->with('user')->with('enteringyear')->with('lesson')->asArray()->all();
-//
-//          $profiles = Profiles::find()->where(['user_id' => $user_id])->with('major')->with('grade')->with('uni')->asArray()->one();
-//      }
 
         $user_id = Yii::$app->user->id ;
 
