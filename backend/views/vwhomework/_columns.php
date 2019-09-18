@@ -1,5 +1,6 @@
 <?php
 
+use hoomanMirghasemi\jdf\Jdf;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 use yii\helpers\Url;
@@ -148,10 +149,7 @@ return [
         'class'=>'\kartik\grid\DataColumn',
         'attribute'=>'numcollegian',
     ],
-    [
-         'class'=>'\kartik\grid\DataColumn',
-         'attribute'=>'description',
-     ],
+
 //     [
 //         'class'=>'\kartik\grid\DataColumn',
 //         'attribute'=>'username',
@@ -170,14 +168,33 @@ return [
         },
         'filter' => ArrayHelper::map(\common\models\Enteringyear::find()->all(), 'name', 'name'),
     ],
+    [
+        'class'=>'\kartik\grid\DataColumn',
+        'attribute'=>'description',
+    ],
+
+    [
+        'class' => '\kartik\grid\DataColumn',
+        'attribute' => 'تاریخ ارسال',
+        'value' => function ($model)
+        {
+            $name = \common\models\UniHomework::find()->select('date_sent')->asArray()->where(['date_sent' => $model->date_sent])->one();
+            $int_date_sent = strtotime($name['date_sent']);
+            $date_display = Jdf::jdate('Y/m/d', $int_date_sent ,'','','fa');
+            return $date_display;
+        },
+       // 'filter' => ArrayHelper::map(\common\models\Enteringyear::find()->all(), 'name', 'name'),
+    ],
+
+
 //     [
 //         'class'=>'\kartik\grid\DataColumn',
 //         'attribute'=>'term',
 //     ],
-    [
-        'class'=>'\kartik\grid\DataColumn',
-        'attribute'=>'date_sent',
-    ],
+//    [
+//        'class'=>'\kartik\grid\DataColumn',
+//        'attribute'=>'date_sent',
+//    ],
     [
         'class' => 'kartik\grid\ActionColumn',
         'dropdown' => false,

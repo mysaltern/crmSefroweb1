@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\helpers\Url;
+use hoomanMirghasemi\jdf\Jdf;
 use yii\web\View;
 
 /* @var $this yii\web\View */
@@ -17,20 +18,17 @@ use yii\web\View;
         تکالیف
     </h2>
 
-<div class="text-center ">
-<?php   $homework = Url::to(['homework/create']); ?>
+    <div class="text-center ">
+        <?php $homework = Url::to(['homework/create']); ?>
 
 
+        <a class="btn btn-light btn-xl sr-button m-4"
+           href="<?= $homework; ?>">آپلود </a>
 
-<a class="btn btn-light btn-xl sr-button m-4"
-   href="<?=  $homework; ?>">آپلود </a>
+    </div>
 
-</div>
-    
 
     <div class="row">
-
-
 
 
         <?php
@@ -45,6 +43,14 @@ use yii\web\View;
             $lesson = $m["lesson"]["name"];
             $enteringyear = $m["enteringyear"]["name"];
             $description = $m["description"];
+
+            $int_date_sent = strtotime($date_sent );
+
+            $date_display = Jdf::jdate('Y/m/d', $int_date_sent ,'','','en');
+
+        //  $date_display = jdf::jdate('Y/F/j', $int_date_sent, '', '', '');
+
+
             ?>
             <div class="col-lg-6 text-center mb-2">
                 <div class="resorce-card">
@@ -77,7 +83,8 @@ use yii\web\View;
                         توضیحات: <?= $description ?>
                     </p>
                     <p>
-                        تاریخ آپلود: <?= $date_sent ?>
+
+                        تاریخ آپلود: <?= $date_display ?>
                     </p>
                     <br/>
                     <?php echo Html::a(Html::encode("دانلود"), "download?id=$id ", ['target' => '_blank', 'data-pjax' => "0", 'class' => 'download-btn']); ?>
@@ -87,7 +94,6 @@ use yii\web\View;
             <?php
         }
         ?>
-
 
 
     </div>
