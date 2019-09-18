@@ -84,6 +84,7 @@ use common\models\EnteringyearSearch;
         $thesis = \yii\helpers\Url::to(['/thesis/index']);
         $reference = \yii\helpers\Url::to(['/reference/index']);
         $video = \yii\helpers\Url::to(['/videos/index']);
+        $homework = \yii\helpers\Url::to(['/vwhomework/index']);
         ?>
         <?=
         dmstr\widgets\Menu::widget(
@@ -167,6 +168,7 @@ use common\models\EnteringyearSearch;
                                 ['label' => 'سال ورود', 'icon' => 'fas fa-cart-arrow-down', 'url' => $enteringyear],
                                 ['label' => 'استاد', 'icon' => 'fas fa-cart-arrow-down', 'url' => $professor],
                                 ['label' => 'پایان نامه', 'icon' => 'fas fa-cart-arrow-down', 'url' => $thesis],
+                                ['label' => 'تکالیف ارسالی', 'icon' => 'fas fa-cart-arrow-down', 'url' => $homework],
                             ],
                         ],
                         ['label' => 'Login', 'url' => ['site/login'], 'visible' => Yii::$app->user->isGuest],

@@ -18,7 +18,7 @@ class UniHomeworkSearch extends UniHomework
     public function rules()
     {
         return [
-            [['id', 'user_id', 'lesson_id', 'Enteringyear_id'], 'integer'],
+            [['id', 'user_id', 'lesson_id', 'enteringyear_id', 'profiles_id'], 'integer'],
             [['hm_file', 'date_sent'], 'safe'],
         ];
     }
@@ -60,7 +60,8 @@ class UniHomeworkSearch extends UniHomework
             'user_id' => $this->user_id,
             'lesson_id' => $this->lesson_id,
             'date_sent' => $this->date_sent,
-            'Enteringyear_id' => $this->Enteringyear_id,
+            'enteringyear_id' => $this->enteringyear_id,
+            'profiles_id' => $this->profiles_id,
         ]);
 
         $query->andFilterWhere(['like', 'hm_file', $this->hm_file]);

@@ -100,15 +100,21 @@ class RegistrationForm extends Model
             'mobileLength' => ['mobile', 'integer'],
             'phoneRequired' => ['phone', 'required'],
             'phoneLength' => ['phone', 'integer'],
+            'major_idLength' => ['major_id', 'integer'],
+            'grade_idLength' => ['grade_id', 'integer'],
+            'uni_idLength' => ['uni_id', 'integer'],
+
             //  'major_idRequired' => ['major_id', 'required'],
             //   'grade_idRequired' => ['grade_id', 'required'],
             //   'uni_idRequired' => ['uni_id', 'required'],
             'jobstatusRequired' => ['jobstatus', 'required'],
             //  'jobdetailRequired' => ['jobdetail', 'required'],
+              'jobdetailLength' => ['jobdetail', 'string'],
             'jobdescriptionRequired' => ['jobdescription', 'required'],
             //   'numcollegianRequired' => ['numcollegian', 'required'],
             'numcollegianLength' => ['numcollegian', 'integer'],
             //  'enteringyear_idRequired' => ['enteringyear_id', 'required'],
+            'enteringyear_idLength' => ['enteringyear_id', 'integer'],
 
         ];
     }

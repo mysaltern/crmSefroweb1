@@ -22,6 +22,12 @@ use yii\widgets\ActiveForm;
     <?= $form->field($model, 'user_id')->hiddenInput(['readonly' => true, 'value' => $user_id])->label(false) ?>
 
 
+    <?php $profiles = \common\models\Profiles::findOne(['user_id' => $user_id]);
+    $profiles_id = $profiles['id'];
+    ?>
+    <?= $form->field($model, 'profiles_id')->hiddenInput(['value' => $profiles_id])->label(false) ?>
+
+
     <?php $lesson = ArrayHelper::map(common\models\UniLesson::find()->orderBy('name')->all(), 'id', 'name') ?>
     <?= $form->field($model, 'lesson_id')->dropDownList($lesson, ['prompt' => '---- انتخاب درس ----']) ?>
 
@@ -32,15 +38,17 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'hm_file')->fileInput(['multiple' => true]) ?>
 
+    <?= $form->field($model, 'description')->textarea() ?>
+
     <?php $form->field($model, 'date_sent')->textInput() ?>
 
-  
-	<?php if (!Yii::$app->request->isAjax){ ?>
-	  	<div class="form-group">
-	        <?= Html::submitButton($model->isNewRecord ? Yii::t('app', 'ارسال') : Yii::t('app', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
-	    </div>
-	<?php } ?>
+
+    <?php if (!Yii::$app->request->isAjax) { ?>
+        <div class="form-group">
+            <?= Html::submitButton($model->isNewRecord ? Yii::t('app', 'ارسال') : Yii::t('app', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+        </div>
+    <?php } ?>
 
     <?php ActiveForm::end(); ?>
-    
+
 </div>

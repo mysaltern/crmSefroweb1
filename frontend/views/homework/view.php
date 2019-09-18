@@ -26,11 +26,21 @@ use yii\widgets\DetailView;
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
-            'id',
-            'user_id',
-            'lesson_id',
+          //  'id',
+         //   'user_id',
+          //  'lesson_id',
+            [
+                'attribute' => 'lesson_id',
+                'value' => function ($model)
+                {
+                    $name = common\models\UniLesson::find()->asArray()->where(['id' => $model->lesson_id])->one();
+                    return $name['name'];
+                }
+            ],
+
             'hm_file',
             'date_sent',
+            'description',
         ],
     ]) ?>
 

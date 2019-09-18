@@ -183,7 +183,7 @@ class HomeworkController extends Controller
                 ];
             }
         } else {
-            if ($model->load($request->post()) && $model->validate() ) {
+            if ($model->load($request->post()) ) {
 
                 if ( $model->hm_file = UploadedFile::getInstance($model, 'hm_file' )) {
 

@@ -13,7 +13,7 @@ use Yii;
  * @property string $hm_file
  * @property string $date_sent
  * @property int $enteringyear_id
- *
+ *@property int $profiles_id
  * @property User $user
  * @property UniLesson $lesson
  * @property Enteringyear $enteringyear
@@ -34,9 +34,10 @@ class UniHomework extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['user_id', 'enteringyear_id'], 'required'],
+            [['user_id', 'enteringyear_id', 'profiles_id'], 'required'],
             [['user_id', 'lesson_id', 'enteringyear_id'], 'integer'],
             [['date_sent'], 'safe'],
+            [['description'], 'string'],
             [['hm_file'], 'file', 'skipOnEmpty' => true, 'extensions' => 'pdf'],
             [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['user_id' => 'id']],
             [['lesson_id'], 'exist', 'skipOnError' => true, 'targetClass' => UniLesson::className(), 'targetAttribute' => ['lesson_id' => 'id']],
@@ -54,8 +55,10 @@ class UniHomework extends \yii\db\ActiveRecord
             'user_id' => Yii::t('app', 'User ID'),
             'lesson_id' => Yii::t('app', 'درس'),
             'hm_file' => Yii::t('app', 'تکلیف'),
-            'date_sent' => Yii::t('app', 'Date Sent'),
+            'date_sent' => Yii::t('app', 'تاریخ ارسال'),
             'enteringyear_id' => Yii::t('app', 'ترم'),
+            'profiles_id' => Yii::t('app', 'Profiles ID'),
+            'description' => Yii::t('app', 'توضیحات'),
         ];
     }
 
@@ -65,6 +68,11 @@ class UniHomework extends \yii\db\ActiveRecord
     public function getUser()
     {
         return $this->hasOne(User::className(), ['id' => 'user_id']);
+    }
+
+    public function getProfiles()
+    {
+        return $this->hasOne(Profile::className(), ['id' => 'profiles_id']);
     }
 
     /**
