@@ -17,7 +17,22 @@ use yii\web\View;
         تکالیف
     </h2>
 
+<div class="text-center ">
+<?php   $homework = Url::to(['homework/create']); ?>
+
+
+
+<a class="btn btn-light btn-xl sr-button m-4"
+   href="<?=  $homework; ?>">آپلود </a>
+
+</div>
+    
+
     <div class="row">
+
+
+
+
         <?php
         foreach ($model as $m) {
             $fname = $profiles['fname'];
@@ -81,8 +96,3 @@ use yii\web\View;
 </div>
 
 
-<?php   $homework = Url::to(['homework/create']); ?>
-
-
-<a class="btn btn-light btn-xl sr-button"
-   href="<?=  $homework; ?>">آپلود </a>

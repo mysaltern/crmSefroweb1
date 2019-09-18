@@ -21,7 +21,9 @@ $login = Url::to(['/user/login']);
 
 <?= $this->render('/_alert', ['module' => $module]);
  ?>
-<h5>
+ <div class="min-height">
+ <h5 class="text-center">
 
-ثبت نام با موفقیت انجتم شد برای ورود<a class="navbar-brand js-scroll-trigger" href="<?= $login; ?>">اینجا</a> کلیک کنید
+ثبت نام با موفقیت انجتم شد برای ورود<a href="<?= $login; ?>"> اینجا</a> کلیک کنید
 </h5>
+ </div>
