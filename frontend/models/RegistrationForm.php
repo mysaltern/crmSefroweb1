@@ -98,7 +98,7 @@ class RegistrationForm extends Model
             'cityRequired' => ['city', 'required'],
             'mobileRequired' => ['mobile', 'required'],
             'mobileLength' => ['mobile', 'integer'],
-            'phoneRequired' => ['phone', 'required'],
+            //   'phoneRequired' => ['phone', 'required'],
             'phoneLength' => ['phone', 'integer'],
             'major_idLength' => ['major_id', 'integer'],
             'grade_idLength' => ['grade_id', 'integer'],
@@ -109,12 +109,14 @@ class RegistrationForm extends Model
             //   'uni_idRequired' => ['uni_id', 'required'],
             'jobstatusRequired' => ['jobstatus', 'required'],
             //  'jobdetailRequired' => ['jobdetail', 'required'],
-              'jobdetailLength' => ['jobdetail', 'string'],
-            'jobdescriptionRequired' => ['jobdescription', 'required'],
+            'jobdetailLength' => ['jobdetail', 'string'],
+            //    'jobdescriptionRequired' => ['jobdescription', 'required'],
+          //  'jobdescriptionLength' => ['jobdescription', 'string'],
             //   'numcollegianRequired' => ['numcollegian', 'required'],
             'numcollegianLength' => ['numcollegian', 'integer'],
             //  'enteringyear_idRequired' => ['enteringyear_id', 'required'],
             'enteringyear_idLength' => ['enteringyear_id', 'integer'],
+
 
         ];
     }

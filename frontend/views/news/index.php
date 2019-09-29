@@ -2,11 +2,20 @@
 
 use yii\helpers\Url;
 use yii\widgets\LinkPager;
+
 ?>
 
-<div class="margin">
+<div  style="margin: 50px;">
 
     <?php
+    echo \tugmaks\RssFeed\RssReader::widget([
+        'channel' => 'https://www.varzesh3.com/rss/all',
+        'pageSize' => 1,
+        'itemView' => 'item', //To set own viewFile set 'itemView'=>'@frontend/views/site/_rss_item'. Use $model var to access item properties
+        'wrapTag' => 'div',
+        'wrapClass' => 'rss-wrap',
+    ]);
+
     foreach ($models as $model)
     {
 

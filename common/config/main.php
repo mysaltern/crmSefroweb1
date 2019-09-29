@@ -53,6 +53,9 @@ return [
         'cache' => [
             'class' => 'yii\caching\FileCache',
         ],
+        'feed' => [
+            'class' => 'yii\feed\FeedDriver',
+        ],
     ],
 //    'as access' => [
 //        'class' => yii2mod\rbac\filters\AccessControl::class,

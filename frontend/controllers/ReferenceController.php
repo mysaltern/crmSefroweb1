@@ -51,7 +51,7 @@ class ReferenceController extends \yii\web\Controller
     {
 
 
-        $model = \common\models\UniReference::find()->with('major')->with('lesson')->asArray()->all();
+        $model = \common\models\UniReference::find()->where('active'==1)->with('major')->with('lesson')->asArray()->all();
 
 
         return $this->render('index', [
