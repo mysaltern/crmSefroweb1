@@ -3,8 +3,8 @@
 namespace backend\controllers;
 
 use Yii;
-use common\models\UniMajor;
-use common\models\UniMajorSearch;
+use common\models\NotificationCategory;
+use common\models\NotificationCategorySearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -12,9 +12,9 @@ use \yii\web\Response;
 use yii\helpers\Html;
 
 /**
- * MajorController implements the CRUD actions for UniMajor model.
+ * NotificationcategoryController implements the CRUD actions for NotificationCategory model.
  */
-class MajorController extends Controller
+class NotificationcategoryController extends Controller
 {
     /**
      * @inheritdoc
@@ -50,12 +50,12 @@ class MajorController extends Controller
     }
 
     /**
-     * Lists all UniMajor models.
+     * Lists all NotificationCategory models.
      * @return mixed
      */
     public function actionIndex()
     {    
-        $searchModel = new UniMajorSearch();
+        $searchModel = new NotificationCategorySearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -66,7 +66,7 @@ class MajorController extends Controller
 
 
     /**
-     * Displays a single UniMajor model.
+     * Displays a single NotificationCategory model.
      * @param integer $id
      * @return mixed
      */
@@ -76,7 +76,7 @@ class MajorController extends Controller
         if($request->isAjax){
             Yii::$app->response->format = Response::FORMAT_JSON;
             return [
-                    'title'=> "UniMajor #".$id,
+                    'title'=> "NotificationCategory #".$id,
                     'content'=>$this->renderAjax('view', [
                         'model' => $this->findModel($id),
                     ]),
@@ -91,7 +91,7 @@ class MajorController extends Controller
     }
 
     /**
-     * Creates a new UniMajor model.
+     * Creates a new NotificationCategory model.
      * For ajax request will return json object
      * and for non-ajax request if creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
@@ -99,7 +99,7 @@ class MajorController extends Controller
     public function actionCreate()
     {
         $request = Yii::$app->request;
-        $model = new UniMajor();  
+        $model = new NotificationCategory();  
 
         if($request->isAjax){
             /*
@@ -108,7 +108,7 @@ class MajorController extends Controller
             Yii::$app->response->format = Response::FORMAT_JSON;
             if($request->isGet){
                 return [
-                    'title'=> "Create new UniMajor",
+                    'title'=> "Create new NotificationCategory",
                     'content'=>$this->renderAjax('create', [
                         'model' => $model,
                     ]),
@@ -119,15 +119,15 @@ class MajorController extends Controller
             }else if($model->load($request->post()) && $model->save()){
                 return [
                     'forceReload'=>'#crud-datatable-pjax',
-                    'title'=> "Create new UniMajor",
-                    'content'=>'<span class="text-success">Create UniMajor success</span>',
+                    'title'=> "Create new NotificationCategory",
+                    'content'=>'<span class="text-success">Create NotificationCategory success</span>',
                     'footer'=> Html::button('Close',['class'=>'btn btn-default pull-left','data-dismiss'=>"modal"]).
                             Html::a('Create More',['create'],['class'=>'btn btn-primary','role'=>'modal-remote'])
         
                 ];         
             }else{           
                 return [
-                    'title'=> "Create new UniMajor",
+                    'title'=> "Create new NotificationCategory",
                     'content'=>$this->renderAjax('create', [
                         'model' => $model,
                     ]),
@@ -152,7 +152,7 @@ class MajorController extends Controller
     }
 
     /**
-     * Updates an existing UniMajor model.
+     * Updates an existing NotificationCategory model.
      * For ajax request will return json object
      * and for non-ajax request if update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
@@ -170,7 +170,7 @@ class MajorController extends Controller
             Yii::$app->response->format = Response::FORMAT_JSON;
             if($request->isGet){
                 return [
-                    'title'=> "Update UniMajor #".$id,
+                    'title'=> "Update NotificationCategory #".$id,
                     'content'=>$this->renderAjax('update', [
                         'model' => $model,
                     ]),
@@ -180,7 +180,7 @@ class MajorController extends Controller
             }else if($model->load($request->post()) && $model->save()){
                 return [
                     'forceReload'=>'#crud-datatable-pjax',
-                    'title'=> "UniMajor #".$id,
+                    'title'=> "NotificationCategory #".$id,
                     'content'=>$this->renderAjax('view', [
                         'model' => $model,
                     ]),
@@ -189,7 +189,7 @@ class MajorController extends Controller
                 ];    
             }else{
                  return [
-                    'title'=> "Update UniMajor #".$id,
+                    'title'=> "Update NotificationCategory #".$id,
                     'content'=>$this->renderAjax('update', [
                         'model' => $model,
                     ]),
@@ -212,7 +212,7 @@ class MajorController extends Controller
     }
 
     /**
-     * Delete an existing UniMajor model.
+     * Delete an existing NotificationCategory model.
      * For ajax request will return json object
      * and for non-ajax request if deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
@@ -240,7 +240,7 @@ class MajorController extends Controller
     }
 
      /**
-     * Delete multiple existing UniMajor model.
+     * Delete multiple existing NotificationCategory model.
      * For ajax request will return json object
      * and for non-ajax request if deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
@@ -271,15 +271,15 @@ class MajorController extends Controller
     }
 
     /**
-     * Finds the UniMajor model based on its primary key value.
+     * Finds the NotificationCategory model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return UniMajor the loaded model
+     * @return NotificationCategory the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = UniMajor::findOne($id)) !== null) {
+        if (($model = NotificationCategory::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');

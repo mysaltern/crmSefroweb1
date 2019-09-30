@@ -19,36 +19,36 @@ class LessonController extends Controller
 
     /**
      * @inheritdoc
-     */
-    public function behaviors()
-    {
-        return [
-            'verbs' => [
-                'class' => VerbFilter::className(),
-                'actions' => [
-                    'delete' => ['post'],
-                    'bulk-delete' => ['post'],
-                ],
+     */    public function behaviors()
+{
+    return [
+        'verbs' => [
+            'class' => VerbFilter::className(),
+            'actions' => [
+                'delete' => ['post'],
+                'bulk-delete' => ['post'],
             ],
-            'access' => [
-                'class' => \yii\filters\AccessControl::className(),
-                'only' => ['create', 'update', 'index', 'delete'],
-                'rules' => [
-                    // deny all POST requests
-                    [
-                        'allow' => TRUE,
-                        'verbs' => ['POST']
-                    ],
-                    // allow authenticated users
-                    [
-                        'allow' => true,
-                        'roles' => ['@'],
-                    ],
+        ],
+        'access' => [
+            'class' => \yii\filters\AccessControl::className(),
+            'only' => ['create', 'update', 'index', 'delete'],
+            'rules' => [
+                // deny all POST requests
+                [
+                    'allow' => TRUE,
+                    'verbs' => ['POST']
+                ],
+                // allow authenticated users
+                [
+                    'allow' => true,
+                    'roles' => ['@'],
+                ],
                 // everything else is denied
-                ],
             ],
-        ];
-    }
+        ],
+    ];
+}
+
 
     /**
      * Lists all UniLesson models.

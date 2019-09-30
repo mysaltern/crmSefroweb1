@@ -36,6 +36,8 @@ use common\models\EnteringyearSearch;
         $article = \yii\helpers\Url::toRoute(['/article/index']);
         $articleCategory = \yii\helpers\Url::toRoute(['/categorywriting/index?CategoryWritingSearch[type]=2']);
         $page = \yii\helpers\Url::toRoute(['/page/index']);
+        $not_cat = \yii\helpers\Url::toRoute(['/notificationcategory/index']);
+        $notification = \yii\helpers\Url::toRoute(['/notification/index']);
         $about = \yii\helpers\Url::to(['/about/index']);
         $menu = \yii\helpers\Url::toRoute(['/menu/creator/index']);
         $comment = \yii\helpers\Url::to(['/comment/manage']);
@@ -104,6 +106,8 @@ use common\models\EnteringyearSearch;
                                 ['label' => 'مقالات', 'icon' => 'fas fa-newspaper', 'url' => $article],
                                 ['label' => 'دسته بندی مقالات', 'icon' => 'far fa-newspaper', 'url' => $articleCategory],
                                 ['label' => 'صفحات', 'icon' => 'far fa-file', 'url' => $page],
+                                ['label' => 'دسته بندی اعلان ها', 'icon' => 'far fa-file', 'url' => $not_cat],
+                                ['label' => 'اعلان ها', 'icon' => 'far fa-file', 'url' => $notification],
                                 ['label' => 'تماس با ما', 'icon' => 'fas fa-phone', 'url' => $about],
                                 ['label' => 'منو', 'icon' => 'fas fa-tachometer-alt', 'url' => $menu],
                                 ['label' => 'نظرات', 'icon' => 'far fa-comments', 'url' => $comment],

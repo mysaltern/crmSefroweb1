@@ -15,6 +15,8 @@ $css = Url::base(true) . '/css';
 $js = Url::base(true) . '/js';
 $img = Url::base(true) . '/img';
 $vendor = Url::base(true) . '/vendor';
+$footer_texts = \common\models\Notification::find()->where(['category_id' => '3'])->orderBy('orders DESC')->limit(1)->all();
+
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
@@ -119,8 +121,15 @@ $vendor = Url::base(true) . '/vendor';
                     <div class="col-lg-8 mx-auto text-center">
                         <h2 class="section-heading">کاربر گرامی؛</h2>
                         <hr class="my-4">
-                        <p class="mb-5">لطفاً در صورت وجود هرگونه مشکل فنی در کاربری این سایت، با ایمیل زیر مکاتبه و یا با
-                            شماره اعلام شده تماس حاصل نمایید.</p>
+                        <?php
+                        foreach ($footer_texts as $footer_text){
+                            $text = $footer_text["note"];
+                            ?>
+                            <p class="mb-5"><?= $text ?> </p>
+
+                        <?php } ?>
+                        <!--<p class="mb-5">لطفاً در صورت وجود هرگونه مشکل فنی در کاربری این سایت، با ایمیل زیر مکاتبه و یا با
+                            شماره اعلام شده تماس حاصل نمایید.</p>-->
                     </div>
                 </div>
                 <div class="row">

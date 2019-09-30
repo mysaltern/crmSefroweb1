@@ -5,11 +5,8 @@ use yii\helpers\Url;
 /* @var $this yii\web\View */
 
 $this->title = 'My Yii Application';
+
 ?>
-
-
-
-
 
 
 <header class="masthead text-center text-white d-flex">
@@ -35,23 +32,34 @@ $this->title = 'My Yii Application';
         </div>
     </div>
 </header>
+<?php
 
+?>
 <section class="bg-primary" id="about"
          style="background-image: url('img/darkblue.png');background-repeat: no-repeat;background-size: cover;background-position: center;">
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-8 mx-auto text-center">
                 <hr class="light my-4">
-                <p class="text-faded mb-4 rtl" style="font-size: 20px">
-                    دکتر علیرضا پورابراهیمی متولد 1347 عضو هیأت علمی و استادیار دانشگاه آزاد اسلامی و دارای دکترای تخصصی
-                    مدیریت صنعتی می باشند که از سال 1374 تا کنون به امر تدریس در دانشگاههای کشور اشتغال داشته اند. ایشان
-                    در کنار تدریس به امر تحقیق نیز همت گماشته و دارای تألیفات و پژوهش های متعدد علمی بوده و راهنمایی
-                    پایان نامه های متعددی را در مقاطع کارشناسی ارشد و دکتری بر عهده داشته اند.
-                </p>
-                <p class="text-faded mb-4 rtl" style="font-size: 20px">
-                    وی مسئولیت های اجرایی مختلفی را نیز در سازمانهای دولتی و غیر دولتی بر عهده داشته و در کارنامه اجرایی
-                    خود به ثبت رسانده است.
-                </p>
+
+                <?php
+                foreach ($original_texts as $original_text) {
+                    $text = $original_text['note'];
+                    ?>
+                    <p class="text-faded mb-4 rtl" style="font-size: 20px"> <?= $text ?>  </p>
+                <?php } ?>
+
+                <!--                <p class="text-faded mb-4 rtl" style="font-size: 20px">-->
+                <!---->
+                <!--                    دکتر علیرضا پورابراهیمی متولد 1347 عضو هیأت علمی و استادیار دانشگاه آزاد اسلامی و دارای دکترای تخصصی-->
+                <!--                    مدیریت صنعتی می باشند که از سال 1374 تا کنون به امر تدریس در دانشگاههای کشور اشتغال داشته اند. ایشان-->
+                <!--                    در کنار تدریس به امر تحقیق نیز همت گماشته و دارای تألیفات و پژوهش های متعدد علمی بوده و راهنمایی-->
+                <!--                    پایان نامه های متعددی را در مقاطع کارشناسی ارشد و دکتری بر عهده داشته اند.-->
+                <!--                </p>-->
+                <!--                <p class="text-faded mb-4 rtl" style="font-size: 20px">-->
+                <!--                    وی مسئولیت های اجرایی مختلفی را نیز در سازمانهای دولتی و غیر دولتی بر عهده داشته و در کارنامه اجرایی-->
+                <!--                    خود به ثبت رسانده است.-->
+                <!--                </p>-->
                 <!--<a class="btn btn-light btn-xl js-scroll-trigger" href="#services">Get Started!</a>-->
             </div>
         </div>
@@ -64,46 +72,28 @@ $this->title = 'My Yii Application';
         <div class="row justify-content-md-center">
 
 
-
-
             <?php
-            foreach ($article as $ar)
-            {
+            foreach ($article as $ar) {
                 $photo = Yii::$app->urlManager->createAbsoluteUrl(['/file', 'id' => $ar['photo']]);
                 $urlDetailsArticle = Url::to(['article/view', 'id' => $ar['id']]);
                 ?>
 
 
-
                 <div class="col-lg-2 text-center main-card-frame main-card-back1">
                     <div class="RIF mb-2">
-                        <img src="<?= $photo; ?>" alt="" />
+                        <img src="<?= $photo; ?>" alt=""/>
                     </div>
                     <p>
                         <?= $ar['title']; ?>
                     </p>
                     <p><?= $ar['content']; ?></p>
-                    <a href="<?= $urlDetailsArticle; ?>" > ادامه...</a>
+                    <a href="<?= $urlDetailsArticle; ?>"> ادامه...</a>
                 </div>
-
-
-
-
-
 
 
                 <?php
             }
             ?>
-
-
-
-
-
-
-
-
-
 
 
         </div>
@@ -136,8 +126,6 @@ $this->title = 'My Yii Application';
         <span class="sr-only">بعدی</span>
     </a>
 </div>-->
-
-
 
 
 <!--
@@ -294,7 +282,19 @@ $this->title = 'My Yii Application';
     <div class="container">
         <div class="row">
             <div class="col-lg-10">
+                <?php   foreach ($notification_texts as $notification_text) {
+                    $text = $notification_text['note'];
+                    ?>
+                    <div class="alert alert-primary text-right" role="alert">
+
+                        <i class="far fa-check-square"></i> <?= $text ?>
+                    </div>
+
+               <?php } ?>
+
+          <!--
                 <div class="alert alert-primary text-right" role="alert">
+
                     <i class="far fa-check-square"></i> برای ارسال تکالیف درسی خود ابتدا باید در سایت ثبت نام کرده و سپس
                     از طریق پنل ویژه دانشجویان اقدام کنید .
                 </div>
@@ -309,7 +309,7 @@ $this->title = 'My Yii Application';
                 <div class="alert alert-primary text-right" role="alert">
                     <i class="far fa-check-square"></i> کلیه سوالات و مشکلات خود را در کاربری وبسایت، از طریق آدرس
                     ایمیلی که در قسمت پشتیبانی فنی قرار داده شده است، پی گیری نمایید.
-                </div>
+                </div>-->
             </div>
             <div class="col-lg-2 d-none d-lg-flex icon-bar">
                 <i class="fas fa-graduation-cap fa-4x wow fadeInUp dark-blue" data-wow-duration="1s"
@@ -346,7 +346,7 @@ $this->title = 'My Yii Application';
                     <a class="btn btn-light btn-xl sr-button"
                        href="<?= $reference; ?>">منابع درسی</a>
                     <a class="btn btn-light btn-xl sr-button"
-                       href="<?=  $homework; ?>">آپلود تکالیف</a>
+                       href="<?= $homework; ?>">آپلود تکالیف</a>
                 <?php } else { ?>
                     <a class="btn btn-light btn-xl sr-button"
                        href="<?= $login; ?>">وارد شوید</a>
