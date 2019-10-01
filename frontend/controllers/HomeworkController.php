@@ -70,17 +70,11 @@ class HomeworkController extends Controller
 
     public function actionIndex()
     {
-
-
-//
-
         $user_id = Yii::$app->user->id ;
 
         $model = \common\models\UniHomework::find()->where(['user_id' => $user_id])->with('user')->with('enteringyear')->with('lesson')->asArray()->all();
 
         $profiles = Profiles::find()->where(['user_id' => $user_id])->with('major')->with('grade')->with('uni')->asArray()->one();
-
-
 
         return $this->render('index', [
             'model' => $model,

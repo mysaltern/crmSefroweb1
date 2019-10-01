@@ -171,103 +171,38 @@ $this->title = 'My Yii Application';
                 </div>
             </div>
         </section>-->
+<?php
+foreach ($imgs_gallery as $img_gallery) {
+    $img = $img_gallery['name'];
+    $description = $img_gallery["description"];
 
-<section class="p-0" id="portfolio">
-    <div class="container-fluid p-0">
-        <div class="row no-gutters popup-gallery">
-            <div class="col-lg-4 col-sm-6">
-                <a class="portfolio-box" href="img/portfolio/fullsize/g1.jpg">
-                    <img class="img-fluid" src="img/portfolio/thumbnails/g1.jpg" alt="">
-                    <div class="portfolio-box-caption">
-                        <div class="portfolio-box-caption-content">
-                            <!--                                    <div class="project-category text-faded">
-                                                                    Category
-                                                                </div>-->
-                            <div class="project-name">
-                                جشن فارق التحصیلی اولین سری دانشجویان واحد الکترونیکی
+    ?>
+
+    <section class="p-0" id="portfolio">
+        <div class="container-fluid p-0">
+            <div class="row no-gutters popup-gallery">
+                <div class="col-lg-4 col-sm-6">
+                    <a class="portfolio-box" href="img/portfolio/fullsize/g1.jpg">
+
+                        <img class="img-fluid" src="../../upload/imagegallery/<?= $img ?>" alt="">
+                        <div class="portfolio-box-caption">
+                            <div class="portfolio-box-caption-content">
+                                <!--                                    <div class="project-category text-faded">
+                                                                        Category
+                                                                    </div>-->
+                                <div class="project-name">
+                                    <?= $description ?>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </a>
-            </div>
-            <div class="col-lg-4 col-sm-6">
-                <a class="portfolio-box" href="img/portfolio/fullsize/g2.jpg">
-                    <img class="img-fluid" src="img/portfolio/thumbnails/g2.jpg" alt="">
-                    <div class="portfolio-box-caption">
-                        <div class="portfolio-box-caption-content">
-                            <!--                                    <div class="project-category text-faded">
-                                                                    Category
-                                                                </div>-->
-                            <div class="project-name">
-                                برنامه تلویزیونی طلوع با موضوع امنیت فضای مجازی
-                            </div>
-                        </div>
-                    </div>
-                </a>
-            </div>
-            <div class="col-lg-4 col-sm-6">
-                <a class="portfolio-box" href="img/portfolio/fullsize/g3.jpg">
-                    <img class="img-fluid" src="img/portfolio/thumbnails/g3.jpg" alt="">
-                    <div class="portfolio-box-caption">
-                        <div class="portfolio-box-caption-content">
-                            <!--                                    <div class="project-category text-faded">
-                                                                    Category
-                                                                </div>-->
-                            <div class="project-name">
-                                سخنرانی، شرکت داده ورزی سداد
-                            </div>
-                        </div>
-                    </div>
-                </a>
-            </div>
-            <div class="col-lg-4 col-sm-6">
-                <a class="portfolio-box" href="img/portfolio/fullsize/g4.jpg">
-                    <img class="img-fluid" src="img/portfolio/thumbnails/g4.jpg" alt="">
-                    <div class="portfolio-box-caption">
-                        <div class="portfolio-box-caption-content">
-                            <!--                                    <div class="project-category text-faded">
-                                                                    Category
-                                                                </div>-->
-                            <div class="project-name">
-                                رونمایی طرح، شرکت داده ورزی سداد
-                            </div>
-                        </div>
-                    </div>
-                </a>
-            </div>
-            <div class="col-lg-4 col-sm-6">
-                <a class="portfolio-box" href="img/portfolio/fullsize/g5.jpg">
-                    <img class="img-fluid" src="img/portfolio/thumbnails/g5.jpg" alt="">
-                    <div class="portfolio-box-caption">
-                        <div class="portfolio-box-caption-content">
-                            <!--                                    <div class="project-category text-faded">
-                                                                    Category
-                                                                </div>-->
-                            <div class="project-name">
-                                باشگاه پژوهشگران جوان
-                            </div>
-                        </div>
-                    </div>
-                </a>
-            </div>
-            <div class="col-lg-4 col-sm-6">
-                <a class="portfolio-box" href="img/portfolio/fullsize/g6.jpg">
-                    <img class="img-fluid" src="img/portfolio/thumbnails/g6.jpg" alt="">
-                    <div class="portfolio-box-caption">
-                        <div class="portfolio-box-caption-content">
-                            <!--                                    <div class="project-category text-faded">
-                                                                    Category
-                                                                </div>-->
-                            <div class="project-name">
-                                گفتگوی تلویزیونی در برنامه طلوع
-                            </div>
-                        </div>
-                    </div>
-                </a>
+                    </a>
+                </div>
+
             </div>
         </div>
-    </div>
-</section>
+    </section>
+<?php }
+?>
 
 
 <section id="services" class="rtl">
@@ -282,7 +217,7 @@ $this->title = 'My Yii Application';
     <div class="container">
         <div class="row">
             <div class="col-lg-10">
-                <?php   foreach ($notification_texts as $notification_text) {
+                <?php foreach ($notification_texts as $notification_text) {
                     $text = $notification_text['note'];
                     ?>
                     <div class="alert alert-primary text-right" role="alert">
@@ -290,26 +225,26 @@ $this->title = 'My Yii Application';
                         <i class="far fa-check-square"></i> <?= $text ?>
                     </div>
 
-               <?php } ?>
+                <?php } ?>
 
-          <!--
-                <div class="alert alert-primary text-right" role="alert">
+                <!--
+                      <div class="alert alert-primary text-right" role="alert">
 
-                    <i class="far fa-check-square"></i> برای ارسال تکالیف درسی خود ابتدا باید در سایت ثبت نام کرده و سپس
-                    از طریق پنل ویژه دانشجویان اقدام کنید .
-                </div>
-                <div class="alert alert-primary text-right" role="alert">
-                    <i class="far fa-check-square"></i> برای ارسال اطلاعات و فایل پایان نامه خود، پس از ثبت نام در سایت،
-                    فرمی را که در پنل ویژه دانشجویان قرار دارد به دقت پر کرده و ارسال نمایید.
-                </div>
-                <div class="alert alert-primary text-right" role="alert">
-                    <i class="far fa-check-square"></i> مطالب درسی مورد نیاز شما در قسمت پنل ویژه دانشجویان و در لینک
-                    "مطالب درسی" قابل دسترس است.
-                </div>
-                <div class="alert alert-primary text-right" role="alert">
-                    <i class="far fa-check-square"></i> کلیه سوالات و مشکلات خود را در کاربری وبسایت، از طریق آدرس
-                    ایمیلی که در قسمت پشتیبانی فنی قرار داده شده است، پی گیری نمایید.
-                </div>-->
+                          <i class="far fa-check-square"></i> برای ارسال تکالیف درسی خود ابتدا باید در سایت ثبت نام کرده و سپس
+                          از طریق پنل ویژه دانشجویان اقدام کنید .
+                      </div>
+                      <div class="alert alert-primary text-right" role="alert">
+                          <i class="far fa-check-square"></i> برای ارسال اطلاعات و فایل پایان نامه خود، پس از ثبت نام در سایت،
+                          فرمی را که در پنل ویژه دانشجویان قرار دارد به دقت پر کرده و ارسال نمایید.
+                      </div>
+                      <div class="alert alert-primary text-right" role="alert">
+                          <i class="far fa-check-square"></i> مطالب درسی مورد نیاز شما در قسمت پنل ویژه دانشجویان و در لینک
+                          "مطالب درسی" قابل دسترس است.
+                      </div>
+                      <div class="alert alert-primary text-right" role="alert">
+                          <i class="far fa-check-square"></i> کلیه سوالات و مشکلات خود را در کاربری وبسایت، از طریق آدرس
+                          ایمیلی که در قسمت پشتیبانی فنی قرار داده شده است، پی گیری نمایید.
+                      </div>-->
             </div>
             <div class="col-lg-2 d-none d-lg-flex icon-bar">
                 <i class="fas fa-graduation-cap fa-4x wow fadeInUp dark-blue" data-wow-duration="1s"
@@ -339,12 +274,15 @@ $this->title = 'My Yii Application';
             $login = Url::to(['user/login']);
             $reference = Url::to(['reference/index']);
             $homework = Url::to(['homework/index']);
+            $thesis = Url::to(['thesis/index']);
             ?>
             <div class="col-lg-6 col-xs-12 mb-3">
                 <h2 class="mb-4">پنل ویژه دانشجویان</h2>
                 <?php if (!\Yii::$app->user->isGuest) { ?>
                     <a class="btn btn-light btn-xl sr-button"
                        href="<?= $reference; ?>">منابع درسی</a>
+                    <a class="btn btn-light btn-xl sr-button"
+                       href="<?= $thesis; ?>">آپلود پایان نامه</a>
                     <a class="btn btn-light btn-xl sr-button"
                        href="<?= $homework; ?>">آپلود تکالیف</a>
                 <?php } else { ?>

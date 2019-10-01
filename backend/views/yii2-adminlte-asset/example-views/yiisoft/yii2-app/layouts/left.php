@@ -42,6 +42,7 @@ use common\models\EnteringyearSearch;
         $menu = \yii\helpers\Url::toRoute(['/menu/creator/index']);
         $comment = \yii\helpers\Url::to(['/comment/manage']);
         $slider = \yii\helpers\Url::to(['/slider/manage']);
+        $img_gallery = \yii\helpers\Url::to(['/imagegallery/index']);
         $filemanager = \yii\helpers\Url::toRoute(['./filemanager']);
 
 
@@ -112,6 +113,7 @@ use common\models\EnteringyearSearch;
                                 ['label' => 'منو', 'icon' => 'fas fa-tachometer-alt', 'url' => $menu],
                                 ['label' => 'نظرات', 'icon' => 'far fa-comments', 'url' => $comment],
                                 ['label' => 'اسلایدر', 'icon' => 'fas fa-cart-arrow-down', 'url' => $slider],
+                                ['label' => 'گالری تصاویر', 'icon' => 'fas fa-cart-arrow-down', 'url' => $img_gallery],
                                 ['label' => 'آپلود سنتر', 'icon' => 'fas fa-file-upload', 'url' => $filemanager],
                                 ['label' => 'آپلود فیلم', 'icon' => 'fas fa-file-upload', 'url' => $video],
 //                                ['label' => 'گالری', 'icon' => 'fas fa-cart-arrow-down', 'url' => ['/menu'],],

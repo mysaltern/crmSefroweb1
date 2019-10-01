@@ -1,6 +1,5 @@
 <?php
 
-use yii\helpers\Html;
 use yii\helpers\Url;
 
 return [
@@ -21,12 +20,8 @@ return [
         'attribute' => 'issue',
     ],
     [
+        'class' => '\kartik\grid\DataColumn',
         'attribute' => 'url',
-        'format' => 'raw',
-        'value' => function ($model)
-        {
-            return Html::a(Html::encode("$model->url"), "../../../../frontend/upload/thesis/$model->url ", ['target' => '_blank', 'data-pjax' => "0"]);
-        },
     ],
     [
         'class' => '\kartik\grid\DataColumn',
@@ -39,10 +34,6 @@ return [
     [
         'class' => '\kartik\grid\DataColumn',
         'attribute' => 'grade.name',
-    ],
-    [
-        'class' => '\kartik\grid\DataColumn',
-        'attribute' => 'feild1',
     ],
 //    [
 //        'class' => '\kartik\grid\DataColumn',

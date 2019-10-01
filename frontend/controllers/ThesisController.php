@@ -1,7 +1,8 @@
 <?php
 
-namespace backend\controllers;
+namespace frontend\controllers;
 
+use common\models\Profiles;
 use common\models\UniThesisProfessor;
 use Yii;
 use common\models\UniThesis;
@@ -58,12 +59,17 @@ class ThesisController extends Controller
      */
     public function actionIndex()
     {
-        $searchModel = new UniThesisSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+
+        $user_id = Yii::$app->user->id ;
+
+        $model = \common\models\UniThesis::find()->where(['user_id' => $user_id])->with('major')->with('grade')->with('uni')->asArray()->all();
+
+      //  $profiles = Profiles::find()->where(['user_id' => $user_id])->with('major')->with('grade')->with('uni')->asArray()->one();
 
         return $this->render('index', [
-                    'searchModel' => $searchModel,
-                    'dataProvider' => $dataProvider,
+            'model' => $model,
+         //  'profiles' => $profiles,
+
         ]);
     }
 
@@ -120,7 +126,7 @@ class ThesisController extends Controller
                         'model' => $model,
                     ]),
                     'footer' => Html::button('Close', ['class' => 'btn btn-default pull-left', 'data-dismiss' => "modal"]) .
-                    Html::button('Save', ['class' => 'btn btn-primary', 'type' => "submit"])
+                        Html::button('Save', ['class' => 'btn btn-primary', 'type' => "submit"])
                 ];
             }
             else if ($model->load($request->post()) && $model->validate())
@@ -175,7 +181,7 @@ class ThesisController extends Controller
                     'title' => "Create new UniThesis",
                     'content' => '<span class="text-success">Create UniThesis success</span>',
                     'footer' => Html::button('Close', ['class' => 'btn btn-default pull-left', 'data-dismiss' => "modal"]) .
-                    Html::a('Create More', ['create'], ['class' => 'btn btn-primary', 'role' => 'modal-remote'])
+                        Html::a('Create More', ['create'], ['class' => 'btn btn-primary', 'role' => 'modal-remote'])
                 ];
             }
             else
@@ -186,7 +192,7 @@ class ThesisController extends Controller
                         'model' => $model,
                     ]),
                     'footer' => Html::button('Close', ['class' => 'btn btn-default pull-left', 'data-dismiss' => "modal"]) .
-                    Html::button('Save', ['class' => 'btn btn-primary', 'type' => "submit"])
+                        Html::button('Save', ['class' => 'btn btn-primary', 'type' => "submit"])
                 ];
             }
         }
@@ -200,7 +206,6 @@ class ThesisController extends Controller
 
                 if ($model->url = UploadedFile::getInstance($model, 'url'))
                 {
-
 
                     $model->url = UploadedFile::getInstance($model, 'url');
                     $model->url->saveAs('../../frontend/upload/thesis/' . $model->url->baseName . "." . $model->url->extension);
@@ -245,7 +250,7 @@ class ThesisController extends Controller
             else
             {
                 return $this->render('create', [
-                            'model' => $model,
+                    'model' => $model,
                 ]);
             }
         }
@@ -258,69 +263,6 @@ class ThesisController extends Controller
      * @param integer $id
      * @return mixed
      */
-    public function actionUpdate($id)
-    {
-        $request = Yii::$app->request;
-        $model = $this->findModel($id);
-
-        if ($request->isAjax)
-        {
-            /*
-             *   Process for ajax request
-             */
-            Yii::$app->response->format = Response::FORMAT_JSON;
-            if ($request->isGet)
-            {
-                return [
-                    'title' => "Update UniThesis #" . $id,
-                    'content' => $this->renderAjax('update', [
-                        'model' => $model,
-                    ]),
-                    'footer' => Html::button('Close', ['class' => 'btn btn-default pull-left', 'data-dismiss' => "modal"]) .
-                    Html::button('Save', ['class' => 'btn btn-primary', 'type' => "submit"])
-                ];
-            }
-            else if ($model->load($request->post()) && $model->save())
-            {
-                return [
-                    'forceReload' => '#crud-datatable-pjax',
-                    'title' => "UniThesis #" . $id,
-                    'content' => $this->renderAjax('view', [
-                        'model' => $model,
-                    ]),
-                    'footer' => Html::button('Close', ['class' => 'btn btn-default pull-left', 'data-dismiss' => "modal"]) .
-                    Html::a('Edit', ['update', 'id' => $id], ['class' => 'btn btn-primary', 'role' => 'modal-remote'])
-                ];
-            }
-            else
-            {
-                return [
-                    'title' => "Update UniThesis #" . $id,
-                    'content' => $this->renderAjax('update', [
-                        'model' => $model,
-                    ]),
-                    'footer' => Html::button('Close', ['class' => 'btn btn-default pull-left', 'data-dismiss' => "modal"]) .
-                    Html::button('Save', ['class' => 'btn btn-primary', 'type' => "submit"])
-                ];
-            }
-        }
-        else
-        {
-            /*
-             *   Process for non-ajax request
-             */
-            if ($model->load($request->post()) && $model->save())
-            {
-                return $this->redirect(['view', 'id' => $model->id]);
-            }
-            else
-            {
-                return $this->render('update', [
-                            'model' => $model,
-                ]);
-            }
-        }
-    }
 
     /**
      * Delete an existing UniThesis model.
@@ -406,9 +348,9 @@ class ThesisController extends Controller
 
     public function actionDownload($id)
     {
-        $download = Media::findone($id);
+        $download = UniThesis::findone($id);
 
-        $path = Yii::getAlias('@webroot') . '/img/' . $download->name;
+        $path = Yii::getAlias('@frontend') . '/upload/thesis/' . $download->url;
         if (file_exists($path))
         {
             return Yii::$app->response->sendFile($path);

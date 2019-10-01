@@ -35,11 +35,15 @@ return [
             'cookieValidationKey' => '[RANDOM KEY HERE]',
             'csrfParam' => '_frontendCSRF',
         ],
+        'gridview' =>  [
+            'class' => '\kartik\grid\Module',
+        ],
     ],
     'components' => [
         'frontend' => [
             'class' => 'frontend\components\Frontend',
         ],
+
         'user' => [
             'identityCookie' => [
                 'name' => '_frontendIdentity',

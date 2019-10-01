@@ -467,15 +467,15 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/blueimp/JavaScript-Canvas-to-Blob.git",
-                "reference": "eab2845ebb03c9667ea6ade002ceadbef071c060"
+                "reference": "8441bcc4628eab4698f1c781c03f735f46d7e135"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/blueimp/JavaScript-Canvas-to-Blob/zipball/eab2845ebb03c9667ea6ade002ceadbef071c060",
-                "reference": "eab2845ebb03c9667ea6ade002ceadbef071c060"
+                "url": "https://api.github.com/repos/blueimp/JavaScript-Canvas-to-Blob/zipball/8441bcc4628eab4698f1c781c03f735f46d7e135",
+                "reference": "8441bcc4628eab4698f1c781c03f735f46d7e135"
             },
             "type": "bower-asset",
-            "time": "2019-08-27T12:37:17+00:00"
+            "time": "2019-09-28T12:03:15+00:00"
         },
         {
             "name": "bower-asset/blueimp-file-upload",
@@ -2362,16 +2362,16 @@
         },
         {
             "name": "nesbot/carbon",
-            "version": "2.25.0-beta.2",
+            "version": "2.25.0-beta.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/briannesbitt/Carbon.git",
-                "reference": "380e7daf0daa68f87757e4e6dbb528ab61a5eb9c"
+                "reference": "b70da677101cca7b584c7489770d2677c2733593"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/briannesbitt/Carbon/zipball/380e7daf0daa68f87757e4e6dbb528ab61a5eb9c",
-                "reference": "380e7daf0daa68f87757e4e6dbb528ab61a5eb9c",
+                "url": "https://api.github.com/repos/briannesbitt/Carbon/zipball/b70da677101cca7b584c7489770d2677c2733593",
+                "reference": "b70da677101cca7b584c7489770d2677c2733593",
                 "shasum": ""
             },
             "require": {
@@ -2425,7 +2425,7 @@
                 "datetime",
                 "time"
             ],
-            "time": "2019-09-13T20:03:07+00:00"
+            "time": "2019-09-30T16:22:22+00:00"
         },
         {
             "name": "paragonie/random_compat",
@@ -3270,12 +3270,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/contracts.git",
-                "reference": "0a27c7a9e186a45520070c97b80309ef69dabbee"
+                "reference": "d3fe2d1f25521f5856e8249d63411c2e2cd34767"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/contracts/zipball/0a27c7a9e186a45520070c97b80309ef69dabbee",
-                "reference": "0a27c7a9e186a45520070c97b80309ef69dabbee",
+                "url": "https://api.github.com/repos/symfony/contracts/zipball/d3fe2d1f25521f5856e8249d63411c2e2cd34767",
+                "reference": "d3fe2d1f25521f5856e8249d63411c2e2cd34767",
                 "shasum": ""
             },
             "require": {
@@ -3339,7 +3339,7 @@
                 "interoperability",
                 "standards"
             ],
-            "time": "2019-09-17T11:12:18+00:00"
+            "time": "2019-09-26T22:09:58+00:00"
         },
         {
             "name": "symfony/css-selector",
@@ -3347,12 +3347,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/css-selector.git",
-                "reference": "e18c5c4b35e7f17513448a25d02f7af34a4bdb41"
+                "reference": "f819f71ae3ba6f396b4c015bd5895de7d2f1f85f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/css-selector/zipball/e18c5c4b35e7f17513448a25d02f7af34a4bdb41",
-                "reference": "e18c5c4b35e7f17513448a25d02f7af34a4bdb41",
+                "url": "https://api.github.com/repos/symfony/css-selector/zipball/f819f71ae3ba6f396b4c015bd5895de7d2f1f85f",
+                "reference": "f819f71ae3ba6f396b4c015bd5895de7d2f1f85f",
                 "shasum": ""
             },
             "require": {
@@ -3392,7 +3392,7 @@
             ],
             "description": "Symfony CssSelector Component",
             "homepage": "https://symfony.com",
-            "time": "2019-08-20T13:31:17+00:00"
+            "time": "2019-10-01T11:57:37+00:00"
         },
         {
             "name": "symfony/dom-crawler",
@@ -3828,12 +3828,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/tinymce/tinymce-dist.git",
-                "reference": "1b86aa4e290ca697a3d645e4e9824a84fdfee388"
+                "reference": "7a58a0e3bd83fb3692d4e721c56fa6925e337926"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tinymce/tinymce-dist/zipball/1b86aa4e290ca697a3d645e4e9824a84fdfee388",
-                "reference": "1b86aa4e290ca697a3d645e4e9824a84fdfee388",
+                "url": "https://api.github.com/repos/tinymce/tinymce-dist/zipball/7a58a0e3bd83fb3692d4e721c56fa6925e337926",
+                "reference": "7a58a0e3bd83fb3692d4e721c56fa6925e337926",
                 "shasum": ""
             },
             "type": "component",
@@ -3866,7 +3866,7 @@
                 "tinymce",
                 "wysiwyg"
             ],
-            "time": "2019-09-02T01:36:11+00:00"
+            "time": "2019-09-24T03:21:01+00:00"
         },
         {
             "name": "tugmaks/yii2-rss-reader",
@@ -4590,12 +4590,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/yiisoft/yii2-httpclient.git",
-                "reference": "3255a9b57fd2a294607d7ecf3d4a33bd29e9e27c"
+                "reference": "a023c06a957448cedaf796b3b7d4db6561d2b6a7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/yii2-httpclient/zipball/3255a9b57fd2a294607d7ecf3d4a33bd29e9e27c",
-                "reference": "3255a9b57fd2a294607d7ecf3d4a33bd29e9e27c",
+                "url": "https://api.github.com/repos/yiisoft/yii2-httpclient/zipball/a023c06a957448cedaf796b3b7d4db6561d2b6a7",
+                "reference": "a023c06a957448cedaf796b3b7d4db6561d2b6a7",
                 "shasum": ""
             },
             "require": {
@@ -4632,7 +4632,7 @@
                 "httpclient",
                 "yii2"
             ],
-            "time": "2019-05-23T15:56:02+00:00"
+            "time": "2019-10-01T08:37:27+00:00"
         },
         {
             "name": "yiisoft/yii2-imagine",

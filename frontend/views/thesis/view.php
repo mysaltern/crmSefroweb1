@@ -1,19 +1,35 @@
 <?php
 
+use yii\helpers\Html;
 use yii\widgets\DetailView;
 
 /* @var $this yii\web\View */
 /* @var $model common\models\UniThesis */
 ?>
-<div class="uni-thesis-view">
 
+<div class="uni-thesis-view" style="padding: 150px">
+
+
+        <p>
+            <?= Html::a(Yii::t('app', 'بازگشت'), ['index'], ['class' => 'btn btn-primary']) ?>
+            <?php Html::a(Yii::t('app', 'ویرایش'), ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
+            <?php
+            Html::a(Yii::t('app', 'حذف'), ['delete', 'id' => $model->id], [
+                'class' => 'btn btn-danger',
+                'data' => [
+                    'confirm' => Yii::t('app', 'Are you sure you want to delete this item?'),
+                    'method' => 'post',
+                ],
+            ])
+            ?>
+        </p>
     <?=
     DetailView::widget([
         'model' => $model,
         'attributes' => [
             'id',
             'issue',
-            [
+      /*      [
                 'attribute' => 'url',
                 'format' => 'url',
                 'label' => 'دانلود',
@@ -24,8 +40,7 @@ use yii\widgets\DetailView;
 
                     return $url . '/' . $model->url;
                 }
-            ],
-            'feild1',
+            ],*/
             [
                 'attribute' => 'Professor',
                 'label' => 'نام استاد',

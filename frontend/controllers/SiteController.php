@@ -2,6 +2,7 @@
 
 namespace frontend\controllers;
 
+use common\models\ImageGallery;
 use frontend\models\ResendVerificationEmailForm;
 use frontend\models\VerifyEmailForm;
 use Yii;
@@ -82,6 +83,7 @@ class SiteController extends Controller
 
         $original_texts = \common\models\Notification::find()->where(['category_id' => '2'])->orderBy('orders DESC')->all();
         $notification_texts = \common\models\Notification::find()->where(['category_id' => '1'])->orderBy('orders DESC')->limit(4)->all();
+        $imgs_gallery = \common\models\ImageGallery::find()->where(['active' => 1])->orderBy('orders DESC')->all();
 
 
         return $this->render('index', [
@@ -89,6 +91,7 @@ class SiteController extends Controller
             'slider' => $slider,
             'original_texts' => $original_texts,
             'notification_texts' => $notification_texts ,
+            'imgs_gallery' =>$imgs_gallery,
 
         ]);
     }

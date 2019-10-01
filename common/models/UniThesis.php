@@ -46,6 +46,7 @@ class UniThesis extends \yii\db\ActiveRecord
             [['professor', 'professorRole'], 'each', 'rule' => ['integer']],
             [['url'], 'file', 'skipOnEmpty' => true, 'extensions' => 'pdf , rar , zip'],
             [['issue', 'tags', 'feild1'], 'string', 'max' => 255],
+
             [['grade_id'], 'exist', 'skipOnError' => true, 'targetClass' => UniGrade::className(), 'targetAttribute' => ['grade_id' => 'id']],
             [['uni_id'], 'exist', 'skipOnError' => true, 'targetClass' => UniUniName::className(), 'targetAttribute' => ['uni_id' => 'id']],
         ];
@@ -59,13 +60,14 @@ class UniThesis extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'issue' => 'موضوع',
-            'url' => 'Url',
+            'url' => 'فایل',
             'user_id' => 'User ID',
-            'date_defense' => 'Date Defense',
-            'feild1' => 'Feild1',
-            'grade_id' => 'Grade ID',
-            'uni_id' => 'Uni ID',
-            'major_id' => 'Major ID',
+            'date_defense' => 'تاریخ دفاع',
+            'feild1' => 'نام و نام خانوادگی',
+            'grade_id' => 'مقطع',
+            'uni_id' => 'نام دانشگاه',
+            'major_id' => 'رشته تحصیلی',
+            'Tags' => 'کلمات کلیدی',
         ];
     }
 
@@ -81,6 +83,7 @@ class UniThesis extends \yii\db\ActiveRecord
     {
         return $this->hasOne(UniMajor::className(), ['id' => 'major_id']);
     }
+
 
     /**
      * @return \yii\db\ActiveQuery
@@ -119,22 +122,16 @@ class UniThesis extends \yii\db\ActiveRecord
         $post = Yii::$app->request->post($formName);
         $models = [];
 
-        if (!empty($multipleModels))
-        {
+        if (!empty($multipleModels)) {
             $keys = array_keys(ArrayHelper::map($multipleModels, 'id', 'id'));
             $multipleModels = array_combine($keys, $multipleModels);
         }
 
-        if ($post && is_array($post))
-        {
-            foreach ($post as $i => $item)
-            {
-                if (isset($item['id']) && !empty($item['id']) && isset($multipleModels[$item['id']]))
-                {
+        if ($post && is_array($post)) {
+            foreach ($post as $i => $item) {
+                if (isset($item['id']) && !empty($item['id']) && isset($multipleModels[$item['id']])) {
                     $models[] = $multipleModels[$item['id']];
-                }
-                else
-                {
+                } else {
                     $models[] = new $model;
                 }
             }
@@ -147,13 +144,10 @@ class UniThesis extends \yii\db\ActiveRecord
 
     public function upload()
     {
-        if ($this->validate())
-        {
+        if ($this->validate()) {
             $this->url->saveAs('uploads/' . $this->url->baseName . '.' . $this->url->extension);
             return true;
-        }
-        else
-        {
+        } else {
             return false;
         }
     }
