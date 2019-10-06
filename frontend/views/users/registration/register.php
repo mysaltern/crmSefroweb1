@@ -45,9 +45,11 @@ $this->params['breadcrumbs'][] = $this->title;
             <div class="panel-body">
                 <?php
                 $form = ActiveForm::begin([
-                    'id' => 'registration-form',
+
                     'enableAjaxValidation' => true,
                     'enableClientValidation' => false,
+                    'options' => [ 'name' => 'myform'],
+
                 ]);
                 ?>
 
@@ -55,6 +57,8 @@ $this->params['breadcrumbs'][] = $this->title;
                     <input type="checkbox" class="form-check-input" id="notstudent">
                     <label class="form-check-label pr-4" for="notstudent">دانشجو نیستم</label>
                 </div>
+                <div class="myform_errorloc_loc"></div>
+
 
                 <?= $form->field($model, 'fname') ?>
                 <?= $form->field($model, 'lname') ?>
@@ -169,3 +173,30 @@ $this->params['breadcrumbs'][] = $this->title;
 
     });
 </script>
+
+
+<script language="JavaScript" type="text/javascript"
+        xml:space="preserve">//<![CDATA[
+    //You should create the validator only after the definition of the HTML form
+    var frmvalidator  = new Validator("myform");
+
+
+    frmvalidator.addValidation("register-form[fname]","req","نام نمیتواند خالی باشد");
+    frmvalidator.addValidation("register-form[lname]","req","نام خانوادگی نمیتواند خالی باشد");
+    frmvalidator.addValidation("register-form[username]","req","کدملی نمیتواند خالی باشد");
+    frmvalidator.addValidation("register-form[gender]","req","جنسیت نمیتواند خالی باشد");
+    frmvalidator.addValidation("register-form[province_id]","req","استان محل سکونت نمیتواند خالی باشد");
+    frmvalidator.addValidation("register-form[city]","req","شهر محل سکونت نمیتواند خالی باشد");
+    frmvalidator.addValidation("register-form[mobile]","req","تلفن همراه نمیتواند خالی باشد");
+    frmvalidator.addValidation("register-form[phone]","req","تلفن نمیتواند خالی باشد");
+    frmvalidator.addValidation("register-form[email]","req","ایمیل نمیتواند خالی باشد");
+    frmvalidator.addValidation("register-form[uni_id]","req","دانشگاه محل تحصیل نمیتواند خالی باشد");
+    frmvalidator.addValidation("register-form[major_id]","req","رشته ی تحصیلی نمیتواند خالی باشد");
+    frmvalidator.addValidation("register-form[grade_id]","req","مقطع تحصیلی نمیتواند خالی باشد");
+    frmvalidator.addValidation("register-form[enteringyear_id]","req","سال ورود نمیتواند خالی باشد");
+    frmvalidator.addValidation("register-form[numcollegian]","req","شماره دانشجویی نمیتواند خالی باشد");
+    frmvalidator.addValidation("register-form[jobstatus]","req","وضعیت شغلی نمیتواند خالی باشد");
+
+
+   </script>
+

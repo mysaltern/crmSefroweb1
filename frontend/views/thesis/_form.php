@@ -22,7 +22,7 @@ use mludvik\tagsinput\TagsInputWidget;
 
 
     <?= $form->field($model, 'url')->fileInput(['multiple' => true]) ?>
-    
+
 
     <?php $user_id = Yii::$app->user->id ?>
 
