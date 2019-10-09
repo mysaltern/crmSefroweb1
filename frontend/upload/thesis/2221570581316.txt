@@ -1,0 +1,431 @@
+SELECT '7568054195b080fa1ef8d86002981601' AS dep_id, 1397 AS year,tball.kind, tball.cd AS code, tball.title, format(iif(tbfin.remain is not null,tbfin.remain,0),'#,#') AS month1, format(iif(tbfin2.remain is not null,tbfin2.remain,0),'#,#') AS month2, format(iif(tbfin3.remain is not null,tbfin3.remain,0),'#,#') AS month3, format(iif(tbfin4.remain is not null,tbfin4.remain,0),'#,#') AS month4, format(iif(tbfin5.remain is not null,tbfin5.remain,0),'#,#') AS month5, 
+                  format(iif(tbfin6.remain is not null,tbfin6.remain,0),'#,#') AS month6, format(iif(tbfin7.remain is not null,tbfin7.remain,0),'#,#') AS month7, format(iif(tbfin8.remain is not null,tbfin8.remain,0),'#,#') AS month8, format(iif(tbfin9.remain is not null,tbfin9.remain,0),'#,#') AS month9, format(iif(tbfin10.remain is not null,tbfin10.remain,0),'#,#') AS month10, format(iif(tbfin11.remain is not null,tbfin11.remain,0),'#,#') AS month11, format(iif(tbfin12.remain is not null,tbfin12.remain,0),'#,#') AS month12,
+				  iif(tbfin.remain is not null,tbfin.remain,0) AS monthad1, iif(tbfin2.remain is not null,tbfin2.remain,0) AS monthad2, iif(tbfin3.remain is not null,tbfin3.remain,0) AS monthad3, iif(tbfin4.remain is not null,tbfin4.remain,0) AS monthad4, iif(tbfin5.remain is not null,tbfin5.remain,0) AS monthad5, 
+                  iif(tbfin6.remain is not null,tbfin6.remain,0) AS monthad6, iif(tbfin7.remain is not null,tbfin7.remain,0) AS monthad7, iif(tbfin8.remain is not null,tbfin8.remain,0) AS monthad8, iif(tbfin9.remain is not null,tbfin9.remain,0) AS monthad9, iif(tbfin10.remain is not null,tbfin10.remain,0) AS monthad10, iif(tbfin11.remain is not null,tbfin11.remain,0) AS monthad11, iif(tbfin12.remain is not null,tbfin12.remain,0) AS monthad12
+FROM     /* کدینگ*/ (SELECT 'lev4' as kind,cd, title
+                                    FROM      (SELECT concat(sl, dl4, dl5) AS cd, max(dl5) AS rcode
+                                                       FROM      (SELECT v.Date AS [edate], v.VoucherID AS [HdrRef], v.FiscalYearRef AS [YEAR], cast(vi.[SLCode] AS nvarchar(50)) AS sl, cast(vi.[DLLevel4] AS nvarchar(50)) AS dl4, 
+                                                                                            cast(vi.[DLLevel5] AS nvarchar(50)) AS dl5, cast(vi.[DLLevel6] AS nvarchar(50)) AS dl6, [Debit] AS [debit], [Credit] AS [credit], [Debit] - [Credit] AS Amount, 
+                                                                                            cast(v.VoucherTypeRef AS nvarchar(50)) AS ctgry, cast([State] AS nvarchar(50)) AS [state]
+                                                                          FROM      [faraz].[FIN3].VoucherItem vi, [faraz].FIN3.Voucher v
+                                                                          WHERE   v.VoucherID = vi.VoucherRef AND [State] IN (1, 4, 32) AND vi.DLLevel5 IS NOT NULL) AS tb
+                                                       GROUP BY concat(sl, dl4, dl5)) AS cdtit LEFT JOIN
+                                                      [faraz].[FIN3].DL dlll ON cdtit.rcode = dlll.code
+                                    UNION
+                                    SELECT 'lev3' as kind,cd, title
+                                    FROM     (SELECT concat(sl, dl4) AS cd, max(dl4) AS rcode
+                                                      FROM      (SELECT v.Date AS [edate], v.VoucherID AS [HdrRef], v.FiscalYearRef AS [YEAR], cast(vi.[SLCode] AS nvarchar(50)) AS sl, cast(vi.[DLLevel4] AS nvarchar(50)) AS dl4, 
+                                                                                           cast(vi.[DLLevel5] AS nvarchar(50)) AS dl5, cast(vi.[DLLevel6] AS nvarchar(50)) AS dl6, [Debit] AS [debit], [Credit] AS [credit], [Debit] - [Credit] AS Amount, 
+                                                                                           cast(v.VoucherTypeRef AS nvarchar(50)) AS ctgry, cast([State] AS nvarchar(50)) AS [state]
+                                                                         FROM      [faraz].[FIN3].VoucherItem vi, [faraz].FIN3.Voucher v
+                                                                         WHERE   v.VoucherID = vi.VoucherRef AND [State] IN (1, 4, 32) AND vi.DLLevel4 IS NOT NULL) AS tb
+                                                      GROUP BY concat(sl, dl4)) AS cdtit LEFT JOIN
+                                                      [faraz].[FIN3].DL dlll ON cdtit.rcode = dlll.code
+                                    UNION
+                                    SELECT 'moin' as kind,cd, title
+                                    FROM     (SELECT sl AS cd
+                                                      FROM      (SELECT v.Date AS [edate], v.VoucherID AS [HdrRef], v.FiscalYearRef AS [YEAR], cast(vi.[SLCode] AS nvarchar(50)) AS sl, cast(vi.[DLLevel4] AS nvarchar(50)) AS dl4, 
+                                                                                           cast(vi.[DLLevel5] AS nvarchar(50)) AS dl5, cast(vi.[DLLevel6] AS nvarchar(50)) AS dl6, [Debit] AS [debit], [Credit] AS [credit], [Debit] - [Credit] AS Amount, 
+                                                                                           cast(v.VoucherTypeRef AS nvarchar(50)) AS ctgry, cast([State] AS nvarchar(50)) AS [state]
+                                                                         FROM      [faraz].[FIN3].VoucherItem vi, [faraz].FIN3.Voucher v
+                                                                         WHERE   v.VoucherID = vi.VoucherRef AND [State] IN (1, 4, 32)) AS tb
+                                                      GROUP BY sl) AS cdtit LEFT JOIN
+                                                      [faraz].[FIN3].SL slll ON cdtit.cd = slll.code
+                                    UNION
+                                    SELECT 'kol' as kind,glll.Code AS cd, title
+                                    FROM     (SELECT gl AS cd
+                                                      FROM      (SELECT v.Date AS [edate], v.VoucherID AS [HdrRef], v.FiscalYearRef AS [YEAR], vi.GLRef AS [gl], cast(vi.[SLCode] AS nvarchar(50)) AS sl, cast(vi.[DLLevel4] AS nvarchar(50)) AS dl4, 
+                                                                                           cast(vi.[DLLevel5] AS nvarchar(50)) AS dl5, cast(vi.[DLLevel6] AS nvarchar(50)) AS dl6, [Debit] AS [debit], [Credit] AS [credit], [Debit] - [Credit] AS Amount, 
+                                                                                           cast(v.VoucherTypeRef AS nvarchar(50)) AS ctgry, cast([State] AS nvarchar(50)) AS [state]
+                                                                         FROM      [faraz].[FIN3].VoucherItem vi, [faraz].FIN3.Voucher v
+                                                                         WHERE   v.VoucherID = vi.VoucherRef AND [State] IN (1, 4, 32)) AS tb
+                                                      GROUP BY gl) AS cdtit LEFT JOIN
+                                                      [faraz].[FIN3].GL glll ON cdtit.cd = glll.GLID) AS tball /* ماه 1*/ LEFT JOIN
+                      (SELECT cd, remain
+                       FROM      (SELECT concat(sl, dl4, dl5) AS cd, sum(iif(credit > 0, credit, 0)) AS cerd, sum(iif(debit > 0, debit, 0)) AS debt, sum(iif(credit > 0, credit, 0)) - sum(iif(debit > 0, debit, 0)) AS remain
+                                          FROM      (SELECT v.Date AS [edate], v.VoucherID AS [HdrRef], v.FiscalYearRef AS [YEAR], cast(vi.[SLCode] AS nvarchar(50)) AS sl, cast(vi.[DLLevel4] AS nvarchar(50)) AS dl4, 
+                                                                               cast(vi.[DLLevel5] AS nvarchar(50)) AS dl5, cast(vi.[DLLevel6] AS nvarchar(50)) AS dl6, [Debit] AS [debit], [Credit] AS [credit], [Debit] - [Credit] AS Amount, 
+                                                                               cast(v.VoucherTypeRef AS nvarchar(50)) AS ctgry, cast([State] AS nvarchar(50)) AS [state]
+                                                             FROM      [faraz].[FIN3].VoucherItem vi, [faraz].FIN3.Voucher v
+                                                             WHERE   v.VoucherID = vi.VoucherRef AND [State] IN (1, 4, 32) AND v.Date >= '2018-03-21 00:00:00.000' AND v.Date <= '2018-04-20 00:00:00.000' AND vi.DLLevel5 IS NOT NULL) AS tb
+                                          GROUP BY concat(sl, dl4, dl5)
+                                          UNION
+                                          SELECT concat(sl, dl4) AS cd, sum(iif(credit > 0, credit, 0)) AS cerd, sum(iif(debit > 0, debit, 0)) AS debt, sum(iif(credit > 0, credit, 0)) - sum(iif(debit > 0, debit, 0)) AS remain
+                                          FROM     (SELECT v.Date AS [edate], v.VoucherID AS [HdrRef], v.FiscalYearRef AS [YEAR], cast(vi.[SLCode] AS nvarchar(50)) AS sl, cast(vi.[DLLevel4] AS nvarchar(50)) AS dl4, 
+                                                                              cast(vi.[DLLevel5] AS nvarchar(50)) AS dl5, cast(vi.[DLLevel6] AS nvarchar(50)) AS dl6, [Debit] AS [debit], [Credit] AS [credit], [Debit] - [Credit] AS Amount, 
+                                                                              cast(v.VoucherTypeRef AS nvarchar(50)) AS ctgry, cast([State] AS nvarchar(50)) AS [state]
+                                                            FROM      [faraz].[FIN3].VoucherItem vi, [faraz].FIN3.Voucher v
+                                                            WHERE   v.VoucherID = vi.VoucherRef AND [State] IN (1, 4, 32) AND v.Date >= '2018-03-21 00:00:00.000' AND v.Date <= '2018-04-20 00:00:00.000' AND vi.DLLevel4 IS NOT NULL) AS tb
+                                          GROUP BY concat(sl, dl4)
+                                          UNION
+                                          SELECT sl AS cd, sum(iif(credit > 0, credit, 0)) AS cerd, sum(iif(debit > 0, debit, 0)) AS debt, sum(iif(credit > 0, credit, 0)) - sum(iif(debit > 0, debit, 0)) AS remain
+                                          FROM     (SELECT v.Date AS [edate], v.VoucherID AS [HdrRef], v.FiscalYearRef AS [YEAR], cast(vi.[SLCode] AS nvarchar(50)) AS sl, cast(vi.[DLLevel4] AS nvarchar(50)) AS dl4, 
+                                                                              cast(vi.[DLLevel5] AS nvarchar(50)) AS dl5, cast(vi.[DLLevel6] AS nvarchar(50)) AS dl6, [Debit] AS [debit], [Credit] AS [credit], [Debit] - [Credit] AS Amount, 
+                                                                              cast(v.VoucherTypeRef AS nvarchar(50)) AS ctgry, cast([State] AS nvarchar(50)) AS [state]
+                                                            FROM      [faraz].[FIN3].VoucherItem vi, [faraz].FIN3.Voucher v
+                                                            WHERE   v.VoucherID = vi.VoucherRef AND [State] IN (1, 4, 32) AND v.Date >= '2018-03-21 00:00:00.000' AND v.Date <= '2018-04-20 00:00:00.000') AS tb
+                                          GROUP BY sl
+                                          UNION
+                                          SELECT code AS cd, sum(iif(credit > 0, credit, 0)) AS cerd, sum(iif(debit > 0, debit, 0)) AS debt, sum(iif(credit > 0, credit, 0)) - sum(iif(debit > 0, debit, 0)) AS remain
+                                          FROM     (SELECT h.code as code,v.Date AS [edate], v.VoucherID AS [HdrRef], v.FiscalYearRef AS [YEAR], vi.GLRef AS [gl], cast(vi.[SLCode] AS nvarchar(50)) AS sl, cast(vi.[DLLevel4] AS nvarchar(50)) AS dl4, 
+                                                                              cast(vi.[DLLevel5] AS nvarchar(50)) AS dl5, cast(vi.[DLLevel6] AS nvarchar(50)) AS dl6, [Debit] AS [debit], [Credit] AS [credit], [Debit] - [Credit] AS Amount, 
+                                                                              cast(v.VoucherTypeRef AS nvarchar(50)) AS ctgry, cast(v.[State] AS nvarchar(50)) AS [state]
+                                                            FROM      [faraz].[FIN3].VoucherItem vi left join [FIN3].[gl] h on h.GLID=vi.GLRef, [faraz].FIN3.Voucher v
+                                                            WHERE   v.VoucherID = vi.VoucherRef AND v.[State] IN (1, 4, 32) AND v.Date >= '2018-03-21 00:00:00.000' AND v.Date <= '2018-04-20 00:00:00.000') AS tb
+                                          GROUP BY code) AS tbfinal) AS tbfin ON tbfin.cd = tball.cd /* ماه 2*/ LEFT JOIN
+                      (SELECT cd, remain
+                       FROM      (SELECT concat(sl, dl4, dl5) AS cd, sum(iif(credit > 0, credit, 0)) AS cerd, sum(iif(debit > 0, debit, 0)) AS debt, sum(iif(credit > 0, credit, 0)) - sum(iif(debit > 0, debit, 0)) AS remain
+                                          FROM      (SELECT v.Date AS [edate], v.VoucherID AS [HdrRef], v.FiscalYearRef AS [YEAR], cast(vi.[SLCode] AS nvarchar(50)) AS sl, cast(vi.[DLLevel4] AS nvarchar(50)) AS dl4, 
+                                                                               cast(vi.[DLLevel5] AS nvarchar(50)) AS dl5, cast(vi.[DLLevel6] AS nvarchar(50)) AS dl6, [Debit] AS [debit], [Credit] AS [credit], [Debit] - [Credit] AS Amount, 
+                                                                               cast(v.VoucherTypeRef AS nvarchar(50)) AS ctgry, cast([State] AS nvarchar(50)) AS [state]
+                                                             FROM      [faraz].[FIN3].VoucherItem vi, [faraz].FIN3.Voucher v
+                                                             WHERE   v.VoucherID = vi.VoucherRef AND [State] IN (1, 4, 32) AND v.Date >= '2018-04-21 00:00:00.000' AND v.Date <= '2018-05-21 00:00:00.000' AND vi.DLLevel5 IS NOT NULL) AS tb
+                                          GROUP BY concat(sl, dl4, dl5)
+                                          UNION
+                                          SELECT concat(sl, dl4) AS cd, sum(iif(credit > 0, credit, 0)) AS cerd, sum(iif(debit > 0, debit, 0)) AS debt, sum(iif(credit > 0, credit, 0)) - sum(iif(debit > 0, debit, 0)) AS remain
+                                          FROM     (SELECT v.Date AS [edate], v.VoucherID AS [HdrRef], v.FiscalYearRef AS [YEAR], cast(vi.[SLCode] AS nvarchar(50)) AS sl, cast(vi.[DLLevel4] AS nvarchar(50)) AS dl4, 
+                                                                              cast(vi.[DLLevel5] AS nvarchar(50)) AS dl5, cast(vi.[DLLevel6] AS nvarchar(50)) AS dl6, [Debit] AS [debit], [Credit] AS [credit], [Debit] - [Credit] AS Amount, 
+                                                                              cast(v.VoucherTypeRef AS nvarchar(50)) AS ctgry, cast([State] AS nvarchar(50)) AS [state]
+                                                            FROM      [faraz].[FIN3].VoucherItem vi, [faraz].FIN3.Voucher v
+                                                            WHERE   v.VoucherID = vi.VoucherRef AND [State] IN (1, 4, 32) AND v.Date >= '2018-04-21 00:00:00.000' AND v.Date <= '2018-05-21 00:00:00.000' AND vi.DLLevel4 IS NOT NULL) AS tb
+                                          GROUP BY concat(sl, dl4)
+                                          UNION
+                                          SELECT sl AS cd, sum(iif(credit > 0, credit, 0)) AS cerd, sum(iif(debit > 0, debit, 0)) AS debt, sum(iif(credit > 0, credit, 0)) - sum(iif(debit > 0, debit, 0)) AS remain
+                                          FROM     (SELECT v.Date AS [edate], v.VoucherID AS [HdrRef], v.FiscalYearRef AS [YEAR], cast(vi.[SLCode] AS nvarchar(50)) AS sl, cast(vi.[DLLevel4] AS nvarchar(50)) AS dl4, 
+                                                                              cast(vi.[DLLevel5] AS nvarchar(50)) AS dl5, cast(vi.[DLLevel6] AS nvarchar(50)) AS dl6, [Debit] AS [debit], [Credit] AS [credit], [Debit] - [Credit] AS Amount, 
+                                                                              cast(v.VoucherTypeRef AS nvarchar(50)) AS ctgry, cast([State] AS nvarchar(50)) AS [state]
+                                                            FROM      [faraz].[FIN3].VoucherItem vi, [faraz].FIN3.Voucher v
+                                                            WHERE   v.VoucherID = vi.VoucherRef AND [State] IN (1, 4, 32) AND v.Date >= '2018-04-21 00:00:00.000' AND v.Date <= '2018-05-21 00:00:00.000') AS tb
+                                          GROUP BY sl
+                                          UNION
+                                          SELECT code AS cd, sum(iif(credit > 0, credit, 0)) AS cerd, sum(iif(debit > 0, debit, 0)) AS debt, sum(iif(credit > 0, credit, 0)) - sum(iif(debit > 0, debit, 0)) AS remain
+                                          FROM     (SELECT h.code as code,v.Date AS [edate], v.VoucherID AS [HdrRef], v.FiscalYearRef AS [YEAR], vi.GLRef AS [gl], cast(vi.[SLCode] AS nvarchar(50)) AS sl, cast(vi.[DLLevel4] AS nvarchar(50)) AS dl4, 
+                                                                              cast(vi.[DLLevel5] AS nvarchar(50)) AS dl5, cast(vi.[DLLevel6] AS nvarchar(50)) AS dl6, [Debit] AS [debit], [Credit] AS [credit], [Debit] - [Credit] AS Amount, 
+                                                                              cast(v.VoucherTypeRef AS nvarchar(50)) AS ctgry, cast(v.[State] AS nvarchar(50)) AS [state]
+                                                            FROM      [faraz].[FIN3].VoucherItem vi left join [FIN3].[gl] h on h.GLID=vi.GLRef, [faraz].FIN3.Voucher v
+                                                            WHERE   v.VoucherID = vi.VoucherRef AND v.[State] IN (1, 4, 32) AND v.Date >= '2018-04-21 00:00:00.000' AND v.Date <= '2018-05-21 00:00:00.000') AS tb
+                                          GROUP BY code) AS tbfinal) AS tbfin2 ON tbfin2.cd = tball.cd /* ماه 3*/ LEFT JOIN
+                      (SELECT cd, remain
+                       FROM      (SELECT concat(sl, dl4, dl5) AS cd, sum(iif(credit > 0, credit, 0)) AS cerd, sum(iif(debit > 0, debit, 0)) AS debt, sum(iif(credit > 0, credit, 0)) - sum(iif(debit > 0, debit, 0)) AS remain
+                                          FROM      (SELECT v.Date AS [edate], v.VoucherID AS [HdrRef], v.FiscalYearRef AS [YEAR], cast(vi.[SLCode] AS nvarchar(50)) AS sl, cast(vi.[DLLevel4] AS nvarchar(50)) AS dl4, 
+                                                                               cast(vi.[DLLevel5] AS nvarchar(50)) AS dl5, cast(vi.[DLLevel6] AS nvarchar(50)) AS dl6, [Debit] AS [debit], [Credit] AS [credit], [Debit] - [Credit] AS Amount, 
+                                                                               cast(v.VoucherTypeRef AS nvarchar(50)) AS ctgry, cast([State] AS nvarchar(50)) AS [state]
+                                                             FROM      [faraz].[FIN3].VoucherItem vi, [faraz].FIN3.Voucher v
+                                                             WHERE   v.VoucherID = vi.VoucherRef AND [State] IN (1, 4, 32) AND v.Date >= '2018-05-22 00:00:00.000' AND v.Date <= '2018-06-21 00:00:00.000' AND vi.DLLevel5 IS NOT NULL) AS tb
+                                          GROUP BY concat(sl, dl4, dl5)
+                                          UNION
+                                          SELECT concat(sl, dl4) AS cd, sum(iif(credit > 0, credit, 0)) AS cerd, sum(iif(debit > 0, debit, 0)) AS debt, sum(iif(credit > 0, credit, 0)) - sum(iif(debit > 0, debit, 0)) AS remain
+                                          FROM     (SELECT v.Date AS [edate], v.VoucherID AS [HdrRef], v.FiscalYearRef AS [YEAR], cast(vi.[SLCode] AS nvarchar(50)) AS sl, cast(vi.[DLLevel4] AS nvarchar(50)) AS dl4, 
+                                                                              cast(vi.[DLLevel5] AS nvarchar(50)) AS dl5, cast(vi.[DLLevel6] AS nvarchar(50)) AS dl6, [Debit] AS [debit], [Credit] AS [credit], [Debit] - [Credit] AS Amount, 
+                                                                              cast(v.VoucherTypeRef AS nvarchar(50)) AS ctgry, cast([State] AS nvarchar(50)) AS [state]
+                                                            FROM      [faraz].[FIN3].VoucherItem vi, [faraz].FIN3.Voucher v
+                                                            WHERE   v.VoucherID = vi.VoucherRef AND [State] IN (1, 4, 32) AND v.Date >= '2018-05-22 00:00:00.000' AND v.Date <= '2018-06-21 00:00:00.000' AND vi.DLLevel4 IS NOT NULL) AS tb
+                                          GROUP BY concat(sl, dl4)
+                                          UNION
+                                          SELECT sl AS cd, sum(iif(credit > 0, credit, 0)) AS cerd, sum(iif(debit > 0, debit, 0)) AS debt, sum(iif(credit > 0, credit, 0)) - sum(iif(debit > 0, debit, 0)) AS remain
+                                          FROM     (SELECT v.Date AS [edate], v.VoucherID AS [HdrRef], v.FiscalYearRef AS [YEAR], cast(vi.[SLCode] AS nvarchar(50)) AS sl, cast(vi.[DLLevel4] AS nvarchar(50)) AS dl4, 
+                                                                              cast(vi.[DLLevel5] AS nvarchar(50)) AS dl5, cast(vi.[DLLevel6] AS nvarchar(50)) AS dl6, [Debit] AS [debit], [Credit] AS [credit], [Debit] - [Credit] AS Amount, 
+                                                                              cast(v.VoucherTypeRef AS nvarchar(50)) AS ctgry, cast([State] AS nvarchar(50)) AS [state]
+                                                            FROM      [faraz].[FIN3].VoucherItem vi, [faraz].FIN3.Voucher v
+                                                            WHERE   v.VoucherID = vi.VoucherRef AND [State] IN (1, 4, 32) AND v.Date >= '2018-05-22 00:00:00.000' AND v.Date <= '2018-06-21 00:00:00.000') AS tb
+                                          GROUP BY sl
+                                          UNION
+                                          SELECT code AS cd, sum(iif(credit > 0, credit, 0)) AS cerd, sum(iif(debit > 0, debit, 0)) AS debt, sum(iif(credit > 0, credit, 0)) - sum(iif(debit > 0, debit, 0)) AS remain
+                                          FROM     (SELECT h.code as code,v.Date AS [edate], v.VoucherID AS [HdrRef], v.FiscalYearRef AS [YEAR], vi.GLRef AS [gl], cast(vi.[SLCode] AS nvarchar(50)) AS sl, cast(vi.[DLLevel4] AS nvarchar(50)) AS dl4, 
+                                                                              cast(vi.[DLLevel5] AS nvarchar(50)) AS dl5, cast(vi.[DLLevel6] AS nvarchar(50)) AS dl6, [Debit] AS [debit], [Credit] AS [credit], [Debit] - [Credit] AS Amount, 
+                                                                              cast(v.VoucherTypeRef AS nvarchar(50)) AS ctgry, cast(v.[State] AS nvarchar(50)) AS [state]
+                                                            FROM      [faraz].[FIN3].VoucherItem vi left join [FIN3].[gl] h on h.GLID=vi.GLRef, [faraz].FIN3.Voucher v
+                                                            WHERE   v.VoucherID = vi.VoucherRef AND v.[State] IN (1, 4, 32) AND v.Date >= '2018-05-22 00:00:00.000' AND v.Date <= '2018-06-21 00:00:00.000') AS tb
+                                          GROUP BY code) AS tbfinal) AS tbfin3 ON tbfin3.cd = tball.cd /* ماه 4*/ LEFT JOIN
+                      (SELECT cd, remain
+                       FROM      (SELECT concat(sl, dl4, dl5) AS cd, sum(iif(credit > 0, credit, 0)) AS cerd, sum(iif(debit > 0, debit, 0)) AS debt, sum(iif(credit > 0, credit, 0)) - sum(iif(debit > 0, debit, 0)) AS remain
+                                          FROM      (SELECT v.Date AS [edate], v.VoucherID AS [HdrRef], v.FiscalYearRef AS [YEAR], cast(vi.[SLCode] AS nvarchar(50)) AS sl, cast(vi.[DLLevel4] AS nvarchar(50)) AS dl4, 
+                                                                               cast(vi.[DLLevel5] AS nvarchar(50)) AS dl5, cast(vi.[DLLevel6] AS nvarchar(50)) AS dl6, [Debit] AS [debit], [Credit] AS [credit], [Debit] - [Credit] AS Amount, 
+                                                                               cast(v.VoucherTypeRef AS nvarchar(50)) AS ctgry, cast([State] AS nvarchar(50)) AS [state]
+                                                             FROM      [faraz].[FIN3].VoucherItem vi, [faraz].FIN3.Voucher v
+                                                             WHERE   v.VoucherID = vi.VoucherRef AND [State] IN (1, 4, 32) AND v.Date >= '2018-06-22 00:00:00.000' AND v.Date <= '2018-07-22 00:00:00.000' AND vi.DLLevel5 IS NOT NULL) AS tb
+                                          GROUP BY concat(sl, dl4, dl5)
+                                          UNION
+                                          SELECT concat(sl, dl4) AS cd, sum(iif(credit > 0, credit, 0)) AS cerd, sum(iif(debit > 0, debit, 0)) AS debt, sum(iif(credit > 0, credit, 0)) - sum(iif(debit > 0, debit, 0)) AS remain
+                                          FROM     (SELECT v.Date AS [edate], v.VoucherID AS [HdrRef], v.FiscalYearRef AS [YEAR], cast(vi.[SLCode] AS nvarchar(50)) AS sl, cast(vi.[DLLevel4] AS nvarchar(50)) AS dl4, 
+                                                                              cast(vi.[DLLevel5] AS nvarchar(50)) AS dl5, cast(vi.[DLLevel6] AS nvarchar(50)) AS dl6, [Debit] AS [debit], [Credit] AS [credit], [Debit] - [Credit] AS Amount, 
+                                                                              cast(v.VoucherTypeRef AS nvarchar(50)) AS ctgry, cast([State] AS nvarchar(50)) AS [state]
+                                                            FROM      [faraz].[FIN3].VoucherItem vi, [faraz].FIN3.Voucher v
+                                                            WHERE   v.VoucherID = vi.VoucherRef AND [State] IN (1, 4, 32) AND v.Date >= '2018-06-22 00:00:00.000' AND v.Date <= '2018-07-22 00:00:00.000' AND vi.DLLevel4 IS NOT NULL) AS tb
+                                          GROUP BY concat(sl, dl4)
+                                          UNION
+                                          SELECT sl AS cd, sum(iif(credit > 0, credit, 0)) AS cerd, sum(iif(debit > 0, debit, 0)) AS debt, sum(iif(credit > 0, credit, 0)) - sum(iif(debit > 0, debit, 0)) AS remain
+                                          FROM     (SELECT v.Date AS [edate], v.VoucherID AS [HdrRef], v.FiscalYearRef AS [YEAR], cast(vi.[SLCode] AS nvarchar(50)) AS sl, cast(vi.[DLLevel4] AS nvarchar(50)) AS dl4, 
+                                                                              cast(vi.[DLLevel5] AS nvarchar(50)) AS dl5, cast(vi.[DLLevel6] AS nvarchar(50)) AS dl6, [Debit] AS [debit], [Credit] AS [credit], [Debit] - [Credit] AS Amount, 
+                                                                              cast(v.VoucherTypeRef AS nvarchar(50)) AS ctgry, cast([State] AS nvarchar(50)) AS [state]
+                                                            FROM      [faraz].[FIN3].VoucherItem vi, [faraz].FIN3.Voucher v
+                                                            WHERE   v.VoucherID = vi.VoucherRef AND [State] IN (1, 4, 32) AND v.Date >= '2018-06-22 00:00:00.000' AND v.Date <= '2018-07-22 00:00:00.000') AS tb
+                                          GROUP BY sl
+                                          UNION
+                                          SELECT code AS cd, sum(iif(credit > 0, credit, 0)) AS cerd, sum(iif(debit > 0, debit, 0)) AS debt, sum(iif(credit > 0, credit, 0)) - sum(iif(debit > 0, debit, 0)) AS remain
+                                          FROM     (SELECT h.code as code,v.Date AS [edate], v.VoucherID AS [HdrRef], v.FiscalYearRef AS [YEAR], vi.GLRef AS [gl], cast(vi.[SLCode] AS nvarchar(50)) AS sl, cast(vi.[DLLevel4] AS nvarchar(50)) AS dl4, 
+                                                                              cast(vi.[DLLevel5] AS nvarchar(50)) AS dl5, cast(vi.[DLLevel6] AS nvarchar(50)) AS dl6, [Debit] AS [debit], [Credit] AS [credit], [Debit] - [Credit] AS Amount, 
+                                                                              cast(v.VoucherTypeRef AS nvarchar(50)) AS ctgry, cast(v.[State] AS nvarchar(50)) AS [state]
+                                                            FROM      [faraz].[FIN3].VoucherItem vi left join [FIN3].[gl] h on h.GLID=vi.GLRef, [faraz].FIN3.Voucher v
+                                                            WHERE   v.VoucherID = vi.VoucherRef AND v.[State] IN (1, 4, 32) AND v.Date >= '2018-06-22 00:00:00.000' AND v.Date <= '2018-07-22 00:00:00.000') AS tb
+                                          GROUP BY code) AS tbfinal) AS tbfin4 ON tbfin4.cd = tball.cd /* ماه 5*/ LEFT JOIN
+                      (SELECT cd, remain
+                       FROM      (SELECT concat(sl, dl4, dl5) AS cd, sum(iif(credit > 0, credit, 0)) AS cerd, sum(iif(debit > 0, debit, 0)) AS debt, sum(iif(credit > 0, credit, 0)) - sum(iif(debit > 0, debit, 0)) AS remain
+                                          FROM      (SELECT v.Date AS [edate], v.VoucherID AS [HdrRef], v.FiscalYearRef AS [YEAR], cast(vi.[SLCode] AS nvarchar(50)) AS sl, cast(vi.[DLLevel4] AS nvarchar(50)) AS dl4, 
+                                                                               cast(vi.[DLLevel5] AS nvarchar(50)) AS dl5, cast(vi.[DLLevel6] AS nvarchar(50)) AS dl6, [Debit] AS [debit], [Credit] AS [credit], [Debit] - [Credit] AS Amount, 
+                                                                               cast(v.VoucherTypeRef AS nvarchar(50)) AS ctgry, cast([State] AS nvarchar(50)) AS [state]
+                                                             FROM      [faraz].[FIN3].VoucherItem vi, [faraz].FIN3.Voucher v
+                                                             WHERE   v.VoucherID = vi.VoucherRef AND [State] IN (1, 4, 32) AND v.Date >= '2018-07-23 00:00:00.000' AND v.Date <= '2018-08-22 00:00:00.000' AND vi.DLLevel5 IS NOT NULL) AS tb
+                                          GROUP BY concat(sl, dl4, dl5)
+                                          UNION
+                                          SELECT concat(sl, dl4) AS cd, sum(iif(credit > 0, credit, 0)) AS cerd, sum(iif(debit > 0, debit, 0)) AS debt, sum(iif(credit > 0, credit, 0)) - sum(iif(debit > 0, debit, 0)) AS remain
+                                          FROM     (SELECT v.Date AS [edate], v.VoucherID AS [HdrRef], v.FiscalYearRef AS [YEAR], cast(vi.[SLCode] AS nvarchar(50)) AS sl, cast(vi.[DLLevel4] AS nvarchar(50)) AS dl4, 
+                                                                              cast(vi.[DLLevel5] AS nvarchar(50)) AS dl5, cast(vi.[DLLevel6] AS nvarchar(50)) AS dl6, [Debit] AS [debit], [Credit] AS [credit], [Debit] - [Credit] AS Amount, 
+                                                                              cast(v.VoucherTypeRef AS nvarchar(50)) AS ctgry, cast([State] AS nvarchar(50)) AS [state]
+                                                            FROM      [faraz].[FIN3].VoucherItem vi, [faraz].FIN3.Voucher v
+                                                            WHERE   v.VoucherID = vi.VoucherRef AND [State] IN (1, 4, 32) AND v.Date >= '2018-07-23 00:00:00.000' AND v.Date <= '2018-08-22 00:00:00.000' AND vi.DLLevel4 IS NOT NULL) AS tb
+                                          GROUP BY concat(sl, dl4)
+                                          UNION
+                                          SELECT sl AS cd, sum(iif(credit > 0, credit, 0)) AS cerd, sum(iif(debit > 0, debit, 0)) AS debt, sum(iif(credit > 0, credit, 0)) - sum(iif(debit > 0, debit, 0)) AS remain
+                                          FROM     (SELECT v.Date AS [edate], v.VoucherID AS [HdrRef], v.FiscalYearRef AS [YEAR], cast(vi.[SLCode] AS nvarchar(50)) AS sl, cast(vi.[DLLevel4] AS nvarchar(50)) AS dl4, 
+                                                                              cast(vi.[DLLevel5] AS nvarchar(50)) AS dl5, cast(vi.[DLLevel6] AS nvarchar(50)) AS dl6, [Debit] AS [debit], [Credit] AS [credit], [Debit] - [Credit] AS Amount, 
+                                                                              cast(v.VoucherTypeRef AS nvarchar(50)) AS ctgry, cast([State] AS nvarchar(50)) AS [state]
+                                                            FROM      [faraz].[FIN3].VoucherItem vi, [faraz].FIN3.Voucher v
+                                                            WHERE   v.VoucherID = vi.VoucherRef AND [State] IN (1, 4, 32) AND v.Date >= '2018-07-23 00:00:00.000' AND v.Date <= '2018-08-22 00:00:00.000') AS tb
+                                          GROUP BY sl
+                                          UNION
+                                          SELECT code AS cd, sum(iif(credit > 0, credit, 0)) AS cerd, sum(iif(debit > 0, debit, 0)) AS debt, sum(iif(credit > 0, credit, 0)) - sum(iif(debit > 0, debit, 0)) AS remain
+                                          FROM     (SELECT h.code as code,v.Date AS [edate], v.VoucherID AS [HdrRef], v.FiscalYearRef AS [YEAR], vi.GLRef AS [gl], cast(vi.[SLCode] AS nvarchar(50)) AS sl, cast(vi.[DLLevel4] AS nvarchar(50)) AS dl4, 
+                                                                              cast(vi.[DLLevel5] AS nvarchar(50)) AS dl5, cast(vi.[DLLevel6] AS nvarchar(50)) AS dl6, [Debit] AS [debit], [Credit] AS [credit], [Debit] - [Credit] AS Amount, 
+                                                                              cast(v.VoucherTypeRef AS nvarchar(50)) AS ctgry, cast(v.[State] AS nvarchar(50)) AS [state]
+                                                            FROM      [faraz].[FIN3].VoucherItem vi left join [FIN3].[gl] h on h.GLID=vi.GLRef, [faraz].FIN3.Voucher v
+                                                            WHERE   v.VoucherID = vi.VoucherRef AND v.[State] IN (1, 4, 32) AND v.Date >= '2018-07-23 00:00:00.000' AND v.Date <= '2018-08-22 00:00:00.000') AS tb
+                                          GROUP BY code) AS tbfinal) AS tbfin5 ON tbfin5.cd = tball.cd /* ماه 6*/ LEFT JOIN
+                      (SELECT cd, remain
+                       FROM      (SELECT concat(sl, dl4, dl5) AS cd, sum(iif(credit > 0, credit, 0)) AS cerd, sum(iif(debit > 0, debit, 0)) AS debt, sum(iif(credit > 0, credit, 0)) - sum(iif(debit > 0, debit, 0)) AS remain
+                                          FROM      (SELECT v.Date AS [edate], v.VoucherID AS [HdrRef], v.FiscalYearRef AS [YEAR], cast(vi.[SLCode] AS nvarchar(50)) AS sl, cast(vi.[DLLevel4] AS nvarchar(50)) AS dl4, 
+                                                                               cast(vi.[DLLevel5] AS nvarchar(50)) AS dl5, cast(vi.[DLLevel6] AS nvarchar(50)) AS dl6, [Debit] AS [debit], [Credit] AS [credit], [Debit] - [Credit] AS Amount, 
+                                                                               cast(v.VoucherTypeRef AS nvarchar(50)) AS ctgry, cast([State] AS nvarchar(50)) AS [state]
+                                                             FROM      [faraz].[FIN3].VoucherItem vi, [faraz].FIN3.Voucher v
+                                                             WHERE   v.VoucherID = vi.VoucherRef AND [State] IN (1, 4, 32) AND v.Date >= '2018-08-23 00:00:00.000' AND v.Date <= '2018-09-22 00:00:00.000' AND vi.DLLevel5 IS NOT NULL) AS tb
+                                          GROUP BY concat(sl, dl4, dl5)
+                                          UNION
+                                          SELECT concat(sl, dl4) AS cd, sum(iif(credit > 0, credit, 0)) AS cerd, sum(iif(debit > 0, debit, 0)) AS debt, sum(iif(credit > 0, credit, 0)) - sum(iif(debit > 0, debit, 0)) AS remain
+                                          FROM     (SELECT v.Date AS [edate], v.VoucherID AS [HdrRef], v.FiscalYearRef AS [YEAR], cast(vi.[SLCode] AS nvarchar(50)) AS sl, cast(vi.[DLLevel4] AS nvarchar(50)) AS dl4, 
+                                                                              cast(vi.[DLLevel5] AS nvarchar(50)) AS dl5, cast(vi.[DLLevel6] AS nvarchar(50)) AS dl6, [Debit] AS [debit], [Credit] AS [credit], [Debit] - [Credit] AS Amount, 
+                                                                              cast(v.VoucherTypeRef AS nvarchar(50)) AS ctgry, cast([State] AS nvarchar(50)) AS [state]
+                                                            FROM      [faraz].[FIN3].VoucherItem vi, [faraz].FIN3.Voucher v
+                                                            WHERE   v.VoucherID = vi.VoucherRef AND [State] IN (1, 4, 32) AND v.Date >= '2018-08-23 00:00:00.000' AND v.Date <= '2018-09-22 00:00:00.000' AND vi.DLLevel4 IS NOT NULL) AS tb
+                                          GROUP BY concat(sl, dl4)
+                                          UNION
+                                          SELECT sl AS cd, sum(iif(credit > 0, credit, 0)) AS cerd, sum(iif(debit > 0, debit, 0)) AS debt, sum(iif(credit > 0, credit, 0)) - sum(iif(debit > 0, debit, 0)) AS remain
+                                          FROM     (SELECT v.Date AS [edate], v.VoucherID AS [HdrRef], v.FiscalYearRef AS [YEAR], cast(vi.[SLCode] AS nvarchar(50)) AS sl, cast(vi.[DLLevel4] AS nvarchar(50)) AS dl4, 
+                                                                              cast(vi.[DLLevel5] AS nvarchar(50)) AS dl5, cast(vi.[DLLevel6] AS nvarchar(50)) AS dl6, [Debit] AS [debit], [Credit] AS [credit], [Debit] - [Credit] AS Amount, 
+                                                                              cast(v.VoucherTypeRef AS nvarchar(50)) AS ctgry, cast([State] AS nvarchar(50)) AS [state]
+                                                            FROM      [faraz].[FIN3].VoucherItem vi, [faraz].FIN3.Voucher v
+                                                            WHERE   v.VoucherID = vi.VoucherRef AND [State] IN (1, 4, 32) AND v.Date >= '2018-08-23 00:00:00.000' AND v.Date <= '2018-09-22 00:00:00.000') AS tb
+                                          GROUP BY sl
+                                          UNION
+                                          SELECT code AS cd, sum(iif(credit > 0, credit, 0)) AS cerd, sum(iif(debit > 0, debit, 0)) AS debt, sum(iif(credit > 0, credit, 0)) - sum(iif(debit > 0, debit, 0)) AS remain
+                                          FROM     (SELECT h.code as code,v.Date AS [edate], v.VoucherID AS [HdrRef], v.FiscalYearRef AS [YEAR], vi.GLRef AS [gl], cast(vi.[SLCode] AS nvarchar(50)) AS sl, cast(vi.[DLLevel4] AS nvarchar(50)) AS dl4, 
+                                                                              cast(vi.[DLLevel5] AS nvarchar(50)) AS dl5, cast(vi.[DLLevel6] AS nvarchar(50)) AS dl6, [Debit] AS [debit], [Credit] AS [credit], [Debit] - [Credit] AS Amount, 
+                                                                              cast(v.VoucherTypeRef AS nvarchar(50)) AS ctgry, cast(v.[State] AS nvarchar(50)) AS [state]
+                                                            FROM      [faraz].[FIN3].VoucherItem vi left join [FIN3].[gl] h on h.GLID=vi.GLRef, [faraz].FIN3.Voucher v
+                                                            WHERE   v.VoucherID = vi.VoucherRef AND v.[State] IN (1, 4, 32) AND v.Date >= '2018-08-23 00:00:00.000' AND v.Date <= '2018-09-22 00:00:00.000') AS tb
+                                          GROUP BY code) AS tbfinal) AS tbfin6 ON tbfin6.cd = tball.cd /* ماه 7*/ LEFT JOIN
+                      (SELECT cd, remain
+                       FROM      (SELECT concat(sl, dl4, dl5) AS cd, sum(iif(credit > 0, credit, 0)) AS cerd, sum(iif(debit > 0, debit, 0)) AS debt, sum(iif(credit > 0, credit, 0)) - sum(iif(debit > 0, debit, 0)) AS remain
+                                          FROM      (SELECT v.Date AS [edate], v.VoucherID AS [HdrRef], v.FiscalYearRef AS [YEAR], cast(vi.[SLCode] AS nvarchar(50)) AS sl, cast(vi.[DLLevel4] AS nvarchar(50)) AS dl4, 
+                                                                               cast(vi.[DLLevel5] AS nvarchar(50)) AS dl5, cast(vi.[DLLevel6] AS nvarchar(50)) AS dl6, [Debit] AS [debit], [Credit] AS [credit], [Debit] - [Credit] AS Amount, 
+                                                                               cast(v.VoucherTypeRef AS nvarchar(50)) AS ctgry, cast([State] AS nvarchar(50)) AS [state]
+                                                             FROM      [faraz].[FIN3].VoucherItem vi, [faraz].FIN3.Voucher v
+                                                             WHERE   v.VoucherID = vi.VoucherRef AND [State] IN (1, 4, 32) AND v.Date >= '2018-09-23 00:00:00.000' AND v.Date <= '2018-10-22 00:00:00.000' AND vi.DLLevel5 IS NOT NULL) AS tb
+                                          GROUP BY concat(sl, dl4, dl5)
+                                          UNION
+                                          SELECT concat(sl, dl4) AS cd, sum(iif(credit > 0, credit, 0)) AS cerd, sum(iif(debit > 0, debit, 0)) AS debt, sum(iif(credit > 0, credit, 0)) - sum(iif(debit > 0, debit, 0)) AS remain
+                                          FROM     (SELECT v.Date AS [edate], v.VoucherID AS [HdrRef], v.FiscalYearRef AS [YEAR], cast(vi.[SLCode] AS nvarchar(50)) AS sl, cast(vi.[DLLevel4] AS nvarchar(50)) AS dl4, 
+                                                                              cast(vi.[DLLevel5] AS nvarchar(50)) AS dl5, cast(vi.[DLLevel6] AS nvarchar(50)) AS dl6, [Debit] AS [debit], [Credit] AS [credit], [Debit] - [Credit] AS Amount, 
+                                                                              cast(v.VoucherTypeRef AS nvarchar(50)) AS ctgry, cast([State] AS nvarchar(50)) AS [state]
+                                                            FROM      [faraz].[FIN3].VoucherItem vi, [faraz].FIN3.Voucher v
+                                                            WHERE   v.VoucherID = vi.VoucherRef AND [State] IN (1, 4, 32) AND v.Date >= '2018-09-23 00:00:00.000' AND v.Date <= '2018-10-22 00:00:00.000' AND vi.DLLevel4 IS NOT NULL) AS tb
+                                          GROUP BY concat(sl, dl4)
+                                          UNION
+                                          SELECT sl AS cd, sum(iif(credit > 0, credit, 0)) AS cerd, sum(iif(debit > 0, debit, 0)) AS debt, sum(iif(credit > 0, credit, 0)) - sum(iif(debit > 0, debit, 0)) AS remain
+                                          FROM     (SELECT v.Date AS [edate], v.VoucherID AS [HdrRef], v.FiscalYearRef AS [YEAR], cast(vi.[SLCode] AS nvarchar(50)) AS sl, cast(vi.[DLLevel4] AS nvarchar(50)) AS dl4, 
+                                                                              cast(vi.[DLLevel5] AS nvarchar(50)) AS dl5, cast(vi.[DLLevel6] AS nvarchar(50)) AS dl6, [Debit] AS [debit], [Credit] AS [credit], [Debit] - [Credit] AS Amount, 
+                                                                              cast(v.VoucherTypeRef AS nvarchar(50)) AS ctgry, cast([State] AS nvarchar(50)) AS [state]
+                                                            FROM      [faraz].[FIN3].VoucherItem vi, [faraz].FIN3.Voucher v
+                                                            WHERE   v.VoucherID = vi.VoucherRef AND [State] IN (1, 4, 32) AND v.Date >= '2018-09-23 00:00:00.000' AND v.Date <= '2018-10-22 00:00:00.000') AS tb
+                                          GROUP BY sl
+                                          UNION
+                                          SELECT code AS cd, sum(iif(credit > 0, credit, 0)) AS cerd, sum(iif(debit > 0, debit, 0)) AS debt, sum(iif(credit > 0, credit, 0)) - sum(iif(debit > 0, debit, 0)) AS remain
+                                          FROM     (SELECT h.code as code,v.Date AS [edate], v.VoucherID AS [HdrRef], v.FiscalYearRef AS [YEAR], vi.GLRef AS [gl], cast(vi.[SLCode] AS nvarchar(50)) AS sl, cast(vi.[DLLevel4] AS nvarchar(50)) AS dl4, 
+                                                                              cast(vi.[DLLevel5] AS nvarchar(50)) AS dl5, cast(vi.[DLLevel6] AS nvarchar(50)) AS dl6, [Debit] AS [debit], [Credit] AS [credit], [Debit] - [Credit] AS Amount, 
+                                                                              cast(v.VoucherTypeRef AS nvarchar(50)) AS ctgry, cast(v.[State] AS nvarchar(50)) AS [state]
+                                                            FROM      [faraz].[FIN3].VoucherItem vi left join [FIN3].[gl] h on h.GLID=vi.GLRef, [faraz].FIN3.Voucher v
+                                                            WHERE   v.VoucherID = vi.VoucherRef AND v.[State] IN (1, 4, 32) AND v.Date >= '2018-09-23 00:00:00.000' AND v.Date <= '2018-10-22 00:00:00.000') AS tb
+                                          GROUP BY code) AS tbfinal) AS tbfin7 ON tbfin7.cd = tball.cd /* ماه 8*/ LEFT JOIN
+                      (SELECT cd, remain
+                       FROM      (SELECT concat(sl, dl4, dl5) AS cd, sum(iif(credit > 0, credit, 0)) AS cerd, sum(iif(debit > 0, debit, 0)) AS debt, sum(iif(credit > 0, credit, 0)) - sum(iif(debit > 0, debit, 0)) AS remain
+                                          FROM      (SELECT v.Date AS [edate], v.VoucherID AS [HdrRef], v.FiscalYearRef AS [YEAR], cast(vi.[SLCode] AS nvarchar(50)) AS sl, cast(vi.[DLLevel4] AS nvarchar(50)) AS dl4, 
+                                                                               cast(vi.[DLLevel5] AS nvarchar(50)) AS dl5, cast(vi.[DLLevel6] AS nvarchar(50)) AS dl6, [Debit] AS [debit], [Credit] AS [credit], [Debit] - [Credit] AS Amount, 
+                                                                               cast(v.VoucherTypeRef AS nvarchar(50)) AS ctgry, cast([State] AS nvarchar(50)) AS [state]
+                                                             FROM      [faraz].[FIN3].VoucherItem vi, [faraz].FIN3.Voucher v
+                                                             WHERE   v.VoucherID = vi.VoucherRef AND [State] IN (1, 4, 32) AND v.Date >= '2018-10-23 00:00:00.000' AND v.Date <= '2018-11-21 00:00:00.000' AND vi.DLLevel5 IS NOT NULL) AS tb
+                                          GROUP BY concat(sl, dl4, dl5)
+                                          UNION
+                                          SELECT concat(sl, dl4) AS cd, sum(iif(credit > 0, credit, 0)) AS cerd, sum(iif(debit > 0, debit, 0)) AS debt, sum(iif(credit > 0, credit, 0)) - sum(iif(debit > 0, debit, 0)) AS remain
+                                          FROM     (SELECT v.Date AS [edate], v.VoucherID AS [HdrRef], v.FiscalYearRef AS [YEAR], cast(vi.[SLCode] AS nvarchar(50)) AS sl, cast(vi.[DLLevel4] AS nvarchar(50)) AS dl4, 
+                                                                              cast(vi.[DLLevel5] AS nvarchar(50)) AS dl5, cast(vi.[DLLevel6] AS nvarchar(50)) AS dl6, [Debit] AS [debit], [Credit] AS [credit], [Debit] - [Credit] AS Amount, 
+                                                                              cast(v.VoucherTypeRef AS nvarchar(50)) AS ctgry, cast([State] AS nvarchar(50)) AS [state]
+                                                            FROM      [faraz].[FIN3].VoucherItem vi, [faraz].FIN3.Voucher v
+                                                            WHERE   v.VoucherID = vi.VoucherRef AND [State] IN (1, 4, 32) AND v.Date >= '2018-10-23 00:00:00.000' AND v.Date <= '2018-11-21 00:00:00.000' AND vi.DLLevel4 IS NOT NULL) AS tb
+                                          GROUP BY concat(sl, dl4)
+                                          UNION
+                                          SELECT sl AS cd, sum(iif(credit > 0, credit, 0)) AS cerd, sum(iif(debit > 0, debit, 0)) AS debt, sum(iif(credit > 0, credit, 0)) - sum(iif(debit > 0, debit, 0)) AS remain
+                                          FROM     (SELECT v.Date AS [edate], v.VoucherID AS [HdrRef], v.FiscalYearRef AS [YEAR], cast(vi.[SLCode] AS nvarchar(50)) AS sl, cast(vi.[DLLevel4] AS nvarchar(50)) AS dl4, 
+                                                                              cast(vi.[DLLevel5] AS nvarchar(50)) AS dl5, cast(vi.[DLLevel6] AS nvarchar(50)) AS dl6, [Debit] AS [debit], [Credit] AS [credit], [Debit] - [Credit] AS Amount, 
+                                                                              cast(v.VoucherTypeRef AS nvarchar(50)) AS ctgry, cast([State] AS nvarchar(50)) AS [state]
+                                                            FROM      [faraz].[FIN3].VoucherItem vi, [faraz].FIN3.Voucher v
+                                                            WHERE   v.VoucherID = vi.VoucherRef AND [State] IN (1, 4, 32) AND v.Date >= '2018-10-23 00:00:00.000' AND v.Date <= '2018-11-21 00:00:00.000') AS tb
+                                          GROUP BY sl
+                                          UNION
+                                          SELECT code AS cd, sum(iif(credit > 0, credit, 0)) AS cerd, sum(iif(debit > 0, debit, 0)) AS debt, sum(iif(credit > 0, credit, 0)) - sum(iif(debit > 0, debit, 0)) AS remain
+                                          FROM     (SELECT h.code as code,v.Date AS [edate], v.VoucherID AS [HdrRef], v.FiscalYearRef AS [YEAR], vi.GLRef AS [gl], cast(vi.[SLCode] AS nvarchar(50)) AS sl, cast(vi.[DLLevel4] AS nvarchar(50)) AS dl4, 
+                                                                              cast(vi.[DLLevel5] AS nvarchar(50)) AS dl5, cast(vi.[DLLevel6] AS nvarchar(50)) AS dl6, [Debit] AS [debit], [Credit] AS [credit], [Debit] - [Credit] AS Amount, 
+                                                                              cast(v.VoucherTypeRef AS nvarchar(50)) AS ctgry, cast(v.[State] AS nvarchar(50)) AS [state]
+                                                            FROM      [faraz].[FIN3].VoucherItem vi left join [FIN3].[gl] h on h.GLID=vi.GLRef, [faraz].FIN3.Voucher v
+                                                            WHERE   v.VoucherID = vi.VoucherRef AND v.[State] IN (1, 4, 32) AND v.Date >= '2018-10-23 00:00:00.000' AND v.Date <= '2018-11-21 00:00:00.000') AS tb
+                                          GROUP BY code) AS tbfinal) AS tbfin8 ON tbfin8.cd = tball.cd /* ماه 9*/ LEFT JOIN
+                      (SELECT cd, remain
+                       FROM      (SELECT concat(sl, dl4, dl5) AS cd, sum(iif(credit > 0, credit, 0)) AS cerd, sum(iif(debit > 0, debit, 0)) AS debt, sum(iif(credit > 0, credit, 0)) - sum(iif(debit > 0, debit, 0)) AS remain
+                                          FROM      (SELECT v.Date AS [edate], v.VoucherID AS [HdrRef], v.FiscalYearRef AS [YEAR], cast(vi.[SLCode] AS nvarchar(50)) AS sl, cast(vi.[DLLevel4] AS nvarchar(50)) AS dl4, 
+                                                                               cast(vi.[DLLevel5] AS nvarchar(50)) AS dl5, cast(vi.[DLLevel6] AS nvarchar(50)) AS dl6, [Debit] AS [debit], [Credit] AS [credit], [Debit] - [Credit] AS Amount, 
+                                                                               cast(v.VoucherTypeRef AS nvarchar(50)) AS ctgry, cast([State] AS nvarchar(50)) AS [state]
+                                                             FROM      [faraz].[FIN3].VoucherItem vi, [faraz].FIN3.Voucher v
+                                                             WHERE   v.VoucherID = vi.VoucherRef AND [State] IN (1, 4, 32) AND v.Date >= '2018-11-22 00:00:00.000' AND v.Date <= '2018-12-21 00:00:00.000' AND vi.DLLevel5 IS NOT NULL) AS tb
+                                          GROUP BY concat(sl, dl4, dl5)
+                                          UNION
+                                          SELECT concat(sl, dl4) AS cd, sum(iif(credit > 0, credit, 0)) AS cerd, sum(iif(debit > 0, debit, 0)) AS debt, sum(iif(credit > 0, credit, 0)) - sum(iif(debit > 0, debit, 0)) AS remain
+                                          FROM     (SELECT v.Date AS [edate], v.VoucherID AS [HdrRef], v.FiscalYearRef AS [YEAR], cast(vi.[SLCode] AS nvarchar(50)) AS sl, cast(vi.[DLLevel4] AS nvarchar(50)) AS dl4, 
+                                                                              cast(vi.[DLLevel5] AS nvarchar(50)) AS dl5, cast(vi.[DLLevel6] AS nvarchar(50)) AS dl6, [Debit] AS [debit], [Credit] AS [credit], [Debit] - [Credit] AS Amount, 
+                                                                              cast(v.VoucherTypeRef AS nvarchar(50)) AS ctgry, cast([State] AS nvarchar(50)) AS [state]
+                                                            FROM      [faraz].[FIN3].VoucherItem vi, [faraz].FIN3.Voucher v
+                                                            WHERE   v.VoucherID = vi.VoucherRef AND [State] IN (1, 4, 32) AND v.Date >= '2018-11-22 00:00:00.000' AND v.Date <= '2018-12-21 00:00:00.000' AND vi.DLLevel4 IS NOT NULL) AS tb
+                                          GROUP BY concat(sl, dl4)
+                                          UNION
+                                          SELECT sl AS cd, sum(iif(credit > 0, credit, 0)) AS cerd, sum(iif(debit > 0, debit, 0)) AS debt, sum(iif(credit > 0, credit, 0)) - sum(iif(debit > 0, debit, 0)) AS remain
+                                          FROM     (SELECT v.Date AS [edate], v.VoucherID AS [HdrRef], v.FiscalYearRef AS [YEAR], cast(vi.[SLCode] AS nvarchar(50)) AS sl, cast(vi.[DLLevel4] AS nvarchar(50)) AS dl4, 
+                                                                              cast(vi.[DLLevel5] AS nvarchar(50)) AS dl5, cast(vi.[DLLevel6] AS nvarchar(50)) AS dl6, [Debit] AS [debit], [Credit] AS [credit], [Debit] - [Credit] AS Amount, 
+                                                                              cast(v.VoucherTypeRef AS nvarchar(50)) AS ctgry, cast([State] AS nvarchar(50)) AS [state]
+                                                            FROM      [faraz].[FIN3].VoucherItem vi, [faraz].FIN3.Voucher v
+                                                            WHERE   v.VoucherID = vi.VoucherRef AND [State] IN (1, 4, 32) AND v.Date >= '2018-11-22 00:00:00.000' AND v.Date <= '2018-12-21 00:00:00.000') AS tb
+                                          GROUP BY sl
+                                          UNION
+                                          SELECT code AS cd, sum(iif(credit > 0, credit, 0)) AS cerd, sum(iif(debit > 0, debit, 0)) AS debt, sum(iif(credit > 0, credit, 0)) - sum(iif(debit > 0, debit, 0)) AS remain
+                                          FROM     (SELECT h.code as code,v.Date AS [edate], v.VoucherID AS [HdrRef], v.FiscalYearRef AS [YEAR], vi.GLRef AS [gl], cast(vi.[SLCode] AS nvarchar(50)) AS sl, cast(vi.[DLLevel4] AS nvarchar(50)) AS dl4, 
+                                                                              cast(vi.[DLLevel5] AS nvarchar(50)) AS dl5, cast(vi.[DLLevel6] AS nvarchar(50)) AS dl6, [Debit] AS [debit], [Credit] AS [credit], [Debit] - [Credit] AS Amount, 
+                                                                              cast(v.VoucherTypeRef AS nvarchar(50)) AS ctgry, cast(v.[State] AS nvarchar(50)) AS [state]
+                                                            FROM      [faraz].[FIN3].VoucherItem vi left join [FIN3].[gl] h on h.GLID=vi.GLRef, [faraz].FIN3.Voucher v
+                                                            WHERE   v.VoucherID = vi.VoucherRef AND v.[State] IN (1, 4, 32) AND v.Date >= '2018-11-22 00:00:00.000' AND v.Date <= '2018-12-21 00:00:00.000') AS tb
+                                          GROUP BY code) AS tbfinal) AS tbfin9 ON tbfin9.cd = tball.cd /* ماه 10*/ LEFT JOIN
+                      (SELECT cd, remain
+                       FROM      (SELECT concat(sl, dl4, dl5) AS cd, sum(iif(credit > 0, credit, 0)) AS cerd, sum(iif(debit > 0, debit, 0)) AS debt, sum(iif(credit > 0, credit, 0)) - sum(iif(debit > 0, debit, 0)) AS remain
+                                          FROM      (SELECT v.Date AS [edate], v.VoucherID AS [HdrRef], v.FiscalYearRef AS [YEAR], cast(vi.[SLCode] AS nvarchar(50)) AS sl, cast(vi.[DLLevel4] AS nvarchar(50)) AS dl4, 
+                                                                               cast(vi.[DLLevel5] AS nvarchar(50)) AS dl5, cast(vi.[DLLevel6] AS nvarchar(50)) AS dl6, [Debit] AS [debit], [Credit] AS [credit], [Debit] - [Credit] AS Amount, 
+                                                                               cast(v.VoucherTypeRef AS nvarchar(50)) AS ctgry, cast([State] AS nvarchar(50)) AS [state]
+                                                             FROM      [faraz].[FIN3].VoucherItem vi, [faraz].FIN3.Voucher v
+                                                             WHERE   v.VoucherID = vi.VoucherRef AND [State] IN (1, 4, 32) AND v.Date >= '2018-12-22 00:00:00.000' AND v.Date <= '2019-01-20 00:00:00.000' AND vi.DLLevel5 IS NOT NULL) AS tb
+                                          GROUP BY concat(sl, dl4, dl5)
+                                          UNION
+                                          SELECT concat(sl, dl4) AS cd, sum(iif(credit > 0, credit, 0)) AS cerd, sum(iif(debit > 0, debit, 0)) AS debt, sum(iif(credit > 0, credit, 0)) - sum(iif(debit > 0, debit, 0)) AS remain
+                                          FROM     (SELECT v.Date AS [edate], v.VoucherID AS [HdrRef], v.FiscalYearRef AS [YEAR], cast(vi.[SLCode] AS nvarchar(50)) AS sl, cast(vi.[DLLevel4] AS nvarchar(50)) AS dl4, 
+                                                                              cast(vi.[DLLevel5] AS nvarchar(50)) AS dl5, cast(vi.[DLLevel6] AS nvarchar(50)) AS dl6, [Debit] AS [debit], [Credit] AS [credit], [Debit] - [Credit] AS Amount, 
+                                                                              cast(v.VoucherTypeRef AS nvarchar(50)) AS ctgry, cast([State] AS nvarchar(50)) AS [state]
+                                                            FROM      [faraz].[FIN3].VoucherItem vi, [faraz].FIN3.Voucher v
+                                                            WHERE   v.VoucherID = vi.VoucherRef AND [State] IN (1, 4, 32) AND v.Date >= '2018-12-22 00:00:00.000' AND v.Date <= '2019-01-20 00:00:00.000' AND vi.DLLevel4 IS NOT NULL) AS tb
+                                          GROUP BY concat(sl, dl4)
+                                          UNION
+                                          SELECT sl AS cd, sum(iif(credit > 0, credit, 0)) AS cerd, sum(iif(debit > 0, debit, 0)) AS debt, sum(iif(credit > 0, credit, 0)) - sum(iif(debit > 0, debit, 0)) AS remain
+                                          FROM     (SELECT v.Date AS [edate], v.VoucherID AS [HdrRef], v.FiscalYearRef AS [YEAR], cast(vi.[SLCode] AS nvarchar(50)) AS sl, cast(vi.[DLLevel4] AS nvarchar(50)) AS dl4, 
+                                                                              cast(vi.[DLLevel5] AS nvarchar(50)) AS dl5, cast(vi.[DLLevel6] AS nvarchar(50)) AS dl6, [Debit] AS [debit], [Credit] AS [credit], [Debit] - [Credit] AS Amount, 
+                                                                              cast(v.VoucherTypeRef AS nvarchar(50)) AS ctgry, cast([State] AS nvarchar(50)) AS [state]
+                                                            FROM      [faraz].[FIN3].VoucherItem vi, [faraz].FIN3.Voucher v
+                                                            WHERE   v.VoucherID = vi.VoucherRef AND [State] IN (1, 4, 32) AND v.Date >= '2018-12-22 00:00:00.000' AND v.Date <= '2019-01-20 00:00:00.000') AS tb
+                                          GROUP BY sl
+                                          UNION
+                                          SELECT code AS cd, sum(iif(credit > 0, credit, 0)) AS cerd, sum(iif(debit > 0, debit, 0)) AS debt, sum(iif(credit > 0, credit, 0)) - sum(iif(debit > 0, debit, 0)) AS remain
+                                          FROM     (SELECT h.code as code,v.Date AS [edate], v.VoucherID AS [HdrRef], v.FiscalYearRef AS [YEAR], vi.GLRef AS [gl], cast(vi.[SLCode] AS nvarchar(50)) AS sl, cast(vi.[DLLevel4] AS nvarchar(50)) AS dl4, 
+                                                                              cast(vi.[DLLevel5] AS nvarchar(50)) AS dl5, cast(vi.[DLLevel6] AS nvarchar(50)) AS dl6, [Debit] AS [debit], [Credit] AS [credit], [Debit] - [Credit] AS Amount, 
+                                                                              cast(v.VoucherTypeRef AS nvarchar(50)) AS ctgry, cast(v.[State] AS nvarchar(50)) AS [state]
+                                                            FROM      [faraz].[FIN3].VoucherItem vi left join [FIN3].[gl] h on h.GLID=vi.GLRef, [faraz].FIN3.Voucher v
+                                                            WHERE   v.VoucherID = vi.VoucherRef AND v.[State] IN (1, 4, 32) AND v.Date >= '2018-12-22 00:00:00.000' AND v.Date <= '2019-01-20 00:00:00.000') AS tb
+                                          GROUP BY code) AS tbfinal) AS tbfin10 ON tbfin10.cd = tball.cd /* ماه 11*/ LEFT JOIN
+                      (SELECT cd, remain
+                       FROM      (SELECT concat(sl, dl4, dl5) AS cd, sum(iif(credit > 0, credit, 0)) AS cerd, sum(iif(debit > 0, debit, 0)) AS debt, sum(iif(credit > 0, credit, 0)) - sum(iif(debit > 0, debit, 0)) AS remain
+                                          FROM      (SELECT v.Date AS [edate], v.VoucherID AS [HdrRef], v.FiscalYearRef AS [YEAR], cast(vi.[SLCode] AS nvarchar(50)) AS sl, cast(vi.[DLLevel4] AS nvarchar(50)) AS dl4, 
+                                                                               cast(vi.[DLLevel5] AS nvarchar(50)) AS dl5, cast(vi.[DLLevel6] AS nvarchar(50)) AS dl6, [Debit] AS [debit], [Credit] AS [credit], [Debit] - [Credit] AS Amount, 
+                                                                               cast(v.VoucherTypeRef AS nvarchar(50)) AS ctgry, cast([State] AS nvarchar(50)) AS [state]
+                                                             FROM      [faraz].[FIN3].VoucherItem vi, [faraz].FIN3.Voucher v
+                                                             WHERE   v.VoucherID = vi.VoucherRef AND [State] IN (1, 4, 32) AND v.Date >= '2019-01-21 00:00:00.000' AND v.Date <= '2019-02-19 00:00:00.000' AND vi.DLLevel5 IS NOT NULL) AS tb
+                                          GROUP BY concat(sl, dl4, dl5)
+                                          UNION
+                                          SELECT concat(sl, dl4) AS cd, sum(iif(credit > 0, credit, 0)) AS cerd, sum(iif(debit > 0, debit, 0)) AS debt, sum(iif(credit > 0, credit, 0)) - sum(iif(debit > 0, debit, 0)) AS remain
+                                          FROM     (SELECT v.Date AS [edate], v.VoucherID AS [HdrRef], v.FiscalYearRef AS [YEAR], cast(vi.[SLCode] AS nvarchar(50)) AS sl, cast(vi.[DLLevel4] AS nvarchar(50)) AS dl4, 
+                                                                              cast(vi.[DLLevel5] AS nvarchar(50)) AS dl5, cast(vi.[DLLevel6] AS nvarchar(50)) AS dl6, [Debit] AS [debit], [Credit] AS [credit], [Debit] - [Credit] AS Amount, 
+                                                                              cast(v.VoucherTypeRef AS nvarchar(50)) AS ctgry, cast([State] AS nvarchar(50)) AS [state]
+                                                            FROM      [faraz].[FIN3].VoucherItem vi, [faraz].FIN3.Voucher v
+                                                            WHERE   v.VoucherID = vi.VoucherRef AND [State] IN (1, 4, 32) AND v.Date >= '2019-01-21 00:00:00.000' AND v.Date <= '2019-02-19 00:00:00.000' AND vi.DLLevel4 IS NOT NULL) AS tb
+                                          GROUP BY concat(sl, dl4)
+                                          UNION
+                                          SELECT sl AS cd, sum(iif(credit > 0, credit, 0)) AS cerd, sum(iif(debit > 0, debit, 0)) AS debt, sum(iif(credit > 0, credit, 0)) - sum(iif(debit > 0, debit, 0)) AS remain
+                                          FROM     (SELECT v.Date AS [edate], v.VoucherID AS [HdrRef], v.FiscalYearRef AS [YEAR], cast(vi.[SLCode] AS nvarchar(50)) AS sl, cast(vi.[DLLevel4] AS nvarchar(50)) AS dl4, 
+                                                                              cast(vi.[DLLevel5] AS nvarchar(50)) AS dl5, cast(vi.[DLLevel6] AS nvarchar(50)) AS dl6, [Debit] AS [debit], [Credit] AS [credit], [Debit] - [Credit] AS Amount, 
+                                                                              cast(v.VoucherTypeRef AS nvarchar(50)) AS ctgry, cast([State] AS nvarchar(50)) AS [state]
+                                                            FROM      [faraz].[FIN3].VoucherItem vi, [faraz].FIN3.Voucher v
+                                                            WHERE   v.VoucherID = vi.VoucherRef AND [State] IN (1, 4, 32) AND v.Date >= '2019-01-21 00:00:00.000' AND v.Date <= '2019-02-19 00:00:00.000') AS tb
+                                          GROUP BY sl
+                                          UNION
+                                          SELECT code AS cd, sum(iif(credit > 0, credit, 0)) AS cerd, sum(iif(debit > 0, debit, 0)) AS debt, sum(iif(credit > 0, credit, 0)) - sum(iif(debit > 0, debit, 0)) AS remain
+                                          FROM     (SELECT h.code as code,v.Date AS [edate], v.VoucherID AS [HdrRef], v.FiscalYearRef AS [YEAR], vi.GLRef AS [gl], cast(vi.[SLCode] AS nvarchar(50)) AS sl, cast(vi.[DLLevel4] AS nvarchar(50)) AS dl4, 
+                                                                              cast(vi.[DLLevel5] AS nvarchar(50)) AS dl5, cast(vi.[DLLevel6] AS nvarchar(50)) AS dl6, [Debit] AS [debit], [Credit] AS [credit], [Debit] - [Credit] AS Amount, 
+                                                                              cast(v.VoucherTypeRef AS nvarchar(50)) AS ctgry, cast(v.[State] AS nvarchar(50)) AS [state]
+                                                            FROM      [faraz].[FIN3].VoucherItem vi left join [FIN3].[gl] h on h.GLID=vi.GLRef, [faraz].FIN3.Voucher v
+                                                            WHERE   v.VoucherID = vi.VoucherRef AND v.[State] IN (1, 4, 32) AND v.Date >= '2019-01-21 00:00:00.000' AND v.Date <= '2019-02-19 00:00:00.000') AS tb
+                                          GROUP BY code) AS tbfinal) AS tbfin11 ON tbfin11.cd = tball.cd /* ماه 12*/ LEFT JOIN
+                      (SELECT cd, remain
+                       FROM      (SELECT concat(sl, dl4, dl5) AS cd, sum(iif(credit > 0, credit, 0)) AS cerd, sum(iif(debit > 0, debit, 0)) AS debt, sum(iif(credit > 0, credit, 0)) - sum(iif(debit > 0, debit, 0)) AS remain
+                                          FROM      (SELECT v.Date AS [edate], v.VoucherID AS [HdrRef], v.FiscalYearRef AS [YEAR], cast(vi.[SLCode] AS nvarchar(50)) AS sl, cast(vi.[DLLevel4] AS nvarchar(50)) AS dl4, 
+                                                                               cast(vi.[DLLevel5] AS nvarchar(50)) AS dl5, cast(vi.[DLLevel6] AS nvarchar(50)) AS dl6, [Debit] AS [debit], [Credit] AS [credit], [Debit] - [Credit] AS Amount, 
+                                                                               cast(v.VoucherTypeRef AS nvarchar(50)) AS ctgry, cast([State] AS nvarchar(50)) AS [state]
+                                                             FROM      [faraz].[FIN3].VoucherItem vi, [faraz].FIN3.Voucher v
+                                                             WHERE   v.VoucherID = vi.VoucherRef AND [State] IN (1, 4, 32) AND v.VoucherTypeRef <> 4 AND v.VoucherTypeRef <> 2 AND v.Date >= '2019-02-20 00:00:00.000' AND 
+                                                                               v.Date <= '2019-03-20 00:00:00.000' AND vi.DLLevel5 IS NOT NULL) AS tb
+                                          GROUP BY concat(sl, dl4, dl5)
+                                          UNION
+                                          SELECT concat(sl, dl4) AS cd, sum(iif(credit > 0, credit, 0)) AS cerd, sum(iif(debit > 0, debit, 0)) AS debt, sum(iif(credit > 0, credit, 0)) - sum(iif(debit > 0, debit, 0)) AS remain
+                                          FROM     (SELECT v.Date AS [edate], v.VoucherID AS [HdrRef], v.FiscalYearRef AS [YEAR], cast(vi.[SLCode] AS nvarchar(50)) AS sl, cast(vi.[DLLevel4] AS nvarchar(50)) AS dl4, 
+                                                                              cast(vi.[DLLevel5] AS nvarchar(50)) AS dl5, cast(vi.[DLLevel6] AS nvarchar(50)) AS dl6, [Debit] AS [debit], [Credit] AS [credit], [Debit] - [Credit] AS Amount, 
+                                                                              cast(v.VoucherTypeRef AS nvarchar(50)) AS ctgry, cast([State] AS nvarchar(50)) AS [state]
+                                                            FROM      [faraz].[FIN3].VoucherItem vi, [faraz].FIN3.Voucher v
+                                                            WHERE   v.VoucherID = vi.VoucherRef AND [State] IN (1, 4, 32) AND v.VoucherTypeRef <> 4 AND v.VoucherTypeRef <> 2 AND v.Date >= '2019-02-20 00:00:00.000' AND 
+                                                                              v.Date <= '2019-03-20 00:00:00.000' AND vi.DLLevel4 IS NOT NULL) AS tb
+                                          GROUP BY concat(sl, dl4)
+                                          UNION
+                                          SELECT sl AS cd, sum(iif(credit > 0, credit, 0)) AS cerd, sum(iif(debit > 0, debit, 0)) AS debt, sum(iif(credit > 0, credit, 0)) - sum(iif(debit > 0, debit, 0)) AS remain
+                                          FROM     (SELECT v.Date AS [edate], v.VoucherID AS [HdrRef], v.FiscalYearRef AS [YEAR], cast(vi.[SLCode] AS nvarchar(50)) AS sl, cast(vi.[DLLevel4] AS nvarchar(50)) AS dl4, 
+                                                                              cast(vi.[DLLevel5] AS nvarchar(50)) AS dl5, cast(vi.[DLLevel6] AS nvarchar(50)) AS dl6, [Debit] AS [debit], [Credit] AS [credit], [Debit] - [Credit] AS Amount, 
+                                                                              cast(v.VoucherTypeRef AS nvarchar(50)) AS ctgry, cast([State] AS nvarchar(50)) AS [state]
+                                                            FROM      [faraz].[FIN3].VoucherItem vi, [faraz].FIN3.Voucher v
+                                                            WHERE   v.VoucherID = vi.VoucherRef AND [State] IN (1, 4, 32) AND v.VoucherTypeRef <> 4 AND v.VoucherTypeRef <> 2 AND v.Date >= '2019-02-20 00:00:00.000' AND v.Date <= '2019-03-20 00:00:00.000') 
+                                                            AS tb
+                                          GROUP BY sl
+                                          UNION
+                                          SELECT code AS cd, sum(iif(credit > 0, credit, 0)) AS cerd, sum(iif(debit > 0, debit, 0)) AS debt, sum(iif(credit > 0, credit, 0)) - sum(iif(debit > 0, debit, 0)) AS remain
+                                          FROM     (SELECT h.code as code,v.Date AS [edate], v.VoucherID AS [HdrRef], v.FiscalYearRef AS [YEAR], vi.GLRef AS [gl], cast(vi.[SLCode] AS nvarchar(50)) AS sl, cast(vi.[DLLevel4] AS nvarchar(50)) AS dl4, 
+                                                                              cast(vi.[DLLevel5] AS nvarchar(50)) AS dl5, cast(vi.[DLLevel6] AS nvarchar(50)) AS dl6, [Debit] AS [debit], [Credit] AS [credit], [Debit] - [Credit] AS Amount, 
+                                                                              cast(v.VoucherTypeRef AS nvarchar(50)) AS ctgry, cast(v.[State] AS nvarchar(50)) AS [state]
+                                                            FROM      [faraz].[FIN3].VoucherItem vi left join [FIN3].[gl] h on h.GLID=vi.GLRef, [faraz].FIN3.Voucher v
+                                                            WHERE   v.VoucherID = vi.VoucherRef AND v.[State] IN (1, 4, 32) AND v.VoucherTypeRef <> 4 AND v.VoucherTypeRef <> 2 AND v.Date >= '2019-02-20 00:00:00.000' AND v.Date <= '2019-03-20 00:00:00.000') 
+                                                            AS tb
+                                          GROUP BY code) AS tbfinal) AS tbfin12 ON tbfin12.cd = tball.cd

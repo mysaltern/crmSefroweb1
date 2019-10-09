@@ -21,11 +21,27 @@ return [
         'attribute' => 'issue',
     ],
     [
-        'attribute' => 'url',
+        'attribute' => 'Powerpoin',
         'format' => 'raw',
         'value' => function ($model)
         {
             return Html::a(Html::encode("$model->url"), "../../../../frontend/upload/thesis/$model->url ", ['target' => '_blank', 'data-pjax' => "0"]);
+        },
+    ],
+    [
+        'attribute' => 'pdffile',
+        'format' => 'raw',
+        'value' => function ($model)
+        {
+            return Html::a(Html::encode("$model->pdffile"), "../../../../frontend/upload/thesis/$model->pdffile ", ['target' => '_blank', 'data-pjax' => "0"]);
+        },
+    ],
+    [
+        'attribute' => 'wordfile',
+        'format' => 'raw',
+        'value' => function ($model)
+        {
+            return Html::a(Html::encode("$model->wordfile"), "../../../../frontend/upload/thesis/$model->wordfile ", ['target' => '_blank', 'data-pjax' => "0"]);
         },
     ],
     [
