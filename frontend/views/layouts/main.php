@@ -128,8 +128,6 @@ $footer_texts = \common\models\Notification::find()->where(['category_id' => '3'
                             <p class="mb-5"><?= $text ?> </p>
 
                         <?php } ?>
-                        <!--<p class="mb-5">لطفاً در صورت وجود هرگونه مشکل فنی در کاربری این سایت، با ایمیل زیر مکاتبه و یا با
-                            شماره اعلام شده تماس حاصل نمایید.</p>-->
                     </div>
                 </div>
                 <div class="row">
