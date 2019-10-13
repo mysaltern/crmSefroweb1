@@ -84,6 +84,7 @@ use common\models\EnteringyearSearch;
         $lesson = \yii\helpers\Url::to(['/lesson/index']);
         $grade = \yii\helpers\Url::to(['/grade/index']);
         $professor = \yii\helpers\Url::to(['/professor/index']);
+        $paper = \yii\helpers\Url::to(['/paper/index']);
         $thesis = \yii\helpers\Url::to(['/thesis/index']);
         $reference = \yii\helpers\Url::to(['/reference/index']);
         $video = \yii\helpers\Url::to(['/videos/index']);
@@ -173,6 +174,7 @@ use common\models\EnteringyearSearch;
                                 ['label' => 'رشته تحصیلی', 'icon' => 'fas fa-cart-arrow-down', 'url' => $major],
                                 ['label' => 'سال ورود', 'icon' => 'fas fa-cart-arrow-down', 'url' => $enteringyear],
                                 ['label' => 'استاد', 'icon' => 'fas fa-cart-arrow-down', 'url' => $professor],
+                                ['label' => 'مقالات', 'icon' => 'fas fa-cart-arrow-down', 'url' => $paper],
                                 ['label' => 'پایان نامه', 'icon' => 'fas fa-cart-arrow-down', 'url' => $thesis],
                                 ['label' => 'تکالیف ارسالی', 'icon' => 'fas fa-cart-arrow-down', 'url' => $homework],
                             ],

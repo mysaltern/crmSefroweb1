@@ -1,5 +1,6 @@
-<?php
+﻿<?php
 /*
+
  * This file is part of the Dektrium project.
  *
  * (c) Dektrium project <http://github.com/dektrium>
@@ -45,9 +46,11 @@ $this->params['breadcrumbs'][] = $this->title;
             <div class="panel-body">
                 <?php
                 $form = ActiveForm::begin([
-                    'id' => 'registration-form',
+
                     'enableAjaxValidation' => true,
                     'enableClientValidation' => false,
+                    'options' => [ 'name' => 'myform'],
+
                 ]);
                 ?>
 
@@ -55,6 +58,8 @@ $this->params['breadcrumbs'][] = $this->title;
                     <input type="checkbox" class="form-check-input" id="notstudent">
                     <label class="form-check-label pr-4" for="notstudent">دانشجو نیستم</label>
                 </div>
+                <div class="myform_errorloc_loc"></div>
+
 
                 <?= $form->field($model, 'fname') ?>
                 <?= $form->field($model, 'lname') ?>
@@ -169,3 +174,46 @@ $this->params['breadcrumbs'][] = $this->title;
 
     });
 </script>
+
+
+<script language="JavaScript" type="text/javascript"
+        xml:space="preserve">//<![CDATA[
+    //You should create the validator only after the definition of the HTML form
+    var frmvalidator  = new Validator("myform");
+
+
+   /* frmvalidator.addValidation("register-form[fname]","req",'نام نمیتواند خالی باشد');
+    frmvalidator.addValidation("register-form[lname]","req","نام خانوادگی نمیتواند خالی باشد");
+    frmvalidator.addValidation("register-form[username]","req","کدملی نمیتواند خالی باشد");
+    frmvalidator.addValidation("register-form[gender]","req","جنسیت نمیتواند خالی باشد");
+    frmvalidator.addValidation("register-form[province_id]","req","استان محل سکونت نمیتواند خالی باشد");
+    frmvalidator.addValidation("register-form[city]","req","شهر محل سکونت نمیتواند خالی باشد");
+    frmvalidator.addValidation("register-form[mobile]","req","تلفن همراه نمیتواند خالی باشد");
+    frmvalidator.addValidation("register-form[phone]","req","تلفن نمیتواند خالی باشد");
+    frmvalidator.addValidation("register-form[email]","req","ایمیل نمیتواند خالی باشد");
+    frmvalidator.addValidation("register-form[uni_id]","req","دانشگاه محل تحصیل نمیتواند خالی باشد");
+    frmvalidator.addValidation("register-form[major_id]","req","رشته ی تحصیلی نمیتواند خالی باشد");
+    frmvalidator.addValidation("register-form[grade_id]","req","مقطع تحصیلی نمیتواند خالی باشد");
+    frmvalidator.addValidation("register-form[enteringyear_id]","req","سال ورود نمیتواند خالی باشد");
+    frmvalidator.addValidation("register-form[numcollegian]","req","شماره دانشجویی نمیتواند خالی باشد");
+    frmvalidator.addValidation("register-form[jobstatus]","req","وضعیت شغلی نمیتواند خالی باشد");*/
+
+
+    frmvalidator.addValidation("register-form[fname]","req",'Please enter your name');
+    frmvalidator.addValidation("register-form[lname]","req","Please enter your last name");
+    frmvalidator.addValidation("register-form[username]","req","Please enter your national code");
+    frmvalidator.addValidation("register-form[gender]","req","Please enter your gender");
+    frmvalidator.addValidation("register-form[province_id]","req","Please enter your province");
+    frmvalidator.addValidation("register-form[city]","req","Please enter your city");
+    frmvalidator.addValidation("register-form[mobile]","req","Please enter your mobile number");
+    frmvalidator.addValidation("register-form[phone]","req","Please enter your phone number");
+    frmvalidator.addValidation("register-form[email]","req","Please enter your email");
+    frmvalidator.addValidation("register-form[uni_id]","req","Please enter your university of education");
+    frmvalidator.addValidation("register-form[major_id]","req","Please enter your field of study");
+    frmvalidator.addValidation("register-form[grade_id]","req","Please enter your grade");
+    frmvalidator.addValidation("register-form[enteringyear_id]","req","Please enter your entering year");
+    frmvalidator.addValidation("register-form[numcollegian]","req","Please enter your collegian number");
+    frmvalidator.addValidation("register-form[jobstatus]","req","Please enter your job status");
+
+   </script>
+

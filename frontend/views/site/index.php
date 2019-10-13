@@ -264,7 +264,7 @@ foreach ($imgs_gallery as $img_gallery) {
             <div class="col-lg-6 col-xs-12 mb-3">
                 <h2 class="mb-4">دانلود مقالات</h2>
                 <?php
-                $upload = Url::to(['document/upload']);
+                $upload = Url::to(['paper/index']);
                 ?>
                 <a class="btn btn-light btn-xl sr-button"
                    href="<?= $upload; ?>">دانلود کنید</a>

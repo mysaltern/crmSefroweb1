@@ -10,6 +10,8 @@ use Yii;
  * @property int $id
  * @property string $issue
  * @property string $url
+ *  @property string $pdffile
+ *  @property string $wordfile
  * @property int $user_id
  * @property int $date_defense
  * @property string $feild1
@@ -44,7 +46,9 @@ class UniThesis extends \yii\db\ActiveRecord
         return [
             [['user_id', 'date_defense', 'grade_id', 'uni_id', 'major_id'], 'integer'],
             [['professor', 'professorRole'], 'each', 'rule' => ['integer']],
-            [['url'], 'file', 'skipOnEmpty' => true, 'extensions' => 'pdf , rar , zip'],
+            [['url'], 'file', 'skipOnEmpty' => true, 'extensions' => 'pdf , rar , zip' ],
+            [['pdffile'], 'file', 'skipOnEmpty' => true, 'extensions' => 'pdf , rar , zip' ],
+            [['wordfile'], 'file', 'skipOnEmpty' => true, 'extensions' => 'pdf , rar , zip' ],
             [['issue', 'tags', 'feild1'], 'string', 'max' => 255],
 
             [['grade_id'], 'exist', 'skipOnError' => true, 'targetClass' => UniGrade::className(), 'targetAttribute' => ['grade_id' => 'id']],
@@ -60,7 +64,9 @@ class UniThesis extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'issue' => 'موضوع',
-            'url' => 'فایل',
+            'url' => 'POWERPOINT FILE',
+            'pdffile' => 'PDF FILE',
+            'wordfile' => 'WORD FILE',
             'user_id' => 'User ID',
             'date_defense' => 'تاریخ دفاع',
             'feild1' => 'نام و نام خانوادگی',

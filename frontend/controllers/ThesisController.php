@@ -35,7 +35,7 @@ class ThesisController extends Controller
             ],
             'access' => [
                 'class' => \yii\filters\AccessControl::className(),
-                'only' => ['create', 'update', 'index', 'delete'],
+                'only' => ['create', 'update', 'index'],
                 'rules' => [
                     // deny all POST requests
                     [
@@ -47,7 +47,7 @@ class ThesisController extends Controller
                         'allow' => true,
                         'roles' => ['@'],
                     ],
-                // everything else is denied
+                    // everything else is denied
                 ],
             ],
         ];
@@ -60,15 +60,15 @@ class ThesisController extends Controller
     public function actionIndex()
     {
 
-        $user_id = Yii::$app->user->id ;
+        $user_id = Yii::$app->user->id;
 
         $model = \common\models\UniThesis::find()->where(['user_id' => $user_id])->with('major')->with('grade')->with('uni')->asArray()->all();
 
-      //  $profiles = Profiles::find()->where(['user_id' => $user_id])->with('major')->with('grade')->with('uni')->asArray()->one();
+        //  $profiles = Profiles::find()->where(['user_id' => $user_id])->with('major')->with('grade')->with('uni')->asArray()->one();
 
         return $this->render('index', [
             'model' => $model,
-         //  'profiles' => $profiles,
+            //  'profiles' => $profiles,
 
         ]);
     }
@@ -81,8 +81,7 @@ class ThesisController extends Controller
     public function actionView($id)
     {
         $request = Yii::$app->request;
-        if ($request->isAjax)
-        {
+        if ($request->isAjax) {
             Yii::$app->response->format = Response::FORMAT_JSON;
             return [
                 'title' => "UniThesis #" . $id,
@@ -90,13 +89,11 @@ class ThesisController extends Controller
                     'model' => $this->findModel($id),
                 ]),
                 'footer' => Html::button('Close', ['class' => 'btn btn-default pull-left', 'data-dismiss' => "modal"]) .
-                Html::a('Edit', ['update', 'id' => $id], ['class' => 'btn btn-primary', 'role' => 'modal-remote'])
+                    Html::a('Edit', ['update', 'id' => $id], ['class' => 'btn btn-primary', 'role' => 'modal-remote'])
             ];
-        }
-        else
-        {
+        } else {
             return $this->render('view', [
-                        'model' => $this->findModel($id),
+                'model' => $this->findModel($id),
             ]);
         }
     }
@@ -112,14 +109,12 @@ class ThesisController extends Controller
         $request = Yii::$app->request;
         $model = new UniThesis();
 
-        if ($request->isAjax)
-        {
+        if ($request->isAjax) {
             /*
              *   Process for ajax request
              */
             Yii::$app->response->format = Response::FORMAT_JSON;
-            if ($request->isGet)
-            {
+            if ($request->isGet) {
                 return [
                     'title' => "Create new UniThesis",
                     'content' => $this->renderAjax('create', [
@@ -128,12 +123,9 @@ class ThesisController extends Controller
                     'footer' => Html::button('Close', ['class' => 'btn btn-default pull-left', 'data-dismiss' => "modal"]) .
                         Html::button('Save', ['class' => 'btn btn-primary', 'type' => "submit"])
                 ];
-            }
-            else if ($model->load($request->post()) && $model->validate())
-            {
+            } else if ($model->load($request->post()) && $model->validate()) {
 
-                if ($model->url = UploadedFile::getInstance($model, 'url'))
-                {
+                if ($model->url = UploadedFile::getInstance($model, 'url')) {
                     $model->url = UploadedFile::getInstance($model, 'url');
                     $model->url->saveAs('../../frontend/upload/thesis/' . $model->url->baseName . "." . $model->url->extension);
                     $model->save(false);
@@ -142,15 +134,13 @@ class ThesisController extends Controller
                 $model->save(false);
 
 
-                if ($model->id)
-                {
+                if ($model->id) {
                     $profesoors = $model->professor;
                     $profesoorsRole = $model->professorRole;
 
 
                     $x = 0;
-                    foreach ($profesoors as $profesoor)
-                    {
+                    foreach ($profesoors as $profesoor) {
                         $thesisprofessor = new UniThesisProfessor();
                         $thesisprofessor->professor_id = $profesoor;
                         $thesisprofessor->professor_roleID = $profesoorsRole[$x];
@@ -159,12 +149,10 @@ class ThesisController extends Controller
                         $x++;
                     }
                 }
-                if (isset($model->tags))
-                {
+                if (isset($model->tags)) {
 
                     $tagsArr = explode(',', $model->tags);
-                    foreach ($tagsArr as $arr)
-                    {
+                    foreach ($tagsArr as $arr) {
                         $tagsModel = new \common\models\Tag;
                         $tagsModel->table = 'thesis';
                         $tagsModel->name = $arr;
@@ -172,8 +160,6 @@ class ThesisController extends Controller
                         $tagsModel->save(false);
                     }
                 }
-
-
 
 
                 return [
@@ -183,9 +169,7 @@ class ThesisController extends Controller
                     'footer' => Html::button('Close', ['class' => 'btn btn-default pull-left', 'data-dismiss' => "modal"]) .
                         Html::a('Create More', ['create'], ['class' => 'btn btn-primary', 'role' => 'modal-remote'])
                 ];
-            }
-            else
-            {
+            } else {
                 return [
                     'title' => "Create new UniThesis",
                     'content' => $this->renderAjax('create', [
@@ -195,33 +179,38 @@ class ThesisController extends Controller
                         Html::button('Save', ['class' => 'btn btn-primary', 'type' => "submit"])
                 ];
             }
-        }
-        else
-        {
+        } else {
             /*
              *   Process for non-ajax request
              */
-            if ($model->load($request->post()) && $model->validate())
-            {
+            if ($model->load($request->post()) && $model->validate()) {
 
-                if ($model->url = UploadedFile::getInstance($model, 'url'))
-                {
-
-                    $model->url = UploadedFile::getInstance($model, 'url');
-                    $model->url->saveAs('../../frontend/upload/thesis/' . $model->url->baseName . "." . $model->url->extension);
+                if ($model->pdffile = UploadedFile::getInstance($model, 'pdffile')) {
+                    $model->pdffile = UploadedFile::getInstance($model, 'pdffile');
+                    $model->pdffile->saveAs('../../frontend/upload/thesis/' . $model->pdffile->baseName . time() ."." . $model->pdffile->extension);
+                    $model->pdffile = $model->pdffile->baseName . time() . "." . $model->pdffile->extension;
                     $model->save(false);
                 }
-
+                if ($model->url = UploadedFile::getInstance($model, 'url')) {
+                    $model->url = UploadedFile::getInstance($model, 'url');
+                    $model->url->saveAs('../../frontend/upload/thesis/' . $model->url->baseName . time() . "." . $model->url->extension);
+                    $model->url = $model->url->baseName . time() . "." . $model->url->extension;
+                    $model->save(false);
+                }
+                if ($model->wordfile = UploadedFile::getInstance($model, 'wordfile')) {
+                    $model->wordfile= UploadedFile::getInstance($model, 'wordfile');
+                    $model->wordfile->saveAs('../../frontend/upload/thesis/' . $model->wordfile->baseName . time() . "." . $model->wordfile->extension);
+                    $model->wordfile = $model->wordfile->baseName . time() . "." . $model->wordfile->extension;
+                    $model->save(false);
+                }
                 $model->save(false);
-                if ($model->id)
-                {
+                if ($model->id) {
                     $profesoors = $model->professor;
                     $profesoorsRole = $model->professorRole;
 
 
                     $x = 0;
-                    foreach ($profesoors as $profesoor)
-                    {
+                    foreach ($profesoors as $profesoor) {
                         $thesisprofessor = new UniThesisProfessor();
                         $thesisprofessor->professor_id = $profesoor;
                         $thesisprofessor->professor_roleID = $profesoorsRole[$x];
@@ -231,12 +220,10 @@ class ThesisController extends Controller
                     }
                 }
 
-                if (isset($model->tags))
-                {
+                if (isset($model->tags)) {
 
                     $tagsArr = explode(',', $model->tags);
-                    foreach ($tagsArr as $arr)
-                    {
+                    foreach ($tagsArr as $arr) {
                         $tagsModel = new \common\models\Tag;
                         $tagsModel->table = 'thesis';
                         $tagsModel->name = $arr;
@@ -246,9 +233,7 @@ class ThesisController extends Controller
                 }
 
                 return $this->redirect(['view', 'id' => $model->id]);
-            }
-            else
-            {
+            } else {
                 return $this->render('create', [
                     'model' => $model,
                 ]);
@@ -276,16 +261,13 @@ class ThesisController extends Controller
         $request = Yii::$app->request;
         $this->findModel($id)->delete();
 
-        if ($request->isAjax)
-        {
+        if ($request->isAjax) {
             /*
              *   Process for ajax request
              */
             Yii::$app->response->format = Response::FORMAT_JSON;
             return ['forceClose' => true, 'forceReload' => '#crud-datatable-pjax'];
-        }
-        else
-        {
+        } else {
             /*
              *   Process for non-ajax request
              */
@@ -304,22 +286,18 @@ class ThesisController extends Controller
     {
         $request = Yii::$app->request;
         $pks = explode(',', $request->post('pks')); // Array or selected records primary keys
-        foreach ($pks as $pk)
-        {
+        foreach ($pks as $pk) {
             $model = $this->findModel($pk);
             $model->delete();
         }
 
-        if ($request->isAjax)
-        {
+        if ($request->isAjax) {
             /*
              *   Process for ajax request
              */
             Yii::$app->response->format = Response::FORMAT_JSON;
             return ['forceClose' => true, 'forceReload' => '#crud-datatable-pjax'];
-        }
-        else
-        {
+        } else {
             /*
              *   Process for non-ajax request
              */
@@ -336,12 +314,9 @@ class ThesisController extends Controller
      */
     protected function findModel($id)
     {
-        if (($model = UniThesis::findOne($id)) !== null)
-        {
+        if (($model = UniThesis::findOne($id)) !== null) {
             return $model;
-        }
-        else
-        {
+        } else {
             throw new NotFoundHttpException('The requested page does not exist.');
         }
     }
@@ -351,8 +326,25 @@ class ThesisController extends Controller
         $download = UniThesis::findone($id);
 
         $path = Yii::getAlias('@frontend') . '/upload/thesis/' . $download->url;
-        if (file_exists($path))
-        {
+        if (file_exists($path)) {
+            return Yii::$app->response->sendFile($path);
+        }
+    }
+    public function actionWord($id)
+    {
+        $download = UniThesis::findone($id);
+
+        $path = Yii::getAlias('@frontend') . '/upload/thesis/' . $download->wordfile;
+        if (file_exists($path)) {
+            return Yii::$app->response->sendFile($path);
+        }
+    }
+    public function actionPdf($id)
+    {
+        $download = UniThesis::findone($id);
+
+        $path = Yii::getAlias('@frontend') . '/upload/thesis/' . $download->pdffile;
+        if (file_exists($path)) {
             return Yii::$app->response->sendFile($path);
         }
     }

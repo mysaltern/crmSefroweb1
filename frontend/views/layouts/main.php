@@ -27,6 +27,7 @@ $footer_texts = \common\models\Notification::find()->where(['category_id' => '3'
         <meta charset="<?= Yii::$app->charset ?>">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <meta name="description" content="">
+        <meta charset="UTF-8">
         <meta name="author" content="">
 
         <title>پایگاه شخصی دکتر علیرضا پورابراهیمی</title>
@@ -44,7 +45,7 @@ $footer_texts = \common\models\Notification::find()->where(['category_id' => '3'
 
         <!-- Plugin CSS -->
         <link href="<?= $vendor; ?>/magnific-popup/magnific-popup.css" rel="stylesheet">
-
+        <script   language="JavaScript"  type="text/javascript" xml:space="preserve"  src="<?= $js; ?>/gen_validatorv4.js"></script>
         <!-- Custom styles for this template -->
         <link href="<?= $css; ?>/creative.css" rel="stylesheet">
         <link href="<?= $css; ?>/wow.css" rel="stylesheet" type="text/css"/>
@@ -154,13 +155,16 @@ $footer_texts = \common\models\Notification::find()->where(['category_id' => '3'
         <script src="<?= $vendor; ?>/scrollreveal/scrollreveal.min.js"></script>
         <script src="<?= $vendor; ?>/magnific-popup/jquery.magnific-popup.min.js"></script>
 
+
         <!-- Custom scripts for this template -->
+
         <script src="<?= $js; ?>/creative.min.js"></script>
         <script src="<?= $js; ?>/wow.min.js" type="text/javascript"></script>
         <script src="<?= $js; ?>/wow.min.js"></script>
         <script>
             new WOW().init();
         </script>
+
     </body>
 
 </html>

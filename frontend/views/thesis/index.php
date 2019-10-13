@@ -74,7 +74,9 @@ use yii\web\View;
                         تاریخ دفاع: <?=   $date_defense ?>
                     </p>
                     <br/>
-                    <?php echo Html::a(Html::encode("دانلود"), "download?id=$id ", ['target' => '_blank', 'data-pjax' => "0", 'class' => 'download-btn']); ?>
+                    <?php echo Html::a(Html::encode("دانلود POWERPOINT"), "download?id=$id ", ['target' => '_blank', 'data-pjax' => "0", 'class' => 'download-btn']); ?>
+                    <?php echo Html::a(Html::encode("دانلود PDF"), "pdf?id=$id ", ['target' => '_blank', 'data-pjax' => "0", 'class' => 'download-btn']); ?>
+                    <?php echo Html::a(Html::encode("دانلود WORD"), "word?id=$id ", ['target' => '_blank', 'data-pjax' => "0", 'class' => 'download-btn']); ?>
                 </div>
 
             </div>
