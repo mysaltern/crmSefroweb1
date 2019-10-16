@@ -2,10 +2,14 @@
 
 namespace backend\controllers;
 
+use common\models\Headlines;
 use common\models\Page;
+use common\models\UniLesson;
+use common\models\UniThesis;
 use Yii;
 use common\models\UniReference;
 use common\models\UniReferenceSearch;
+use yii\helpers\ArrayHelper;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -16,9 +20,9 @@ use yii\web\UploadedFile;
 /**
  * ReferenceController implements the CRUD actions for UniReference model.
  */
+
 class ReferenceController extends Controller
 {
-
     /**
      * @inheritdoc
      */
@@ -34,7 +38,7 @@ class ReferenceController extends Controller
             ],
             'access' => [
                 'class' => \yii\filters\AccessControl::className(),
-                'only' => ['create', 'update', 'index', 'delete'],
+                'only' => ['create', 'update', 'index', 'delete' , 'test'],
                 'rules' => [
                     // deny all POST requests
                     [
@@ -61,9 +65,11 @@ class ReferenceController extends Controller
         $searchModel = new UniReferenceSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
+
         return $this->render('index', [
                     'searchModel' => $searchModel,
                     'dataProvider' => $dataProvider,
+
         ]);
     }
 
@@ -103,11 +109,14 @@ class ReferenceController extends Controller
      */
     public function actionCreate()
     {
+
+
         $request = Yii::$app->request;
         $model = new UniReference();
 
         if ($request->isAjax)
         {
+
             /*
              *   Process for ajax request
              */
@@ -127,6 +136,23 @@ class ReferenceController extends Controller
             {
 
 
+                $headlines_name = $model->headlinsname ;
+                $lesson_id = $model->lesson_id ;
+
+                if($model->headlinsname){
+                    $head = new Headlines();
+                    $head->name = $headlines_name ;
+                    $head->lesson_id = $lesson_id;
+                    $head->save(false);
+                }
+                $heads = (new \yii\db\Query())
+                    ->select(['id'])
+                    ->from('headlines')
+                    ->orderBy('id DESC')
+                    ->limit(1)
+                    ->one();
+                $heads_name =  $heads['id'];
+
 
                 if ($model->url = UploadedFile::getInstance($model, 'url'))
                 {
@@ -134,11 +160,22 @@ class ReferenceController extends Controller
                     $model->url = UploadedFile::getInstance($model, 'url');
                     $model->url->saveAs('../../frontend/upload/reference/' . $model->url->baseName . time() . "." . $model->url->extension);
                     $model->url =  $urlname ;
+                 if(!$model->headlines_id){
+
+                     $model->headlines_id = $heads_name ;
+                 }
                     $model->save(false);
                 }
+                if(!$model->headlines_id){
 
+                    $model->headlines_id = $heads_name ;
+                }
 
                 $model->save(false);
+
+             //   $headlines_id = $model->headlines_id;
+
+
                 return [
                     'forceReload' => '#crud-datatable-pjax',
                     'title' => "Create new UniReference",
@@ -170,11 +207,35 @@ class ReferenceController extends Controller
             }
             else
             {
+
+
                 return $this->render('create', [
-                            'model' => $model,
+                    'model' => $model,
+
+
+
                 ]);
             }
         }
+    }
+    public function actionSubcat() {
+        Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+        $out = [];
+        if (isset($_POST['depdrop_parents'])) {
+            $parents = $_POST['depdrop_parents'];
+            if ($parents != null) {
+                $cat_id = $parents[0];
+                $out = Headlines::find()->where(['lesson_id' => $cat_id])->all();
+                // the getSubCatList function will query the database based on the
+                // cat_id and return an array like below:
+                // [
+                //    ['id'=>'<sub-cat-id-1>', 'name'=>'<sub-cat-name1>'],
+                //    ['id'=>'<sub-cat_id_2>', 'name'=>'<sub-cat-name2>']
+                // ]
+                return ['output'=>$out, 'selected'=>''];
+            }
+        }
+        return ['output'=>'', 'selected'=>''];
     }
 
     /**
@@ -291,6 +352,8 @@ class ReferenceController extends Controller
         }
     }
 
+
+
     /**
      * Delete multiple existing UniReference model.
      * For ajax request will return json object
@@ -343,6 +406,10 @@ class ReferenceController extends Controller
             throw new NotFoundHttpException('The requested page does not exist.');
         }
     }
+
+
+
+
 
 
 //    public function actionDownload($id)

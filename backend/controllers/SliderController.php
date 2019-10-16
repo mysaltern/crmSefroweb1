@@ -75,7 +75,7 @@ class SliderController extends Controller
 
             if (!is_null($file))
             {
-                if ($fileModel = \mdm\upload\FileModel::saveAs($file, ['uploadPath' => '@common/upload']))
+                if ($fileModel = \mdm\upload\FileModel::saveAs($file, ['uploadPath' => '@frontend/web/img/upload/slider']))
                 {
                     $model->url = $fileModel->id;
                 }

@@ -29,6 +29,10 @@ return [
         'attribute' => 'major.name',
     ],
     [
+        'class' => '\kartik\grid\DataColumn',
+        'attribute' => 'headlines.name',
+    ],
+    [
         'attribute' => 'url',
         'format' => 'raw',
         'value' => function ($model)

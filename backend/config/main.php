@@ -86,6 +86,13 @@ return [
                 ],
             ],
         ],
+        'assetManager' => [
+            'bundles' => [
+                'kartik\form\ActiveFormAsset' => [
+                    'bsDependencyEnabled' => false // do not load bootstrap assets for a specific asset bundle
+                ],
+            ],
+        ],
         'logvisitor' => [
             'class' => 'slavkovrn\logvisitor\LogVisitorComponent',
             'filterIp' => '127.0.0.1,213.87.', /* comma separated substrings of IP  to be filtered of log in table , begining from first position  */

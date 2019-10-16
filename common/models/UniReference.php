@@ -13,13 +13,15 @@ use Yii;
  * @property int $major_id
  * @property string $url
  * @property int $active
+ *@property int $headlines_id
+ *@property string $headlinsname
  *
  * @property UniLesson $lesson
  * @property UniMajor $major
  */
 class UniReference extends \yii\db\ActiveRecord
 {
-
+public  $headlinsname ;
     /**
      * {@inheritdoc}
      */
@@ -34,8 +36,8 @@ class UniReference extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['lesson_id', 'major_id', 'active'], 'integer'],
-            [['subject', 'url'], 'string', 'max' => 255],
+            [['lesson_id', 'major_id', 'active' , 'headlines_id'], 'integer'],
+            [['subject', 'url' , 'headlinsname'], 'string', 'max' => 255],
             [['url'], 'file', 'skipOnEmpty' => true, 'extensions' => 'pdf , rar , zip'],
             [['lesson_id'], 'exist', 'skipOnError' => true, 'targetClass' => UniLesson::className(), 'targetAttribute' => ['lesson_id' => 'id']],
             [['major_id'], 'exist', 'skipOnError' => true, 'targetClass' => UniMajor::className(), 'targetAttribute' => ['major_id' => 'id']],
@@ -54,6 +56,8 @@ class UniReference extends \yii\db\ActiveRecord
             'major_id' => 'نام رشته',
             'url' => 'آدرس',
             'active' => 'وضعیت',
+            'headlines_id' => 'سرفصل'
+
         ];
     }
 
@@ -73,6 +77,10 @@ class UniReference extends \yii\db\ActiveRecord
         return $this->hasOne(UniMajor::className(), ['id' => 'major_id']);
     }
 
+    public function getHeadlines()
+    {
+        return $this->hasOne(Headlines::className(), ['id' => 'headlines_id']);
+    }
     /**
      * {@inheritdoc}
      * @return UniReferenceQuery the active query used by this AR class.

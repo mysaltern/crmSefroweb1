@@ -1,0 +1,50 @@
+SELECT 
+`uni_homework`.`id` AS id,
+`uni_homework`.`id` AS homeworkid,
+`profiles`.`fname` AS fname,
+`profiles`.`lname` AS lname,
+`profiles`.`gender` AS gender,
+`profiles`.`city` AS city,
+`profiles`.`mobile` AS mobile,
+`profiles`.`phone` AS phone,
+`profiles`.`numcollegian` AS numcollegian,
+`profiles`.`jobstatus` AS jobstatus,
+`profiles`.`jobdetail` AS jobdetail,
+`profiles`.`jobdescription` AS jobdescriotion,
+`profiles`.`id` AS profilesid,
+`uni_homework`.`date_sent` AS date_sent,
+`uni_homework`.`hm_file` AS hm_file,
+`uni_homework`.`description` AS description,
+
+
+                  
+                   (select name from uni_lesson where uni_lesson.id = uni_homework.lesson_id) AS lessonname,
+                    `uni_major`.`name` AS majorname,
+                    `uni_grade`.`name` AS gradename,
+                    `uni_uni_name`.`name` AS uniname,
+                    (select username from user where user.id = uni_homework.user_id) AS username ,
+                   
+                   (select name from enteringyear where enteringyear.id = uni_homework.enteringyear_id) AS term
+		   
+                
+                  
+ 
+
+
+FROM `uni_homework`
+   
+    LEFT JOIN `profiles` ON `uni_homework`.`profiles_id` = `profiles`.`id`
+    LEFT JOIN `uni_major` ON `profiles`.`major_id` = `uni_major`.`id`
+    LEFT JOIN `uni_grade` ON `profiles`.`grade_id` = `uni_grade`.`id`
+    LEFT JOIN `uni_uni_name` ON `profiles`.`uni_id` = `uni_uni_name`.`id`
+    LEFT JOIN `enteringyear` ON `profiles`.`enteringyear_id` = `enteringyear`.`id`
+   
+
+
+4073036521
+  
+d1771954
+   
+   
+   
+

@@ -17,7 +17,7 @@ use yii\widgets\ActiveForm;
 
 
     <?php
-    $dataPost = yii\helpers\ArrayHelper::map(\common\models\InvProducts::find()->asArray()->all(), 'id', 'name');
+    $dataPost = yii\helpers\ArrayHelper::map(\common\models\InvProductUnits::find()->asArray()->all(), 'id', 'name');
     echo $form->field($model, 'productUnitID')
             ->dropDownList(
                     $dataPost, ['prompt' => '---- انتخاب دسته بندی ----']

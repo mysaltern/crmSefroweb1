@@ -206,7 +206,7 @@ $this->params['breadcrumbs'][] = $this->title;
     frmvalidator.addValidation("register-form[province_id]","req","Please enter your province");
     frmvalidator.addValidation("register-form[city]","req","Please enter your city");
     frmvalidator.addValidation("register-form[mobile]","req","Please enter your mobile number");
-    frmvalidator.addValidation("register-form[phone]","req","Please enter your phone number");
+  //  frmvalidator.addValidation("register-form[phone]","req","Please enter your phone number");
     frmvalidator.addValidation("register-form[email]","req","Please enter your email");
     frmvalidator.addValidation("register-form[uni_id]","req","Please enter your university of education");
     frmvalidator.addValidation("register-form[major_id]","req","Please enter your field of study");

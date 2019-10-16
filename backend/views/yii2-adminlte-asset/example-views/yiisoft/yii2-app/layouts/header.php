@@ -206,7 +206,7 @@ $base = Url::base();
                 <li class="dropdown user user-menu">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         <img src="<?php echo $base; ?>/img/user2-160x160.jpg" class="user-image" alt="User Image"/>
-                        <span class="hidden-xs">Faraz Andishan</span>
+                        <span class="hidden-xs">دکتر علیرضا پورابراهیمی</span>
                     </a>
                     <ul class="dropdown-menu">
                         <!-- User image -->
@@ -215,7 +215,7 @@ $base = Url::base();
                                  alt="User Image"/>
 
                             <p>
-                                Faraz Andishan - Web CMS
+                                دکتر علیرضا پورابراهیمی
                                 <!--<small>Member since Nov. 2012</small>-->
                             </p>
                         </li>

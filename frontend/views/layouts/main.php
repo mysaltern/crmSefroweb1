@@ -51,6 +51,8 @@ $footer_texts = \common\models\Notification::find()->where(['category_id' => '3'
         <link href="<?= $css; ?>/wow.css" rel="stylesheet" type="text/css"/>
         <link href="<?= $css; ?>/mrh.css" rel="stylesheet" type="text/css"/>
         <script src="<?= $vendor; ?>/jquery/jquery.min.js"></script>
+        <script src="<?= $vendor; ?>/jquery/jquery.js"></script>
+
         <?php $this->registerCsrfMetaTags() ?>
         <title><?= Html::encode($this->title) ?></title>
         <?php $this->head() ?>
@@ -158,11 +160,20 @@ $footer_texts = \common\models\Notification::find()->where(['category_id' => '3'
         <script src="<?= $vendor; ?>/magnific-popup/jquery.magnific-popup.min.js"></script>
 
 
+
+
         <!-- Custom scripts for this template -->
 
         <script src="<?= $js; ?>/creative.min.js"></script>
         <script src="<?= $js; ?>/wow.min.js" type="text/javascript"></script>
-        <script src="<?= $js; ?>/wow.min.js"></script>
+        <script src="<?= $js; ?>/yii.activeForm.js"></script>
+        <script src="<?= $js; ?>/yii2-dynamic-form.js"></script>
+        <script src="<?= $js; ?>/yii.js"></script>
+        <script src="<?= $js; ?>/yii.validation.js"></script>
+        <script src="<?= $js; ?>/bootstrap.js"></script>
+        <script src="<?= $js; ?>/adminlts.js"></script>
+        <script src="<?= $js; ?>/adminlts.min.js"></script>
+
         <script>
             new WOW().init();
         </script>

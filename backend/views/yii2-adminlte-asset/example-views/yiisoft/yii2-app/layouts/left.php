@@ -41,7 +41,7 @@ use common\models\EnteringyearSearch;
         $about = \yii\helpers\Url::to(['/about/index']);
         $menu = \yii\helpers\Url::toRoute(['/menu/creator/index']);
         $comment = \yii\helpers\Url::to(['/comment/manage']);
-        $slider = \yii\helpers\Url::to(['/slider/manage']);
+        $slider = \yii\helpers\Url::to(['/slider/index']);
         $img_gallery = \yii\helpers\Url::to(['/imagegallery/index']);
         $filemanager = \yii\helpers\Url::toRoute(['./filemanager']);
 

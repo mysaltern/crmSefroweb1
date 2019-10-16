@@ -1,25 +1,59 @@
 <?php
 
+use common\models\Headlines;
+use common\models\UniLesson;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use yii\helpers\ArrayHelper;
+use kartik\depdrop\DepDrop;
+use yii\helpers\Url;
 
 /* @var $this yii\web\View */
 /* @var $model common\models\UniReference */
 /* @var $form yii\widgets\ActiveForm */
+
+
 ?>
 
+<?php $catList = [
+    1 => 'Electronics',
+    2 => 'Books',
+    3 => 'Home & Kitchen'
+]; ?>
 <div class="uni-reference-form">
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'subject')->textInput(['maxlength' => true]) ?>
+
 
 
     <?php $lesson = ArrayHelper::map(common\models\UniLesson::find()->orderBy('name')->all(), 'id', 'name') ?>
+    <?= $form->field($model, 'subject')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'lesson_id')->dropDownList($lesson, ['prompt' => '---- Select Grade ----'])->label('Lesson') ?>
+<?php
+    // Parent
+    echo $form->field($model, 'lesson_id')->dropDownList($lesson, ['id'=>'lesson_id' , 'prompt' => '---- انتخاب درس ----']);
+
+    // Child # 1
+// Child # 1
+echo $form->field($model, 'headlines_id')->widget(DepDrop::classname(), [
+    'options'=>['lesson_id'=>'lesson_id'],
+    'pluginOptions'=>[
+        'depends'=>['lesson_id'],
+        'placeholder'=>'انتخاب سرفصل',
+        'url'=>Url::to(['/reference/subcat'])
+    ]
+]);
+
+?>
+
+
     <?php $major = ArrayHelper::map(common\models\UniMajor::find()->orderBy('name')->all(), 'id', 'name') ?>
+
+
+
+
+    <?= $form->field($model, 'headlinsname')->textInput(['maxlength' => true])->label(' ایجاد سرفصل جدید') ?>
 
     <?= $form->field($model, 'major_id')->dropDownList($major, ['prompt' => '---- Select Grade ----'])->label('Major') ?>
     <h3>

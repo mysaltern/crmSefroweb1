@@ -5,12 +5,12 @@ namespace common\models;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use common\models\UniReference;
+use common\models\Headlines;
 
 /**
- * UniReferenceSearch represents the model behind the search form about `common\models\UniReference`.
+ * HeadlinesSearch represents the model behind the search form about `common\models\Headlines`.
  */
-class UniReferenceSearch extends UniReference
+class HeadlinesSearch extends Headlines
 {
     /**
      * @inheritdoc
@@ -18,8 +18,8 @@ class UniReferenceSearch extends UniReference
     public function rules()
     {
         return [
-            [['id', 'lesson_id', 'major_id'], 'integer'],
-            [['subject', 'url', 'active'], 'safe'],
+            [['id', 'lesson_id'], 'integer'],
+            [['name'], 'safe'],
         ];
     }
 
@@ -41,7 +41,7 @@ class UniReferenceSearch extends UniReference
      */
     public function search($params)
     {
-        $query = UniReference::find();
+        $query = Headlines::find();
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
@@ -58,13 +58,9 @@ class UniReferenceSearch extends UniReference
         $query->andFilterWhere([
             'id' => $this->id,
             'lesson_id' => $this->lesson_id,
-            'major_id' => $this->major_id,
-            'headlines_id' => $this->headlines_id,
         ]);
 
-        $query->andFilterWhere(['like', 'subject', $this->subject])
-            ->andFilterWhere(['like', 'url', $this->url])
-            ->andFilterWhere(['like', 'active', $this->active]);
+        $query->andFilterWhere(['like', 'name', $this->name]);
 
         return $dataProvider;
     }
