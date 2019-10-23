@@ -44,6 +44,7 @@ return [
             'class' => 'frontend\components\Frontend',
         ],
 
+
         'user' => [
             'identityCookie' => [
                 'name' => '_frontendIdentity',

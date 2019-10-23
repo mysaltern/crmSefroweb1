@@ -24,6 +24,8 @@ return [
         'mycomponent' => [
             'class' => 'common\components\MyComponent',
         ],
+
+
         'authManager' => [
             'class' => 'dektrium\rbac\components\DbManager',
         ],

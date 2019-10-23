@@ -105,6 +105,8 @@ class RecoveryController extends Controller
      */
     public function actionRequest()
     {
+
+
         if (!$this->module->enablePasswordRecovery)
         {
             throw new NotFoundHttpException();
@@ -122,13 +124,25 @@ class RecoveryController extends Controller
 
         if ($model->load(\Yii::$app->request->post()) && $model->sendRecoveryMessage())
         {
+
+          if($model["password"] == null){
+              $this->trigger(self::EVENT_AFTER_REQUEST, $event);
+              return $this->render('@frontend/views/users/recovery/error', [
+                  'title' => \Yii::t('user', 'Recovery message sent'),
+                  'module' => $this->module,
+              ]);
+          }
             $this->trigger(self::EVENT_AFTER_REQUEST, $event);
-            return $this->render('/message', [
-                        'title' => \Yii::t('user', 'Recovery message sent'),
-                        'module' => $this->module,
+            return $this->render('@frontend/views/users/recovery/succes', [
+                'title' => \Yii::t('user', 'Recovery message sent'),
+                'module' => $this->module,
             ]);
         }
-
+        if($model["email"]){
+            return $this->render('@frontend/views/users/recovery/support', [
+                'model' => $model,
+            ]);
+        }
         return $this->render('@frontend/views/users/recovery/request', [
                     'model' => $model,
         ]);
@@ -181,7 +195,7 @@ class RecoveryController extends Controller
         if ($model->load(\Yii::$app->getRequest()->post()) && $model->resetPassword($token))
         {
             $this->trigger(self::EVENT_AFTER_RESET, $event);
-            return $this->render('/message', [
+            return $this->render('@frontend/views/users/recovery/succes', [
                         'title' => \Yii::t('user', 'Password has been changed'),
                         'module' => $this->module,
             ]);

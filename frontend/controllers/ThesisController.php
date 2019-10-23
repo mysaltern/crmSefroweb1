@@ -106,6 +106,8 @@ class ThesisController extends Controller
      */
     public function actionCreate()
     {
+
+
         $request = Yii::$app->request;
         $model = new UniThesis();
 
