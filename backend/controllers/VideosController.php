@@ -30,9 +30,25 @@ class VideosController extends Controller
                     'bulk-delete' => ['post'],
                 ],
             ],
+            'access' => [
+                'class' => \yii\filters\AccessControl::className(),
+                'only' => ['create', 'update', 'index'],
+                'rules' => [
+                    // deny all POST requests
+                    [
+                        'allow' => TRUE,
+                        'verbs' => ['POST']
+                    ],
+                    // allow authenticated users
+                    [
+                        'allow' => true,
+                        'roles' => ['@'],
+                    ],
+                    // everything else is denied
+                ],
+            ],
         ];
     }
-
     /**
      * Lists all Videos models.
      * @return mixed

@@ -24,7 +24,25 @@ class AboutController extends Controller
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
-                    'delete' => ['POST'],
+                    'delete' => ['post'],
+                    'bulk-delete' => ['post'],
+                ],
+            ],
+            'access' => [
+                'class' => \yii\filters\AccessControl::className(),
+                'only' => ['create', 'update', 'index'],
+                'rules' => [
+                    // deny all POST requests
+                    [
+                        'allow' => TRUE,
+                        'verbs' => ['POST']
+                    ],
+                    // allow authenticated users
+                    [
+                        'allow' => true,
+                        'roles' => ['@'],
+                    ],
+                    // everything else is denied
                 ],
             ],
         ];
